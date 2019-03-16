@@ -1,8 +1,9 @@
 [package]
 name = "plowman"
-version = "0.0.1-pre-pre"
+version = "0.0.1-spritzer"
 authors = ["Terkwood <metaterkhorn@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-amethyst = "0.10.0"
+amethyst = { git = "https://github.com/amethyst/amethyst" }
+serde = "*"
