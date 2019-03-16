@@ -1,6 +1,6 @@
 [package]
-name = "PLOWMAN"
-version = "0.0.1-pre-void"
+name = "plowman"
+version = "0.0.1-pre-pre"
 authors = ["Terkwood <metaterkhorn@gmail.com>"]
 edition = "2018"
 

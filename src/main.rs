@@ -1,22 +1,20 @@
 extern crate amethyst;
 
+mod intro_state;
+mod main_menu_state;
+
 use amethyst::{
     prelude::*,
     renderer::{DisplayConfig, DrawFlat, Pipeline, PosNormTex, RenderBundle, Stage},
     utils::application_root_dir,
 };
 
-struct Example;
-
-impl SimpleState for Example {}
+use crate::intro_state::IntroState;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 
-    let path = format!(
-        "{}/resources/display_config.ron",
-        application_root_dir()
-    );
+    let path = format!("{}/resources/display_config.ron", application_root_dir());
     let config = DisplayConfig::load(&path);
 
     let pipe = Pipeline::build().with_stage(
@@ -27,7 +25,7 @@ fn main() -> amethyst::Result<()> {
 
     let game_data =
         GameDataBuilder::default().with_bundle(RenderBundle::new(pipe, Some(config)))?;
-    let mut game = Application::new("./", Example, game_data)?;
+    let mut game = Application::new("./", IntroState {}, game_data)?;
 
     game.run();
 
