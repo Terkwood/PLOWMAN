@@ -1,3 +1,4 @@
+//! Bat sprite is from <https://opengameart.org/content/bat-32x32>.
 use crate::animation_id::AnimationId;
 use crate::BatPrefabData;
 use amethyst::{

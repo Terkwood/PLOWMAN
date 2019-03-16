@@ -1,6 +1,6 @@
 [package]
 name = "plowman"
-version = "0.0.1-spritzer"
+version = "0.0.1-bat-source"
 authors = ["Terkwood <metaterkhorn@gmail.com>"]
 edition = "2018"
 

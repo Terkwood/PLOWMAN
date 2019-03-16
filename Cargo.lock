@@ -1959,7 +1959,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "plowman"
-version = "0.0.1-spritzer"
+version = "0.0.1-bat-source"
 dependencies = [
  "amethyst 0.10.0 (git+https://github.com/amethyst/amethyst)",
  "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
