@@ -1,8 +1,9 @@
+
 # PLOWMAN
 
 A pixel art game inspired by Piers Plowman
 
-# Mechanics
+# Overview
 
 The dreamer will seek, among other things, the allegorical characters Dowel ("Do-Well"), Dobet ("Do-Better"), and Dobest ("Do-Best"). 
 
@@ -15,6 +16,14 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 ## Setup
 
 Randomly pick sex and skin tone of hero. But initial clothing should be a gray hermit's robe. 
+
+## Controls
+
+Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices. 
+
+## Platform
+
+Play in the browser. 
 
 ## Tiled Map Intergration
 
