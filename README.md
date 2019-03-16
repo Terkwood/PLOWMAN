@@ -27,19 +27,15 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 
 ## Setup
 
-Randomly pick sex and skin tone of hero. But initial clothing should be a gray hermit's robe. 
+Randomly pick sex and skin tone of hero. But initial clothing should be a gray hermit's robe.
 
 ## Controls
 
-Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices. 
-
-## Platform
-
-Play in the browser. 
+Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
 
 ## Tiled Map Intergration
 
-We need Tiled Map Editor integration for cutscene management. 
+We need Tiled Map Editor integration for cutscene management.
 
 # Graphics
 
