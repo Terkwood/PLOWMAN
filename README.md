@@ -25,7 +25,7 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 
 ## Setup
 
-Randomly pick sex and skin tone of hero. But initial clothing should be a gray hermit's robe.
+Allow player to choose sex of hero.  Randomly select skin tone of hero. But initial clothing should be a hermit's robe (gray/brown/etc).
 
 ## Controls
 
@@ -34,6 +34,10 @@ Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
 ## Tiled Map Intergration
 
 We need Tiled Map Editor integration for cutscene management.
+
+## Randomization of NPCs
+
+It would be nice to be able to assemble the look and feel of NPCs randomly.  Liberated Pixel Cup collections give a lot of examples of hair, clothing, etc, which should fit base character sprites.
 
 # Graphics
 
