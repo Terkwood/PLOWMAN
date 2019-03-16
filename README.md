@@ -1,7 +1,9 @@
 
 # PLOWMAN
 
-A pixel art game inspired by Piers Plowman
+A pixel art game inspired by Piers Plowman.
+
+![Page from the 14th-century Luttrell Psalter, showing drolleries on the right margin and a ploughman at the bottom](Piers_plowman_drolleries.gif)
 
 # Overview
 
