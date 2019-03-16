@@ -7,11 +7,21 @@ A pixel art game inspired by Piers Plowman.
 
 # Overview
 
-The dreamer will seek, among other things, the allegorical characters Dowel ("Do-Well"), Dobet ("Do-Better"), and Dobest ("Do-Best"). 
+> In a summer season when the sun shone softly
+>
+> I wrapped myself in woolens as if I were a sheep;
+>
+> In a hermit's habit, unholy in his works,
+>
+> I went out into the world to hear wonders
+>
+> And to see many strange and seldom-known things.
 
-Score points for undertaking wholesome actions. If you do enough evil, the adventure ends. 
+The dreamer will seek, among other things, the allegorical characters Dowel ("Do-Well"), Dobet ("Do-Better"), and Dobest ("Do-Best").
 
-One life. 
+Score points for undertaking wholesome actions. If you do enough evil, the adventure ends.
+
+One life.
 
 Specific interactions, item placement, dungeons, and NPC spawns should be randomized. Cutscenes are not randomized. Important NPC interactions are scripted. World map is not randomized. 
 
@@ -49,4 +59,8 @@ We need Tiled Map Editor integration for cutscene management.
 ### Appearance of Piers Plowman
 
 - [farm animals](https://opengameart.org/content/lpc-style-farm-animals)
-- [farming tiles](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements) 
+- [farming tiles](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements)
+
+# References
+
+- Opening quotation is [from George Economou's verse translation of C text](http://piers.chass.ncsu.edu/resources/university.html)
