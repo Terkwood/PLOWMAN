@@ -1,0 +1,8 @@
+[package]
+name = "PLOWMAN"
+version = "0.0.1-pre-void"
+authors = ["Terkwood <metaterkhorn@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+amethyst = "0.10.0"

@@ -21,8 +21,6 @@ The dreamer will seek, among other things, the allegorical characters Dowel ("Do
 
 Score points for undertaking wholesome actions. If you do enough evil, the adventure ends.
 
-One life.
-
 Specific interactions, item placement, dungeons, and NPC spawns should be randomized. Cutscenes are not randomized. Important NPC interactions are scripted. World map is not randomized. 
 
 ## Setup
