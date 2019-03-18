@@ -1,9 +1,10 @@
 [package]
 name = "plowman"
-version = "0.0.1-bat-source"
+version = "0.0.1-greetings"
 authors = ["Terkwood <metaterkhorn@gmail.com>"]
 edition = "2018"
 
 [dependencies]
 amethyst = { git = "https://github.com/amethyst/amethyst" }
+amethyst_config = "*"
 serde = "*"

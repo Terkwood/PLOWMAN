@@ -4,10 +4,9 @@ use crate::BatPrefabData;
 use amethyst::{
     animation::{get_animation_set, AnimationCommand, AnimationSet, EndControl},
     assets::{PrefabLoader, ProgressCounter, RonFormat},
-    core::transform::Transform,
     ecs::prelude::Entity,
-    prelude::{Builder, World},
-    renderer::{Camera, Projection, ScreenDimensions, SpriteRender},
+    prelude::Builder,
+    renderer::SpriteRender,
     GameData, SimpleState, SimpleTrans, StateData, Trans,
 };
 
@@ -36,9 +35,6 @@ impl SimpleState for GameplayState {
         });
         // Creates a new entity with components from PrefabData
         self.bat = Some(world.create_entity().with(prefab_handle).build());
-
-        // Creates a new camera
-        initialise_camera(world);
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
@@ -72,22 +68,4 @@ impl SimpleState for GameplayState {
         }
         Trans::None
     }
-}
-
-fn initialise_camera(world: &mut World) {
-    let (width, height) = {
-        let dim = world.read_resource::<ScreenDimensions>();
-        (dim.width(), dim.height())
-    };
-
-    let mut camera_transform = Transform::default();
-    camera_transform.set_translation_z(1.0);
-
-    world
-        .create_entity()
-        .with(camera_transform)
-        .with(Camera::from(Projection::orthographic(
-            0.0, width, 0.0, height,
-        )))
-        .build();
 }

@@ -130,6 +130,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "amethyst_config"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ron 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "amethyst_controls"
 version = "0.4.0"
 source = "git+https://github.com/amethyst/amethyst#ceef710f8386f68e24ec05c183bc40e361990a74"
@@ -1959,9 +1969,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "plowman"
-version = "0.0.1-bat-source"
+version = "0.0.1-greetings"
 dependencies = [
  "amethyst 0.10.0 (git+https://github.com/amethyst/amethyst)",
+ "amethyst_config 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -2935,6 +2946,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum amethyst_assets 0.6.0 (git+https://github.com/amethyst/amethyst)" = "<none>"
 "checksum amethyst_audio 0.5.0 (git+https://github.com/amethyst/amethyst)" = "<none>"
 "checksum amethyst_config 0.9.0 (git+https://github.com/amethyst/amethyst)" = "<none>"
+"checksum amethyst_config 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "dd242cf779ac8aad0266e371b0a47963366cf6ac24306150b3536c6908baa726"
 "checksum amethyst_controls 0.4.0 (git+https://github.com/amethyst/amethyst)" = "<none>"
 "checksum amethyst_core 0.5.0 (git+https://github.com/amethyst/amethyst)" = "<none>"
 "checksum amethyst_derive 0.3.0 (git+https://github.com/amethyst/amethyst)" = "<none>"

@@ -1,6 +1,7 @@
 extern crate amethyst;
 
 mod animation_id;
+mod config;
 mod gameplay_state;
 mod intro_state;
 mod main_menu_state;
@@ -22,6 +23,7 @@ use amethyst::{
 use serde::{Deserialize, Serialize};
 
 use crate::animation_id::AnimationId;
+use crate::config::IntroConfig;
 use crate::intro_state::IntroState;
 
 /// Loading data for one entity
@@ -41,7 +43,9 @@ fn main() -> amethyst::Result<()> {
     let app_root = application_root_dir()?;
     let assets_directory = app_root.join("assets/");
     let display_conf_path = app_root.join("resources/display_config.ron");
+    let game_conf_path = app_root.join("resources/config.ron");
     let display_config = DisplayConfig::load(display_conf_path);
+    let intro_config = IntroConfig::load(game_conf_path);
 
     let pipe = Pipeline::build().with_stage(
         Stage::with_backbuffer()
@@ -58,7 +62,10 @@ fn main() -> amethyst::Result<()> {
         ))?
         .with_bundle(RenderBundle::new(pipe, Some(display_config)).with_sprite_sheet_processor())?;
 
-    let mut game = Application::new(assets_directory, IntroState {}, game_data)?;
+    let mut game = Application::build(assets_directory, IntroState::default())
+        .expect("failed to initialize")
+        .with_resource(intro_config)
+        .build(game_data)?;
 
     game.run();
 
