@@ -5,12 +5,12 @@ use amethyst::{
     input::is_key_down,
     prelude::*,
     renderer::{
-        Camera, PngFormat, Projection, ScreenDimensions, Texture, TextureHandle, TextureMetadata,
-        VirtualKeyCode,
+        Camera, PngFormat, Projection, ScreenDimensions, Texture, TextureMetadata, VirtualKeyCode,
     },
 };
 
 use crate::config::IntroConfig;
+use crate::image::Image;
 use crate::main_menu_state::MainMenuState;
 
 #[derive(Default)]
@@ -18,12 +18,16 @@ pub struct IntroState {
     /// Tracks loaded assets.
     progress_counter: Option<ProgressCounter>,
     /// Handle to an image.
-    texture_handle: Option<TextureHandle>,
-    texture_width: Option<f32>,
-    texture_height: Option<f32>,
+    image: Option<Image>,
+    image_entity: Option<Entity>,
 }
 
-// no system, so use emptystate
+impl IntroState {
+    fn image_is_loaded(&self) -> bool {
+        self.image_entity.is_some()
+    }
+}
+
 impl SimpleState for IntroState {
     fn on_start(&mut self, data: StateData<'_, amethyst::GameData<'_, '_>>) {
         let StateData { world, .. } = data;
@@ -34,7 +38,6 @@ impl SimpleState for IntroState {
         let config = world.read_resource::<IntroConfig>();
         let loader = world.read_resource::<Loader>();
 
-        // Crates new progress counter
         self.progress_counter = Some(Default::default());
 
         let image = &config.image;
@@ -46,9 +49,19 @@ impl SimpleState for IntroState {
             &world.read_resource::<AssetStorage<Texture>>(),
         );
 
-        self.texture_handle = Some(texture_handle);
-        self.texture_width = Some(config.width);
-        self.texture_height = Some(config.height);
+        self.image = Some(Image {
+            texture_handle,
+            width: config.width,
+            height: config.height,
+        });
+    }
+
+    fn on_pause(&mut self, data: StateData<'_, amethyst::GameData<'_, '_>>) {
+        if let Some(entity) = self.image_entity {
+            let StateData { world, .. } = data;
+
+            remove_image(world, entity);
+        }
     }
 
     fn handle_event(
@@ -69,17 +82,15 @@ impl SimpleState for IntroState {
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        // Checks if we are still loading data
         if let Some(ref progress_counter) = self.progress_counter {
-            // Checks progress
-            if progress_counter.is_complete() {
-                let StateData { world, .. } = data;
-                let _image = init_image(
-                    world,
-                    &self.texture_handle.clone().unwrap(),
-                    self.texture_width.unwrap_or(200.0),
-                    self.texture_height.unwrap_or(400.0),
-                );
+            let img_loaded = !self.image_is_loaded();
+            if let Some(image) = &mut self.image {
+                if progress_counter.is_complete() && img_loaded {
+                    let StateData { world, .. } = data;
+                    let entity = init_image(world, &image);
+
+                    self.image_entity = Some(entity);
+                }
             }
         }
 
@@ -87,26 +98,27 @@ impl SimpleState for IntroState {
     }
 }
 
-fn init_image(
-    world: &mut World,
-    texture: &TextureHandle,
-    image_width: f32,
-    image_height: f32,
-) -> Entity {
+fn init_image(world: &mut World, image: &Image) -> Entity {
     let (screen_width, screen_height) = {
         let dim = world.read_resource::<ScreenDimensions>();
         (dim.width(), dim.height())
     };
 
     let mut transform = Transform::default();
-    transform.set_translation_x((screen_width - image_width) / 2.0);
-    transform.set_translation_y((screen_height - image_height) / 2.0);
+    transform.set_translation_x((screen_width - image.width) / 2.0);
+    transform.set_translation_y((screen_height - image.height) / 2.0);
 
     world
         .create_entity()
         .with(transform)
-        .with(texture.clone())
+        .with(image.texture_handle.clone())
         .build()
+}
+
+fn remove_image(world: &mut World, image_entity: Entity) {
+    world
+        .delete_entity(image_entity)
+        .expect("failed to remove loader image")
 }
 
 fn initialise_camera(world: &mut World) {
