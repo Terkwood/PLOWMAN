@@ -25,7 +25,7 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 
 ## Setup
 
-Allow player to choose sex of hero.  Randomly select skin tone of hero. But initial clothing should be a hermit's robe (gray/brown/etc).
+Initial clothing should be a hermit's robe (gray/brown/etc).
 
 ## Controls
 
@@ -43,13 +43,6 @@ We need Tiled Map Editor integration for cutscene management.
 
 It would be nice to be able to assemble the look and feel of NPCs randomly.  Liberated Pixel Cup collections give a lot of examples of hair, clothing, etc, which should fit base character sprites.
 
-# Graphics
-
-## Basics
-
-- [male and female characters w various skin tones](https://opengameart.org/content/lpc-character-skintone-rework) 
-- TODO gray hermit clothing
-
 ## Story chapters
 
 ### Prologue
@@ -66,3 +59,9 @@ It would be nice to be able to assemble the look and feel of NPCs randomly.  Lib
 # References
 
 - Opening quotation is [from George Economou's verse translation of C text](http://piers.chass.ncsu.edu/resources/university.html)
+
+# License Attributions
+
+Thank you to all open source contributors!
+
+- [Base characters](https://opengameart.org/content/lpc-character-skintone-rework). Babies are original of ElizaWy. Original adult walkcycles done by Redshrike. Standing child template by Kheftel. Child walk cycle by Nila122.

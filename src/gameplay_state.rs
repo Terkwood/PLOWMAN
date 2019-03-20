@@ -1,6 +1,5 @@
-//! Bat sprite is from <https://opengameart.org/content/bat-32x32>.
 use crate::animation_id::AnimationId;
-use crate::BatPrefabData;
+use crate::entities::player::PlayerPrefabData;
 use amethyst::{
     animation::{get_animation_set, AnimationCommand, AnimationSet, EndControl},
     assets::{PrefabLoader, ProgressCounter, RonFormat},
@@ -15,8 +14,8 @@ use amethyst::{
 pub struct GameplayState {
     /// A progress tracker to check that assets are loaded
     pub progress_counter: Option<ProgressCounter>,
-    /// Bat entity to start animation after loading
-    pub bat: Option<Entity>,
+    /// Player entity to animate after loading
+    pub player: Option<Entity>,
 }
 
 impl SimpleState for GameplayState {
@@ -25,7 +24,7 @@ impl SimpleState for GameplayState {
         // Crates new progress counter
         self.progress_counter = Some(Default::default());
         // Starts asset loading
-        let prefab_handle = world.exec(|loader: PrefabLoader<'_, BatPrefabData>| {
+        let prefab_handle = world.exec(|loader: PrefabLoader<'_, PlayerPrefabData>| {
             loader.load(
                 "prefab/sprite_animation.ron",
                 RonFormat,
@@ -34,7 +33,7 @@ impl SimpleState for GameplayState {
             )
         });
         // Creates a new entity with components from PrefabData
-        self.bat = Some(world.create_entity().with(prefab_handle).build());
+        self.player = Some(world.create_entity().with(prefab_handle).build());
     }
 
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
@@ -43,25 +42,26 @@ impl SimpleState for GameplayState {
             // Checks progress
             if progress_counter.is_complete() {
                 let StateData { world, .. } = data;
-                // Gets the Fly animation from AnimationSet
+                // Gets an animation from AnimationSet
                 let animation = world
                     .read_storage::<AnimationSet<AnimationId, SpriteRender>>()
-                    .get(self.bat.unwrap())
-                    .and_then(|s| s.get(&AnimationId::Fly).cloned())
+                    .get(self.player.unwrap())
+                    .and_then(|s| s.get(&AnimationId::EvokeDown).cloned())
                     .unwrap();
-                // Creates a new AnimationControlSet for bat entity
+                // Creates a new AnimationControlSet for player entity
                 let mut sets = world.write_storage();
                 let control_set =
-                    get_animation_set::<AnimationId, SpriteRender>(&mut sets, self.bat.unwrap())
+                    get_animation_set::<AnimationId, SpriteRender>(&mut sets, self.player.unwrap())
                         .unwrap();
                 // Adds the animation to AnimationControlSet and loops infinitely
                 control_set.add_animation(
-                    AnimationId::Fly,
+                    AnimationId::EvokeDown,
                     &animation,
                     EndControl::Loop(None),
                     1.0,
                     AnimationCommand::Start,
                 );
+
                 // All data loaded
                 self.progress_counter = None;
             }
