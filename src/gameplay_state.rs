@@ -42,25 +42,26 @@ impl SimpleState for GameplayState {
             // Checks progress
             if progress_counter.is_complete() {
                 let StateData { world, .. } = data;
-                // Gets an animation from AnimationSet
-                let animation = world
-                    .read_storage::<AnimationSet<AnimationId, SpriteRender>>()
-                    .get(self.player.unwrap())
-                    .and_then(|s| s.get(&AnimationId::EvokeDown).cloned())
-                    .unwrap();
-                // Creates a new AnimationControlSet for player entity
-                let mut sets = world.write_storage();
-                let control_set =
-                    get_animation_set::<AnimationId, SpriteRender>(&mut sets, self.player.unwrap())
+                    // Gets an animation from AnimationSet
+                    let animation = world
+                        .read_storage::<AnimationSet<AnimationId, SpriteRender>>()
+                        .get(self.player.unwrap())
+                        .and_then(|s| s.get(&AnimationId::EvokeDown).cloned())
                         .unwrap();
-                // Adds the animation to AnimationControlSet and loops infinitely
-                control_set.add_animation(
-                    AnimationId::EvokeDown,
-                    &animation,
-                    EndControl::Loop(None),
-                    1.0,
-                    AnimationCommand::Start,
-                );
+                    // Creates a new AnimationControlSet for player entity
+                    let mut sets = world.write_storage();
+                    let control_set =
+                        get_animation_set::<AnimationId, SpriteRender>(&mut sets, self.player.unwrap())
+                            .unwrap();
+                    // Adds the animation to AnimationControlSet and loops infinitely
+                    control_set.add_animation(
+                        AnimationId::EvokeDown,
+                        &animation,
+                        EndControl::Loop(None),
+                        1.0,
+                        AnimationCommand::Start,
+                    );
+                
                 // All data loaded
                 self.progress_counter = None;
             }
