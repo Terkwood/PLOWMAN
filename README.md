@@ -31,6 +31,10 @@ Allow player to choose sex of hero.  Randomly select skin tone of hero. But init
 
 Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
 
+## Procedural Farming
+
+Cloning functionality from Farmville is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
+
 ## Tiled Map Intergration
 
 We need Tiled Map Editor integration for cutscene management.
