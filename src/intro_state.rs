@@ -56,7 +56,7 @@ impl SimpleState for IntroState {
         });
     }
 
-    fn on_pause(&mut self, data: StateData<'_, amethyst::GameData<'_, '_>>) {
+    fn on_stop(&mut self, data: StateData<'_, amethyst::GameData<'_, '_>>) {
         if let Some(entity) = self.image_entity {
             let StateData { world, .. } = data;
 
@@ -73,7 +73,7 @@ impl SimpleState for IntroState {
             if is_key_down(&event, VirtualKeyCode::Return)
                 || is_key_down(&event, VirtualKeyCode::Space)
             {
-                return Trans::Push(Box::new(MainMenuState {}));
+                return Trans::Switch(Box::new(MainMenuState {}));
             }
         }
 
