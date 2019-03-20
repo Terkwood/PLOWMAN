@@ -99,14 +99,18 @@ impl SimpleState for IntroState {
 }
 
 fn init_image(world: &mut World, image: &Image) -> Entity {
-    let (screen_width, screen_height) = {
+    let (screen_width, screen_height, hidpi) = {
         let dim = world.read_resource::<ScreenDimensions>();
-        (dim.width(), dim.height())
+        (dim.width(), dim.height(), dim.hidpi_factor())
     };
 
     let mut transform = Transform::default();
-    transform.set_translation_x((screen_width - image.width) / 2.0);
-    transform.set_translation_y((screen_height - image.height) / 2.0);
+
+    let x_trans = screen_width / (2.0 * hidpi as f32);
+    let y_trans = screen_height / (2.0 * hidpi as f32);
+
+    transform.set_translation_x(x_trans);
+    transform.set_translation_y(y_trans);
 
     world
         .create_entity()
