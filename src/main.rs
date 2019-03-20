@@ -2,6 +2,7 @@ extern crate amethyst;
 
 mod animation_id;
 mod config;
+mod entities;
 mod gameplay_state;
 mod image;
 mod intro_state;
@@ -28,16 +29,6 @@ use crate::config::IntroConfig;
 use crate::intro_state::IntroState;
 
 /// Loading data for one entity
-#[derive(Debug, Clone, Serialize, Deserialize, PrefabData)]
-pub struct BatPrefabData {
-    /// Rendering position and orientation
-    transform: Transform,
-    /// Information for rendering a sprite
-    sprite_render: SpriteRenderPrefab,
-    /// Аll animations that can be run on the entity
-    animation_set: AnimationSetPrefab<AnimationId, SpriteRender>,
-}
-
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 
@@ -55,7 +46,11 @@ fn main() -> amethyst::Result<()> {
     );
 
     let game_data = GameDataBuilder::default()
-        .with(PrefabLoaderSystem::<BatPrefabData>::default(), "", &[])
+        .with(
+            PrefabLoaderSystem::<entities::player::PlayerPrefabData>::default(),
+            "",
+            &[],
+        )
         .with_bundle(TransformBundle::new())?
         .with_bundle(AnimationBundle::<AnimationId, SpriteRender>::new(
             "animation_control_system",

@@ -43,13 +43,6 @@ We need Tiled Map Editor integration for cutscene management.
 
 It would be nice to be able to assemble the look and feel of NPCs randomly.  Liberated Pixel Cup collections give a lot of examples of hair, clothing, etc, which should fit base character sprites.
 
-# Graphics
-
-## Basics
-
-- [male and female characters w various skin tones](https://opengameart.org/content/lpc-character-skintone-rework) 
-- TODO gray hermit clothing
-
 ## Story chapters
 
 ### Prologue

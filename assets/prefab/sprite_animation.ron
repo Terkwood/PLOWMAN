@@ -12,15 +12,15 @@ Prefab(
                 sprite_render: (
                     // TexturePrefab
                     texture: File(
-                        "texture/bat.32x32.png",
+                        "texture/man_olive.png",
                         Png,
                         TextureMetadata(channel: Srgb),
                     ),
                     // SerializeSpriteSheet
                     sprite_sheet: (
                         // Size of texture
-                        spritesheet_width: 192,
-                        spritesheet_height: 64,
+                        spritesheet_width: 832,
+                        spritesheet_height: 1344,
                         sprites: [
                             // Sprites with indexes from 0 to 5
                             (x: 0,   y: 0, width: 32, height: 32),

@@ -1,6 +1,6 @@
 [package]
 name = "plowman"
-version = "0.0.1-centered"
+version = "0.0.1-player"
 authors = ["Terkwood <metaterkhorn@gmail.com>"]
 edition = "2018"
 
