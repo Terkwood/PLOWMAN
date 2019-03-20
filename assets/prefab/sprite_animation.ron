@@ -2,7 +2,7 @@
 Prefab(
     entities: [
         PrefabEntity(
-            data: BatPrefabData(
+            data: PlayerPrefabData(
                 // Rendering position and orientation
                 transform: (
                     translation: (512.0, 384.0, 0.0),
@@ -22,13 +22,34 @@ Prefab(
                         spritesheet_width: 832,
                         spritesheet_height: 1344,
                         sprites: [
-                            // Sprites with indexes from 0 to 5
-                            (x: 0,   y: 0, width: 32, height: 32),
-                            (x: 32,  y: 0, width: 32, height: 32),
-                            (x: 64,  y: 0, width: 32, height: 32),
-                            (x: 96,  y: 0, width: 32, height: 32),
-                            (x: 128, y: 0, width: 32, height: 32),
-                            (x: 160, y: 0, width: 32, height: 32),
+                            (x: 0,   y: 0, width: 64, height: 64),
+                            (x: 64,  y: 0, width: 64, height: 64),
+                            (x: 128,  y: 0, width: 64, height: 64),
+                            (x: 192,  y: 0, width: 64, height: 64),
+                            (x: 256, y: 0, width: 64, height: 64),
+                            (x: 320, y: 0, width: 64, height: 64),
+                            (x: 384, y: 0, width: 64, height: 64),
+                            (x: 0,   y: 1, width: 64, height: 64),
+                            (x: 64,  y: 1, width: 64, height: 64),
+                            (x: 128,  y: 1, width: 64, height: 64),
+                            (x: 192,  y: 1, width: 64, height: 64),
+                            (x: 256, y: 1, width: 64, height: 64),
+                            (x: 320, y: 1, width: 64, height: 64),
+                            (x: 384, y: 1, width: 64, height: 64),
+                            (x: 0,   y: 2, width: 64, height: 64),
+                            (x: 64,  y: 2, width: 64, height: 64),
+                            (x: 128,  y: 2, width: 64, height: 64),
+                            (x: 192,  y: 2, width: 64, height: 64),
+                            (x: 256, y: 2, width: 64, height: 64),
+                            (x: 320, y: 2, width: 64, height: 64),
+                            (x: 384, y: 2, width: 64, height: 64),
+                            (x: 0,   y: 3, width: 64, height: 64),
+                            (x: 64,  y: 3, width: 64, height: 64),
+                            (x: 128,  y: 3, width: 64, height: 64),
+                            (x: 192,  y: 3, width: 64, height: 64),
+                            (x: 256, y: 3, width: 64, height: 64),
+                            (x: 320, y: 3, width: 64, height: 64),
+                            (x: 384, y: 3, width: 64, height: 64)
                         ]
                     ),
                     sprite_number: 0,
