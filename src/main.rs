@@ -9,20 +9,14 @@ mod intro_state;
 mod main_menu_state;
 
 use amethyst::{
-    animation::{AnimationBundle, AnimationSetPrefab},
-    assets::{PrefabData, PrefabLoaderSystem, ProgressCounter},
+    animation::AnimationBundle,
+    assets::PrefabLoaderSystem,
     config::Config,
-    core::transform::{Transform, TransformBundle},
-    derive::PrefabData,
-    ecs::prelude::Entity,
-    error::Error,
-    renderer::{
-        DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, SpriteRender, SpriteRenderPrefab, Stage,
-    },
+    core::transform::TransformBundle,
+    renderer::{DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, SpriteRender, Stage},
     utils::application_root_dir,
     Application, GameDataBuilder,
 };
-use serde::{Deserialize, Serialize};
 
 use crate::animation_id::AnimationId;
 use crate::config::IntroConfig;

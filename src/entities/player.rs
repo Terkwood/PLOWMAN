@@ -1,22 +1,15 @@
 use amethyst::{
-    animation::{AnimationBundle, AnimationSetPrefab},
-    assets::{PrefabData, PrefabLoaderSystem, ProgressCounter},
-    config::Config,
-    core::transform::{Transform, TransformBundle},
+    animation::AnimationSetPrefab,
+    assets::{PrefabData, ProgressCounter},
+    core::transform::Transform,
     derive::PrefabData,
     ecs::prelude::Entity,
     error::Error,
-    renderer::{
-        DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, SpriteRender, SpriteRenderPrefab, Stage,
-    },
-    utils::application_root_dir,
-    Application, GameDataBuilder,
+    renderer::{SpriteRender, SpriteRenderPrefab},
 };
 use serde::{Deserialize, Serialize};
 
 use crate::animation_id::AnimationId;
-use crate::config::IntroConfig;
-use crate::intro_state::IntroState;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PrefabData)]
 pub struct PlayerPrefabData {
