@@ -25,6 +25,10 @@ impl GameplayState {
     fn loading_complete(&self) -> bool {
         self.progress_counter.is_none()
     }
+
+    fn animation_in_progress(&self) -> bool {
+        self.anim_id.is_some()
+    }
 }
 
 impl SimpleState for GameplayState {
@@ -47,15 +51,37 @@ impl SimpleState for GameplayState {
 
     fn handle_event(
         &mut self,
-        _: StateData<'_, GameData<'_, '_>>,
+        data: StateData<'_, GameData<'_, '_>>,
         event: StateEvent,
     ) -> SimpleTrans {
         if let StateEvent::Window(event) = event {
-            if is_key_down(&event, VirtualKeyCode::Right)
-                && self.anim_id.is_none()
-                && self.loading_complete()
-            {
-                println!("Ok! :-)")
+            if self.loading_complete() && !self.animation_in_progress() {
+                let walking_controls = vec![
+                    (VirtualKeyCode::Up, AnimationId::WalkUp),
+                    (VirtualKeyCode::Left, AnimationId::WalkLeft),
+                    (VirtualKeyCode::Down, AnimationId::WalkDown),
+                    (VirtualKeyCode::Right, AnimationId::WalkRight),
+                ];
+
+                let mut player_stopped = true;
+                for (key, anim_id) in walking_controls {
+                    if is_key_down(&event, key) {
+                        let mut sets = data.world.write_storage();
+                        let control_set = get_animation_set::<AnimationId, SpriteRender>(
+                            &mut sets,
+                            self.player.unwrap(),
+                        )
+                        .unwrap();
+                        control_set.toggle(anim_id);
+
+                        // Use this to stop the animation later
+                        self.anim_id = Some(anim_id);
+                        player_stopped = false;
+                    }
+                }
+                if player_stopped {
+                    self.anim_id = None;
+                }
             }
         }
         Trans::None
@@ -72,30 +98,38 @@ impl SimpleState for GameplayState {
             if progress_counter.is_complete() {
                 let StateData { world, .. } = data;
 
-                let anim_id = AnimationId::WalkRight;
-                // Gets an animation from AnimationSet
-                let animation = world
-                    .read_storage::<AnimationSet<AnimationId, SpriteRender>>()
-                    .get(self.player.unwrap())
-                    .and_then(|s| s.get(&anim_id).cloned())
+                let anim_ids = vec![
+                    AnimationId::WalkUp,
+                    AnimationId::WalkLeft,
+                    AnimationId::WalkDown,
+                    AnimationId::WalkRight,
+                ];
+
+                for anim_id in anim_ids {
+                    // Gets an animation from AnimationSet
+                    let animation = world
+                        .read_storage::<AnimationSet<AnimationId, SpriteRender>>()
+                        .get(self.player.unwrap())
+                        .and_then(|s| s.get(&anim_id).cloned())
+                        .unwrap();
+
+                    // Creates a new AnimationControlSet for player entity
+                    let mut sets = world.write_storage();
+                    let control_set = get_animation_set::<AnimationId, SpriteRender>(
+                        &mut sets,
+                        self.player.unwrap(),
+                    )
                     .unwrap();
 
-                // Creates a new AnimationControlSet for player entity
-                let mut sets = world.write_storage();
-                let control_set =
-                    get_animation_set::<AnimationId, SpriteRender>(&mut sets, self.player.unwrap())
-                        .unwrap();
-                // Adds the animation to AnimationControlSet and loops infinitely
-                control_set.add_animation(
-                    anim_id,
-                    &animation,
-                    EndControl::Loop(None),
-                    0.5,
-                    AnimationCommand::Start,
-                );
-
-                // Use this to stop the animation later
-                self.anim_id = Some(anim_id);
+                    // Adds the animation to AnimationControlSet and loops infinitely
+                    control_set.add_animation(
+                        anim_id,
+                        &animation,
+                        EndControl::Loop(None),
+                        0.5,
+                        AnimationCommand::Init,
+                    );
+                }
 
                 // All data loaded
                 self.progress_counter = None;
