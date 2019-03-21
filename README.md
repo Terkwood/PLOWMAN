@@ -67,3 +67,4 @@ Thank you to all open source contributors!
 - [Base characters](https://opengameart.org/content/lpc-character-skintone-rework). Original adult walkcycles done by Redshrike.
 - [Universal LPC character generator](http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/)
 - [jrconway3's universal LPC spritesheet](https://github.com/jrconway3/Universal-LPC-spritesheet)
+- Thanks to [trsoluti's space shooter](https://github.com/trsoluti/space_shooter) for inspiration and code snippets that helped us learn amethyst!
