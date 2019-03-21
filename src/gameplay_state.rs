@@ -1,5 +1,6 @@
 use crate::animation_id::AnimationId;
 use crate::components::character_movement::CharacterMovement;
+use crate::components::player::Player;
 use crate::entities::player::PlayerPrefabData;
 
 use amethyst::{
@@ -52,6 +53,7 @@ impl SimpleState for GameplayState {
             world
                 .create_entity()
                 .with(CharacterMovement::Stopped)
+                .with(Player)
                 .with(prefab_handle)
                 .build(),
         );
