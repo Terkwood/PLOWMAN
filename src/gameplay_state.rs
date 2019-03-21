@@ -36,7 +36,7 @@ impl SimpleState for GameplayState {
         self.player = Some(world.create_entity().with(prefab_handle).build());
     }
 
-    fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+    fn fixed_update(&mut self, data: StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         // Checks if we are still loading data
         if let Some(ref progress_counter) = self.progress_counter {
             // Checks progress
