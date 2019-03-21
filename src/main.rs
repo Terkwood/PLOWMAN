@@ -1,12 +1,14 @@
 extern crate amethyst;
 
 mod animation_id;
+mod bundle;
 mod config;
 mod entities;
 mod gameplay_state;
 mod image;
 mod intro_state;
 mod main_menu_state;
+mod systems;
 
 use amethyst::{
     animation::AnimationBundle,
@@ -19,6 +21,7 @@ use amethyst::{
 };
 
 use crate::animation_id::AnimationId;
+use crate::bundle::GameBundle;
 use crate::config::IntroConfig;
 use crate::intro_state::IntroState;
 
@@ -45,6 +48,7 @@ fn main() -> amethyst::Result<()> {
             "",
             &[],
         )
+        .with_bundle(GameBundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(AnimationBundle::<AnimationId, SpriteRender>::new(
             "animation_control_system",
