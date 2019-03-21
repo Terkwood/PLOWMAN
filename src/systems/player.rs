@@ -21,7 +21,7 @@ impl<'s> System<'s> for PlayerSystem {
         let maybe_movement_y = input.axis_value("player_y");
 
         let maybe_anim_id = walk_anim(maybe_movement_x, maybe_movement_y);
-        println!("Walking anim? {:?}", maybe_anim_id);
+        () // TODO do some walking, or not
     }
 }
 

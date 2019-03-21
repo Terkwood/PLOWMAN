@@ -2,6 +2,7 @@ extern crate amethyst;
 
 mod animation_id;
 mod bundle;
+mod components;
 mod config;
 mod entities;
 mod gameplay_state;

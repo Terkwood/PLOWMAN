@@ -7,5 +7,5 @@ pub enum CharacterMovement {
 }
 
 impl Component for CharacterMovement {
-    type Storage = VecStorage<Self,>
+    type Storage = VecStorage<Self>;
 }

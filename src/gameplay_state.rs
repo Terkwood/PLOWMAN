@@ -1,5 +1,7 @@
 use crate::animation_id::AnimationId;
+use crate::components::character_movement::CharacterMovement;
 use crate::entities::player::PlayerPrefabData;
+
 use amethyst::{
     animation::{get_animation_set, AnimationCommand, AnimationSet, EndControl},
     assets::{PrefabLoader, ProgressCounter, RonFormat},
@@ -45,8 +47,14 @@ impl SimpleState for GameplayState {
                 self.progress_counter.as_mut().unwrap(),
             )
         });
-        // Creates a new entity with components from PrefabData
-        self.player = Some(world.create_entity().with(prefab_handle).build());
+        // Creates a new player entity with components from PrefabData
+        self.player = Some(
+            world
+                .create_entity()
+                .with(CharacterMovement::Stopped)
+                .with(prefab_handle)
+                .build(),
+        );
     }
 
     fn handle_event(
@@ -55,6 +63,7 @@ impl SimpleState for GameplayState {
         event: StateEvent,
     ) -> SimpleTrans {
         if let StateEvent::Window(event) = event {
+            // TODO destroy
             if self.loading_complete() && !self.animation_in_progress() {
                 let walking_controls = vec![
                     (VirtualKeyCode::Up, AnimationId::WalkUp),
@@ -64,6 +73,7 @@ impl SimpleState for GameplayState {
                 ];
 
                 let mut player_stopped = true;
+                // TODO somehow control this via player system
                 for (key, anim_id) in walking_controls {
                     if is_key_down(&event, key) {
                         let mut sets = data.world.write_storage();
