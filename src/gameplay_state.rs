@@ -39,7 +39,6 @@ impl SimpleState for GameplayState {
     fn fixed_update(&mut self, data: StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         // Checks if we are still loading data
         if let Some(ref progress_counter) = self.progress_counter {
-            // Checks progress
             if progress_counter.is_complete() {
                 let StateData { world, .. } = data;
 
@@ -50,6 +49,7 @@ impl SimpleState for GameplayState {
                     .get(self.player.unwrap())
                     .and_then(|s| s.get(&anim_id).cloned())
                     .unwrap();
+
                 // Creates a new AnimationControlSet for player entity
                 let mut sets = world.write_storage();
                 let control_set =
@@ -60,7 +60,7 @@ impl SimpleState for GameplayState {
                     anim_id,
                     &animation,
                     EndControl::Loop(None),
-                    1.0,
+                    0.5,
                     AnimationCommand::Start,
                 );
 
@@ -68,6 +68,12 @@ impl SimpleState for GameplayState {
                 self.progress_counter = None;
             }
         }
+        Trans::None
+    }
+
+    // Force amethyst to run all systems
+    fn update(&mut self, state_data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+        state_data.data.update(&state_data.world);
         Trans::None
     }
 }
