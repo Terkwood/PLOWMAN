@@ -7,4 +7,12 @@ pub enum AnimationId {
     EvokeLeft,
     EvokeRight,
     EvokeDown,
+    ThrustUp,
+    ThrustLeft,
+    ThrustRight,
+    ThrustDown,
+    WalkUp,
+    WalkLeft,
+    WalkRight,
+    WalkDown,
 }
