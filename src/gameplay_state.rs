@@ -4,8 +4,10 @@ use amethyst::{
     animation::{get_animation_set, AnimationCommand, AnimationSet, EndControl},
     assets::{PrefabLoader, ProgressCounter, RonFormat},
     ecs::prelude::Entity,
-    prelude::Builder,
+    input::is_key_down,
+    prelude::*,
     renderer::SpriteRender,
+    winit::VirtualKeyCode,
     GameData, SimpleState, SimpleTrans, StateData, Trans,
 };
 
@@ -17,6 +19,12 @@ pub struct GameplayState {
     /// Player entity to animate after loading
     pub player: Option<Entity>,
     pub anim_id: Option<AnimationId>,
+}
+
+impl GameplayState {
+    fn loading_complete(&self) -> bool {
+        self.progress_counter.is_none()
+    }
 }
 
 impl SimpleState for GameplayState {
@@ -37,7 +45,28 @@ impl SimpleState for GameplayState {
         self.player = Some(world.create_entity().with(prefab_handle).build());
     }
 
+    fn handle_event(
+        &mut self,
+        _: StateData<'_, GameData<'_, '_>>,
+        event: StateEvent,
+    ) -> SimpleTrans {
+        if let StateEvent::Window(event) = event {
+            if is_key_down(&event, VirtualKeyCode::Right)
+                && self.anim_id.is_none()
+                && self.loading_complete()
+            {
+                println!("Ok! :-)")
+            }
+        }
+        Trans::None
+    }
+
     fn fixed_update(&mut self, data: StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+        // Force amethyst to run all systems
+        // You can move this to the "update" method if
+        // you need it called more than 60 times/sec 🔥
+        data.data.update(data.world);
+
         // Checks if we are still loading data
         if let Some(ref progress_counter) = self.progress_counter {
             if progress_counter.is_complete() {
@@ -72,12 +101,7 @@ impl SimpleState for GameplayState {
                 self.progress_counter = None;
             }
         }
-        Trans::None
-    }
 
-    // Force amethyst to run all systems
-    fn update(&mut self, state_data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        state_data.data.update(&state_data.world);
         Trans::None
     }
 }
