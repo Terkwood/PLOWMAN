@@ -12,7 +12,7 @@ Prefab(
                 sprite_render: (
                     // TexturePrefab
                     texture: File(
-                        "texture/man_olive.png",
+                        "texture/player.png",
                         Png,
                         TextureMetadata(channel: Srgb),
                     ),
