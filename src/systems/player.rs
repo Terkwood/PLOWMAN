@@ -14,6 +14,6 @@ impl<'s> System<'s> for PlayerSystem {
     );
 
     fn run(&mut self, (entities, input, lazy_update): Self::SystemData) {
-        unimplemented!()
+        () // TODO walk around and stop and whatnot
     }
 }
