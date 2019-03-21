@@ -16,6 +16,7 @@ pub struct GameplayState {
     pub progress_counter: Option<ProgressCounter>,
     /// Player entity to animate after loading
     pub player: Option<Entity>,
+    pub anim_id: Option<AnimationId>,
 }
 
 impl SimpleState for GameplayState {
@@ -63,6 +64,9 @@ impl SimpleState for GameplayState {
                     0.5,
                     AnimationCommand::Start,
                 );
+
+                // Use this to stop the animation later
+                self.anim_id = Some(anim_id);
 
                 // All data loaded
                 self.progress_counter = None;
