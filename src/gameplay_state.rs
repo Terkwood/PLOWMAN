@@ -10,7 +10,6 @@ use amethyst::{
     input::is_key_down,
     prelude::*,
     renderer::SpriteRender,
-    winit::VirtualKeyCode,
     GameData, SimpleState, SimpleTrans, StateData, Trans,
 };
 
@@ -21,7 +20,7 @@ pub struct GameplayState {
     pub progress_counter: Option<ProgressCounter>,
     /// Player entity to animate after loading
     pub player: Option<Entity>,
-    pub last_player_mv: CharacterMovement,
+    pub last_player_anim: Option<AnimationId>,
 }
 
 impl SimpleState for GameplayState {
@@ -53,6 +52,7 @@ impl SimpleState for GameplayState {
         data.data.update(data.world);
         Trans::None
     }
+
     fn fixed_update(&mut self, data: StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         // Add all player walk animations after the spritesheet is done loading
         if let Some(ref progress_counter) = self.progress_counter {
@@ -103,24 +103,29 @@ impl SimpleState for GameplayState {
             if let Some(player_entity) = self.player {
                 let mv_storage: ReadStorage<CharacterMovement> = data.world.read_storage();
                 if let Some(player_movement) = mv_storage.get(player_entity) {
+                    println!("player_movement {:?}", player_movement);
                     let mut sets = data.world.write_storage();
                     let control_set =
                         get_animation_set::<AnimationId, SpriteRender>(&mut sets, player_entity)
                             .unwrap();
                     let maybe_next_anim_id = AnimationId::maybe_from(*player_movement);
-                    if player_movement != &self.last_player_mv {
-                        if let Some(last_anim_id) = AnimationId::maybe_from(self.last_player_mv) {
+                    println!("maybe_next_anim_id {:?}", maybe_next_anim_id);
+                    if maybe_next_anim_id != self.last_player_anim {
+                        if let Some(last_anim_id) = self.last_player_anim {
                             if Some(last_anim_id) != maybe_next_anim_id {
-                                control_set.abort(last_anim_id);
+                                println!("abort");
+                                control_set.toggle(last_anim_id);
                             }
                         }
                     }
                     if let Some(next_anim_id) = maybe_next_anim_id {
-                        control_set.start(next_anim_id);
+                        println!("start {:?}", next_anim_id);
+                        control_set.toggle(next_anim_id);
                     }
 
-                    // TODO check position
-                    self.last_player_mv = *player_movement;
+                    self.last_player_anim = maybe_next_anim_id;
+                } else {
+                    println!("storage returns None");
                 }
             }
         }

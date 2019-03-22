@@ -15,12 +15,11 @@ impl<'s> System<'s> for PlayerSystem {
     type SystemData = (
         Entities<'s>,
         ReadExpect<'s, InputHandler<String, String>>,
-        ReadExpect<'s, LazyUpdate>,
         ReadStorage<'s, Player>,
         WriteStorage<'s, CharacterMovement>,
     );
 
-    fn run(&mut self, (entities, input, lazy_update, players, mut char_mv): Self::SystemData) {
+    fn run(&mut self, (entities, input, _players, mut char_mv): Self::SystemData) {
         let mut update = None;
         for (player_entity, old_movement) in (&*entities, &mut char_mv).join() {
             // get the current 'joystick' reading
