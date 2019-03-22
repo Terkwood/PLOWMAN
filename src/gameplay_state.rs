@@ -48,22 +48,7 @@ impl SimpleState for GameplayState {
                 .build(),
         );
     }
-    /*
-        let mut player_stopped = true;
-        // TODO destroy
-        for (key, anim_id) in walking_controls {
-            if is_key_down(&event, key) {
 
-
-                // Use this to stop the animation later
-                self.anim_id = Some(anim_id);
-                player_stopped = false;
-            }
-        }
-        if player_stopped {
-            self.anim_id = None;
-        }
-    */
     fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         data.data.update(data.world);
         Trans::None
