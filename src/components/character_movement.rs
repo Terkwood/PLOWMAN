@@ -6,6 +6,12 @@ pub enum CharacterMovement {
     Walking(Direction),
 }
 
+impl Default for CharacterMovement {
+    fn default() -> CharacterMovement {
+        CharacterMovement::Stopped
+    }
+}
+
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Direction {
     N,

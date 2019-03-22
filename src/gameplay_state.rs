@@ -6,7 +6,7 @@ use crate::entities::player::PlayerPrefabData;
 use amethyst::{
     animation::{get_animation_set, AnimationCommand, AnimationSet, EndControl},
     assets::{PrefabLoader, ProgressCounter, RonFormat},
-    ecs::prelude::Entity,
+    ecs::prelude::{Entity, ReadStorage},
     input::is_key_down,
     prelude::*,
     renderer::SpriteRender,
@@ -21,17 +21,7 @@ pub struct GameplayState {
     pub progress_counter: Option<ProgressCounter>,
     /// Player entity to animate after loading
     pub player: Option<Entity>,
-    pub anim_id: Option<AnimationId>,
-}
-
-impl GameplayState {
-    fn loading_complete(&self) -> bool {
-        self.progress_counter.is_none()
-    }
-
-    fn animation_in_progress(&self) -> bool {
-        self.anim_id.is_some()
-    }
+    pub last_player_mv: CharacterMovement,
 }
 
 impl SimpleState for GameplayState {
@@ -58,54 +48,28 @@ impl SimpleState for GameplayState {
                 .build(),
         );
     }
+    /*
+        let mut player_stopped = true;
+        // TODO destroy
+        for (key, anim_id) in walking_controls {
+            if is_key_down(&event, key) {
 
-    fn handle_event(
-        &mut self,
-        data: StateData<'_, GameData<'_, '_>>,
-        event: StateEvent,
-    ) -> SimpleTrans {
-        if let StateEvent::Window(event) = event {
-            // TODO destroy
-            if self.loading_complete() && !self.animation_in_progress() {
-                let walking_controls = vec![
-                    (VirtualKeyCode::Up, AnimationId::WalkUp),
-                    (VirtualKeyCode::Left, AnimationId::WalkLeft),
-                    (VirtualKeyCode::Down, AnimationId::WalkDown),
-                    (VirtualKeyCode::Right, AnimationId::WalkRight),
-                ];
 
-                let mut player_stopped = true;
-                // TODO somehow control this via player system
-                for (key, anim_id) in walking_controls {
-                    if is_key_down(&event, key) {
-                        let mut sets = data.world.write_storage();
-                        let control_set = get_animation_set::<AnimationId, SpriteRender>(
-                            &mut sets,
-                            self.player.unwrap(),
-                        )
-                        .unwrap();
-                        control_set.toggle(anim_id);
-
-                        // Use this to stop the animation later
-                        self.anim_id = Some(anim_id);
-                        player_stopped = false;
-                    }
-                }
-                if player_stopped {
-                    self.anim_id = None;
-                }
+                // Use this to stop the animation later
+                self.anim_id = Some(anim_id);
+                player_stopped = false;
             }
         }
+        if player_stopped {
+            self.anim_id = None;
+        }
+    */
+    fn update(&mut self, data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+        data.data.update(data.world);
         Trans::None
     }
-
     fn fixed_update(&mut self, data: StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
-        // Force amethyst to run all systems
-        // You can move this to the "update" method if
-        // you need it called more than 60 times/sec 🔥
-        data.data.update(data.world);
-
-        // Checks if we are still loading data
+        // Add all player walk animations after the spritesheet is done loading
         if let Some(ref progress_counter) = self.progress_counter {
             if progress_counter.is_complete() {
                 let StateData { world, .. } = data;
@@ -145,6 +109,34 @@ impl SimpleState for GameplayState {
 
                 // All data loaded
                 self.progress_counter = None;
+            }
+        } else {
+            // Spritesheet is already loaded --
+            // Check state of player walk and draw the correct
+            // animation if necessary
+
+            if let Some(player_entity) = self.player {
+                let mv_storage: ReadStorage<CharacterMovement> = data.world.read_storage();
+                if let Some(player_movement) = mv_storage.get(player_entity) {
+                    let mut sets = data.world.write_storage();
+                    let control_set =
+                        get_animation_set::<AnimationId, SpriteRender>(&mut sets, player_entity)
+                            .unwrap();
+                    let maybe_next_anim_id = AnimationId::maybe_from(*player_movement);
+                    if player_movement != &self.last_player_mv {
+                        if let Some(last_anim_id) = AnimationId::maybe_from(self.last_player_mv) {
+                            if Some(last_anim_id) != maybe_next_anim_id {
+                                control_set.abort(last_anim_id);
+                            }
+                        }
+                    }
+                    if let Some(next_anim_id) = maybe_next_anim_id {
+                        control_set.start(next_anim_id);
+                    }
+
+                    // TODO check position
+                    self.last_player_mv = *player_movement;
+                }
             }
         }
 
