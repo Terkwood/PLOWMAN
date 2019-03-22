@@ -1,8 +1,4 @@
-use amethyst::core::timing::Time;
-use amethyst::core::transform::Transform;
-use amethyst::ecs::prelude::{
-    Entities, Join, LazyUpdate, ReadExpect, ReadStorage, System, WriteStorage,
-};
+use amethyst::ecs::prelude::{Entities, Join, ReadExpect, ReadStorage, System, WriteStorage};
 use amethyst::input::InputHandler;
 
 use crate::components::character_movement::{CharacterMovement, Direction};
@@ -29,7 +25,6 @@ impl<'s> System<'s> for PlayerSystem {
             let movement = mv_from_input(maybe_movement_x, maybe_movement_y);
 
             if old_movement != &movement {
-                println!("Movement is {:?}", movement);
                 update = Some((player_entity, movement));
             }
         }
