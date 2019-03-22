@@ -2,16 +2,14 @@ use amethyst::{
     assets::{AssetStorage, Loader, ProgressCounter},
     core::transform::Transform,
     ecs::prelude::Entity,
-    input::is_key_down,
+    input::get_key,
     prelude::*,
-    renderer::{
-        Camera, PngFormat, Projection, ScreenDimensions, Texture, TextureMetadata, VirtualKeyCode,
-    },
+    renderer::{Camera, PngFormat, Projection, ScreenDimensions, Texture, TextureMetadata},
 };
 
 use crate::config::IntroConfig;
+use crate::gameplay_state::GameplayState;
 use crate::image::Image;
-use crate::main_menu_state::MainMenuState;
 
 #[derive(Default)]
 pub struct IntroState {
@@ -70,14 +68,12 @@ impl SimpleState for IntroState {
         event: StateEvent,
     ) -> SimpleTrans {
         if let StateEvent::Window(event) = &event {
-            if is_key_down(&event, VirtualKeyCode::Return)
-                || is_key_down(&event, VirtualKeyCode::Space)
-            {
-                return Trans::Switch(Box::new(MainMenuState {}));
+            if let Some(_key) = get_key(&event) {
+                return Trans::Switch(Box::new(GameplayState::default()));
             }
         }
 
-        // Space / Return isn't pressed, so we stay in this `State`.
+        // No key pressed, so stay in this state
         Trans::None
     }
 

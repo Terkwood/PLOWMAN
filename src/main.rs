@@ -8,7 +8,6 @@ mod entities;
 mod gameplay_state;
 mod image;
 mod intro_state;
-mod main_menu_state;
 mod systems;
 
 use amethyst::{
