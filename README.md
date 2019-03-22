@@ -23,9 +23,15 @@ Score points for undertaking wholesome actions. If you do enough evil, the adven
 
 Specific interactions, item placement, dungeons, and NPC spawns should be randomized. Cutscenes are not randomized. Important NPC interactions are scripted. World map is not randomized. 
 
-## Setup
+## Running the game
 
-Initial clothing should be a hermit's robe (gray/brown/etc).
+You need to have [cargo](https://www.rust-lang.org/tools/install) installed.
+
+Then:
+
+```sh
+cargo run
+```
 
 ## Controls
 
