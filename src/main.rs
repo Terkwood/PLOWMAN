@@ -1,24 +1,29 @@
 extern crate amethyst;
 
 mod animation_id;
+mod bundle;
+mod components;
 mod config;
 mod entities;
 mod gameplay_state;
 mod image;
 mod intro_state;
 mod main_menu_state;
+mod systems;
 
 use amethyst::{
     animation::AnimationBundle,
     assets::PrefabLoaderSystem,
     config::Config,
     core::transform::TransformBundle,
+    input::InputBundle,
     renderer::{DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, SpriteRender, Stage},
     utils::application_root_dir,
     Application, GameDataBuilder,
 };
 
 use crate::animation_id::AnimationId;
+use crate::bundle::GameBundle;
 use crate::config::IntroConfig;
 use crate::intro_state::IntroState;
 
@@ -30,6 +35,7 @@ fn main() -> amethyst::Result<()> {
     let assets_directory = app_root.join("assets/");
     let display_conf_path = app_root.join("resources/display_config.ron");
     let game_conf_path = app_root.join("resources/config.ron");
+    let key_bindings_path = app_root.join("resources/input.ron");
     let display_config = DisplayConfig::load(display_conf_path);
     let intro_config = IntroConfig::load(game_conf_path);
 
@@ -45,6 +51,10 @@ fn main() -> amethyst::Result<()> {
             "",
             &[],
         )
+        .with_bundle(
+            InputBundle::<String, String>::new().with_bindings_from_file(&key_bindings_path)?,
+        )?
+        .with_bundle(GameBundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(AnimationBundle::<AnimationId, SpriteRender>::new(
             "animation_control_system",
