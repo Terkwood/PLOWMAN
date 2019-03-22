@@ -33,7 +33,7 @@ Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
 
 ## Procedural Farming
 
-Cloning functionality from Farmville is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
+Imitating functionality from Stardew Valley is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
 
 ## Tiled Map Intergration
 
