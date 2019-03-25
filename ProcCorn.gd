@@ -24,8 +24,8 @@ func make_corn():
 	var height = min_height + randi()%max_height
 	
 	var tile_size = auto_corn.instance().get_node("Sprite").get_region_rect().size
-	var offset_x = randi()%max_offset_x(width, tile_size.x)  / 2
-	var offset_y = randi()%max_offset_y(height, tile_size.y) / 2 # TODO hacked
+	var offset_x = randi()%max_offset_x(width, tile_size.x)
+	var offset_y = randi()%max_offset_y(height, tile_size.y)
 
 	var rand_corn = corns[randi()%corns.size()]
 	for x in range(width):

@@ -12,5 +12,5 @@ func deep_ysort_everything(node):
                 set_z_order(N)
 
 func set_z_order(N):
-	var g = N.get_global_transform().get_origin().y + N.region_rect.size.y / 2	 
+	var g = N.get_global_transform().get_origin().y + N.region_rect.size.y / 2 * N.scale.y 
 	N.z_index=g

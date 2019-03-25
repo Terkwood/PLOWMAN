@@ -9,7 +9,7 @@
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 12.2073
+height = 2.20726
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -102,7 +102,7 @@ z_as_relative = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeepYSort/Player"]
-position = Vector2( 0, 8.10363 )
+position = Vector2( 0, 16.1036 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="DeepYSort/Player"]
