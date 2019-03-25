@@ -76,7 +76,7 @@ polygon = PoolVector2Array( -17, -9, 36, -10, 33.796, 32.935, -16, 33 )
 [node name="Sprite" type="Sprite" parent="Cow"]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 128, 512, 96, 128 )
+region_rect = Rect2( 0, 512, 96, 128 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cow/Sprite"]
 playback_process_mode = 0

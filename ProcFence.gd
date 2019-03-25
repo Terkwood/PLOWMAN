@@ -1,8 +1,8 @@
 extends Node2D
 
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var max_offset_x = 24   # in tiles
-var max_offset_y = 15   # in tiles
+var max_offset_x = 97   # in tiles
+var max_offset_y = 47   # in tiles
 var min_width  =  3     # in tiles
 var max_width  = 10     # in tiles
 var min_height =  3     # in tiles
@@ -67,15 +67,16 @@ func make_fence():
 	
 const TILE_SIZE = 32
 func place_cow(offset_x, offset_y, width, height):
-	Cow.position.x = (offset_x + randi()%(width-1)) * TILE_SIZE
-	Cow.position.y = (offset_y + randi()%(height-1)) * TILE_SIZE
+	Cow.position.x = (offset_x + 1 + randi()%(width-2)) * TILE_SIZE
+	Cow.position.y = (offset_y + 1 + randi()%(height-2)) * TILE_SIZE
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	var fc = make_fence()
 	place_cow(fc[0], fc[1], fc[2], fc[3])
-	$Animals/Cow/Sprite/AnimationPlayer.play("EatLeft")
+	var available_anims = $Animals/Cow/Sprite/AnimationPlayer.get_animation_list()
+	$Animals/Cow/Sprite/AnimationPlayer.play(available_anims[randi()%available_anims.size()])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
