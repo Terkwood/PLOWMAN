@@ -20,6 +20,10 @@ run/main_scene="res://ProcFarm.tscn"
 boot_splash/image="res://terkwood_farm.png"
 config/icon="res://drolleries_icon.png"
 
+[autoload]
+
+Global="*res://Global.tscn"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true

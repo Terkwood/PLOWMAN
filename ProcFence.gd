@@ -1,8 +1,8 @@
 extends Node2D
 
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var max_offset_x = 97   # in tiles
-var max_offset_y = 47   # in tiles
+var max_offset_x = Global.world_width - 3  # in tiles
+var max_offset_y = Global.world_height - 3 # in tiles
 var min_width  =  3     # in tiles
 var max_width  = 10     # in tiles
 var min_height =  3     # in tiles

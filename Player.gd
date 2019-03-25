@@ -4,7 +4,7 @@ const WALK_SPEED = 150
 
 var velocity = Vector2()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var is_anim = false
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -WALK_SPEED
