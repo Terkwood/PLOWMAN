@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ProcCorn.gd" type="Script" id=1]
 [ext_resource path="res://lpc_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.63531, 15.0167 )
+extents = Vector2( 3.82288, 10.1384 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.85043, 2.85829 )
 
 [node name="ProcCorn" type="Node2D"]
 position = Vector2( 200, 150 )
@@ -16,43 +19,60 @@ tile_set = ExtResource( 2 )
 format = 1
 tile_data = PoolIntArray( 1, 30, 0, 65537, 29, 0 )
 
-[node name="HandCorn" type="StaticBody2D" parent="."]
+[node name="AutoCorn" type="StaticBody2D" parent="."]
 z_as_relative = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoCorn"]
+position = Vector2( 0, 19 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="HandCorn"]
+[node name="Sprite" type="Sprite" parent="AutoCorn"]
 z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 1536, 128, 32, 64 )
+region_rect = Rect2( 1536, 64, 32, 64 )
 
-[node name="HandCorn2" type="StaticBody2D" parent="."]
+[node name="AutoCorn2" type="StaticBody2D" parent="."]
 position = Vector2( 0, 64 )
 z_as_relative = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoCorn2"]
+position = Vector2( -1, 15 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="HandCorn2"]
+[node name="Sprite" type="Sprite" parent="AutoCorn2"]
 z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
 
-[node name="HandCorn3" type="StaticBody2D" parent="."]
+[node name="AutoCorn3" type="StaticBody2D" parent="."]
 position = Vector2( 0, 134 )
 z_as_relative = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoCorn3"]
+position = Vector2( -1, 17 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="HandCorn3"]
+[node name="Sprite" type="Sprite" parent="AutoCorn3"]
 z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 1536, 128, 32, 64 )
+region_rect = Rect2( 1536, 192, 32, 64 )
+
+[node name="AutoCorn4" type="StaticBody2D" parent="."]
+position = Vector2( 0, 196 )
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoCorn4"]
+position = Vector2( -1, 15 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="AutoCorn4"]
+z_as_relative = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1536, 192, 32, 64 )
 
 [node name="Lamp" type="Sprite" parent="."]
 position = Vector2( -61.3086, 8.14861 )
@@ -60,4 +80,16 @@ z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 32, 320, 32, 32 )
+
+[node name="AutoCornYoung" type="StaticBody2D" parent="."]
+position = Vector2( -100, 81 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoCornYoung"]
+position = Vector2( 1, 9 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="AutoCornYoung"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1536, 32, 32, 32 )
 
