@@ -25,7 +25,7 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 
 ## Running the game
 
-You can run the game using Godot engine.
+You can run the game using Godot engine, version 3.1+.
 
 ## Controls
 
