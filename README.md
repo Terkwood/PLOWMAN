@@ -25,13 +25,7 @@ Specific interactions, item placement, dungeons, and NPC spawns should be random
 
 ## Running the game
 
-You need to have [cargo](https://www.rust-lang.org/tools/install) installed.
-
-Then:
-
-```sh
-cargo run
-```
+You can run the game using Godot engine.
 
 ## Controls
 
@@ -40,10 +34,6 @@ Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
 ## Procedural Farming
 
 Imitating functionality from Stardew Valley is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
-
-## Tiled Map Intergration
-
-We need Tiled Map Editor integration for cutscene management.
 
 ## Randomization of NPCs
 
@@ -70,7 +60,9 @@ It would be nice to be able to assemble the look and feel of NPCs randomly.  Lib
 
 Thank you to all open source contributors!
 
+- [Daniel Eddeland's LPC submissions](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements)
+- [Various authors for LPC base assets](/lpc_base_credits.txt)
 - [Base characters](https://opengameart.org/content/lpc-character-skintone-rework). Original adult walkcycles done by Redshrike.
 - [Universal LPC character generator](http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/)
 - [jrconway3's universal LPC spritesheet](https://github.com/jrconway3/Universal-LPC-spritesheet)
-- Thanks to [trsoluti's space shooter](https://github.com/trsoluti/space_shooter) for inspiration and code snippets that helped us learn amethyst!
+- [Leshy spritesheet generator](https://www.leshylabs.com/apps/sstool/)
