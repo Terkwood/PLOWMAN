@@ -88,13 +88,17 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="ProcField" parent="DeepYSort" instance=ExtResource( 2 )]
+z_index = -4096
+z_as_relative = false
 
 [node name="ProcFence" parent="DeepYSort" instance=ExtResource( 3 )]
 
 [node name="ProcCorn" parent="DeepYSort" instance=ExtResource( 4 )]
+position = Vector2( 1, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="DeepYSort"]
 position = Vector2( 100, 100 )
+z_as_relative = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeepYSort/Player"]
@@ -102,6 +106,7 @@ position = Vector2( 0, 8.10363 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="DeepYSort/Player"]
+z_as_relative = false
 texture = SubResource( 2 )
 region_enabled = true
 region_rect = Rect2( 64, 576, 64, 64 )
@@ -115,8 +120,9 @@ anims/WalkUp = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="DeepYSort/Player"]
 current = true
 
-[node name="Sprite" type="Sprite" parent="DeepYSort"]
+[node name="Chair" type="Sprite" parent="DeepYSort"]
 position = Vector2( 60, 170 )
+z_as_relative = false
 texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 192, 260, 32, 50 )

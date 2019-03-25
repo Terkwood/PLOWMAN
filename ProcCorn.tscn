@@ -18,41 +18,46 @@ format = 1
 tile_data = PoolIntArray( 1, 30, 0, 65537, 29, 0 )
 
 [node name="HandCorn" type="StaticBody2D" parent="."]
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="HandCorn"]
+z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
 
 [node name="HandCorn2" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 0, 64 )
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn2"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="HandCorn2"]
+z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
 
 [node name="HandCorn3" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 0, 114 )
+position = Vector2( 0, 134 )
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn3"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="HandCorn3"]
+z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -107.155, 68.545 )
+[node name="Dummy" type="Sprite" parent="."]
+position = Vector2( -61.3086, 8.14861 )
+z_as_relative = false
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )

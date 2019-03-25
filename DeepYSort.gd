@@ -9,15 +9,13 @@ func deep_ysort_everything(node):
             deep_ysort_everything(N)
         else:
             if N is Sprite:
-                setZOrder(N)
+                set_z_order(N)
                 #print("- "+N.get_path())
 
-func _process(_delta):
-	deep_ysort_everything(self)
-
-func setZOrder(N):
-	var myPos = N.position
-	var mySize = N.get_texture().get_height()
-	var bottomOfSprite= (mySize*N.get_scale().y)/2
-	print("bottom of sprite " + str(bottomOfSprite))	 
-	N.z_index=(myPos.y+bottomOfSprite)
+func set_z_order(N):
+	print(N.get_path())
+	var fix = N.position.y + N.region_rect.size.y
+	#var the_y = N.get_global_transform_with_canvas().y.y
+	print("sprite  y " + str(N.position.y)) 
+	print("sprite fix y " + str(fix))	 
+	N.z_index=fix

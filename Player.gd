@@ -33,3 +33,9 @@ func _physics_process(_delta):
 	if !is_anim:
 		$Sprite.get_node("WalkAnims").stop()
 	move_and_slide(velocity, Vector2(0, 0))
+	set_z_order(self.position.y, $Sprite)
+	
+func set_z_order(y,N):
+	var fix = y + $Sprite.region_rect.size.y
+	#print("PLAYER: fix y " + str(fix))		 
+	N.z_index=fix
