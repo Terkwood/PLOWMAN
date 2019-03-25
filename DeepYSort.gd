@@ -14,8 +14,5 @@ func deep_ysort_everything(node):
 
 func set_z_order(N):
 	print(N.get_path())
-	var fix = N.position.y + N.region_rect.size.y
-	#var the_y = N.get_global_transform_with_canvas().y.y
-	print("sprite  y " + str(N.position.y)) 
-	print("sprite fix y " + str(fix))	 
-	N.z_index=fix
+	var g = N.get_global_transform().get_origin().y + N.region_rect.size.y	 
+	N.z_index=g
