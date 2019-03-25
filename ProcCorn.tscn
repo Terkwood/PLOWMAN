@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ProcCorn.gd" type="Script" id=1]
 [ext_resource path="res://lpc_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=3]
+[ext_resource path="res://player.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.63531, 15.0167 )
@@ -27,8 +28,8 @@ region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
 
 [node name="HandCorn2" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 0, 64 )
-z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn2"]
 shape = SubResource( 1 )
@@ -37,4 +38,22 @@ shape = SubResource( 1 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1536, 128, 32, 64 )
+
+[node name="HandCorn3" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, 114 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandCorn3"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="HandCorn3"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1536, 128, 32, 64 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -107.155, 68.545 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
 
