@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.82288, 10.1384 )
+
+[node name="AutoCorn2" type="StaticBody2D"]
+position = Vector2( 71, 276 )
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 15 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_as_relative = false
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1536, 128, 32, 64 )
+

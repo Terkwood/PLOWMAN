@@ -94,7 +94,7 @@ z_as_relative = false
 [node name="ProcFence" parent="DeepYSort" instance=ExtResource( 3 )]
 
 [node name="ProcCorn" parent="DeepYSort" instance=ExtResource( 4 )]
-position = Vector2( 259, 105 )
+position = Vector2( 0, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="DeepYSort"]
 position = Vector2( 100, 100 )

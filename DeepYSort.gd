@@ -13,8 +13,8 @@ func deep_ysort_everything(node):
                 #print("- "+N.get_path())
 
 func set_z_order(N):
-	print(N.get_path())
-	print(" xform origin y " + str(N.get_global_transform().get_origin().y))
-	print("sprite region y " + str(N.region_rect.size.y / 2))
+	#print(N.get_path())
+	#print(" xform origin y " + str(N.get_global_transform().get_origin().y))
+	#print("sprite region y " + str(N.region_rect.size.y / 2))
 	var g = N.get_global_transform().get_origin().y + N.region_rect.size.y / 2	 
 	N.z_index=g
