@@ -11,48 +11,30 @@ var max_width  =  20     # in tiles
 var min_height =   1     # in tiles
 var max_height =  20     # in tiles
 
-onready var Map = $TileMap
-
-var corn_types = ["plants_corn_young",
-	"plants_corn",
-	"plants_corn2",
-	"plants_corn3",
-	"plants_corn4"]
-	
 onready var auto_corn = preload("res://AutoCorn.tscn")
+onready var auto_corn2 = preload("res://AutoCorn2.tscn")
+onready var auto_corn3 = preload("res://AutoCorn3.tscn")
+onready var auto_corn4 = preload("res://AutoCorn4.tscn")
+onready var auto_corn_young = preload("res://AutoCornYoung.tscn")
 	
+onready var corns = [auto_corn, auto_corn2, auto_corn3, auto_corn4, auto_corn_young]
+
 func make_corn():
-	#var corn_type = Map.tile_set.find_tile_by_name(corn_types[randi()%corn_types.size()])
 	var width = min_width + randi()%max_width
 	var height = min_height + randi()%max_height
 	
-	#TODO clean
-	#var tile_size = Map.tile_set.tile_get_region(corn_type).size
 	var tile_size = $AutoCorn.get_node("Sprite").get_region_rect().size
-	print("corn size x " + str(tile_size.x))
-	print("corn size y " + str(tile_size.y))
 	$AutoCorn.position.x = 100
-	var offset_x = randi()%max_offset_x(width, tile_size.x) / 8  # TODO hacked
-	var offset_y = randi()%max_offset_y(height, tile_size.y) / 8 # TODO hacked
-	print("corn offset_x " + str(offset_x) + " offset_y " + str(offset_y))
+	var offset_x = randi()%max_offset_x(width, tile_size.x)  / 2
+	var offset_y = randi()%max_offset_y(height, tile_size.y) / 2 # TODO hacked
 
+	var rand_corn = corns[randi()%corns.size()]
 	for x in range(width):
 		for y in range(height):
-			#print("corn width height " + str(x) + " " + str(y))
-			var corn = auto_corn.instance()
+			var corn = rand_corn.instance()
 			add_child(corn)
-			#corn.position = Vector2((x + offset_x) * tile_size.x, (y + offset_y) * tile_size.y)
-			corn.position.x = x * 64
-			corn.position.y = y * 64
-			print("corn pos x y " + str(corn.position.x) + " " + str(corn.position.y))
-			#Map.set_cellv(
-			#Vector2(x + offset_x, y + offset_y),
-			#corn_type)
-
-# Called when the node enters the scene tree for the first time.
+			corn.position = Vector2((x + offset_x) * tile_size.x, (y + offset_y) * tile_size.y)
+			
 func _ready():
 	make_corn()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
