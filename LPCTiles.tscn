@@ -1,0 +1,233 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 11 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 11 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 11 )
+
+[node name="LPCTiles" type="Node2D"]
+
+[node name="grass_full" type="Sprite" parent="."]
+position = Vector2( 65.609, 0.683514 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 640, 992, 32, 32 )
+
+[node name="fence_alt_0" type="Sprite" parent="."]
+position = Vector2( 88.3565, 40 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 608, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fence_alt_0/StaticBody2D"]
+position = Vector2( 5.64352, -2 )
+shape = SubResource( 1 )
+
+[node name="fence_alt_1" type="Sprite" parent="."]
+position = Vector2( 120, 40 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 608, 32, 32 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="fence_alt_1"]
+position = Vector2( -3, 3.8147e-06 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fence_alt_1/StaticBody2D2"]
+position = Vector2( 3, -2 )
+shape = SubResource( 2 )
+
+[node name="fence_alt_2" type="Sprite" parent="."]
+position = Vector2( 152, 40 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 608, 32, 32 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="fence_alt_2"]
+position = Vector2( -10, -2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fence_alt_2/StaticBody2D3"]
+position = Vector2( 3, 0 )
+shape = SubResource( 3 )
+
+[node name="fence_alt_3" type="Sprite" parent="."]
+position = Vector2( 148, 132 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 640, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_3/StaticBody2D"]
+polygon = PoolVector2Array( 3, 9, -4, 9, -4, -16, 3, -16 )
+
+[node name="fence_alt_4" type="Sprite" parent="."]
+position = Vector2( 144, 100 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 640, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_4/StaticBody2D"]
+polygon = PoolVector2Array( -4, 9, -4, -16, 3, -16, 3, 16, -4, 16 )
+
+[node name="fence_alt_5" type="Sprite" parent="."]
+position = Vector2( 148, 68 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 640, 32, 32 )
+
+[node name="fence_alt_6" type="Sprite" parent="."]
+position = Vector2( 18, 76 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 672, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_6/StaticBody2D"]
+polygon = PoolVector2Array( 16, 8, 16, -15, 7, -15, 2, -13, -4, -13, -4, 10, -2, 16, 3, 16, 3, 8 )
+
+[node name="fence_alt_7" type="Sprite" parent="."]
+position = Vector2( 52, 78 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 672, 32, 32 )
+
+[node name="fence_alt_8" type="Sprite" parent="."]
+position = Vector2( 86, 76 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 672, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_8/StaticBody2D"]
+polygon = PoolVector2Array( 3, 16, 3, -13, -8, -13, -16, -13, -16, 8, -3, 8, -3, 16 )
+
+[node name="fence_alt_9" type="Sprite" parent="."]
+position = Vector2( 20, 110 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 704, 32, 32 )
+
+[node name="fence_alt_10" type="Sprite" parent="."]
+position = Vector2( 52, 110 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 704, 32, 32 )
+
+[node name="fence_alt_11" type="Sprite" parent="."]
+position = Vector2( 84, 110 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 704, 32, 32 )
+
+[node name="fence_alt_12" type="Sprite" parent="."]
+position = Vector2( 18, 144 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 736, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_12"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_12/StaticBody2D"]
+polygon = PoolVector2Array( -4, 9, -4, -16, 16, -16, 16, 9 )
+
+[node name="fence_alt_13" type="Sprite" parent="."]
+position = Vector2( 52, 142 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 736, 32, 32 )
+
+[node name="fence_alt_14" type="Sprite" parent="."]
+position = Vector2( 86, 144 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 736, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_14"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_14/StaticBody2D"]
+polygon = PoolVector2Array( 3, 9, 3, -16, -2, -16, -8, -13, -16, -13, -16, 9 )
+
+[node name="fence_alt_15" type="Sprite" parent="."]
+position = Vector2( 36, 187 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 928, 768, 32, 32 )
+
+[node name="fence_alt_16" type="Sprite" parent="."]
+position = Vector2( 68, 187 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 960, 768, 32, 32 )
+
+[node name="fence_alt_17" type="Sprite" parent="."]
+position = Vector2( 100, 187 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 768, 32, 32 )
+
+[node name="grass_full2" type="Sprite" parent="."]
+position = Vector2( 103.709, 0.972149 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 992, 32, 32 )
+
+[node name="grass_full3" type="Sprite" parent="."]
+position = Vector2( 141.808, 1.26078 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 704, 992, 32, 32 )
+
+[node name="grass_hole" type="Sprite" parent="."]
+position = Vector2( 7.10397, 0.568317 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 832, 64, 64 )
+
+[node name="grass_clumps" type="Sprite" parent="."]
+position = Vector2( 65.3565, -35.2357 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 640, 832, 32, 32 )
+
+[node name="grass_tiny" type="Sprite" parent="."]
+position = Vector2( 104.356, -35.2357 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 640, 864, 32, 32 )
+
+[node name="grass_island" type="Sprite" parent="."]
+position = Vector2( 200.9, 3.4099 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 640, 896, 96, 96 )
+
+[node name="castlewalls_0" type="Sprite" parent="."]
+position = Vector2( 263, -3 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 0, 32, 64 )
+
+[node name="castlewalls_1" type="Sprite" parent="."]
+position = Vector2( 263, 62 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 64, 32, 64 )
+
+[node name="castlewalls_2" type="Sprite" parent="."]
+position = Vector2( 263, 128 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 128, 32, 64 )
+

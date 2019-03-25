@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://cowsheet.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "EatLeft"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 384, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "EatUp"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 512, 96, 128 ), Rect2( 128, 512, 96, 128 ), Rect2( 256, 512, 96, 128 ), Rect2( 384, 512, 96, 128 ) ]
+}
+
+[node name="Animals" type="Node2D"]
+
+[node name="Cow" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cow"]
+polygon = PoolVector2Array( -0.645782, -0.645782, 33.1502, 0.430519, 33.796, 32.935, 0.430527, 31.8587 )
+
+[node name="Sprite" type="Sprite" parent="Cow"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 640, 96, 96 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cow/Sprite"]
+playback_process_mode = 0
+playback_speed = 0.33
+anims/EatLeft = SubResource( 2 )
+anims/EatUp = SubResource( 1 )
+
