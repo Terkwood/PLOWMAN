@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
+
+[node name="SECornerFence" type="StaticBody2D"]
+position = Vector2( 202, 180 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 992, 736, 32, 32 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 3, 9, 3, -16, -2, -16, -2, 4, -16, 4, -16, 8, -4, 8, -4, 9 )
+

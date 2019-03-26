@@ -11,8 +11,6 @@ func rand_tile_id():
 	return rand_range(4,7)
 
 func make_field():
-	print("field size x " + str(Map.tile_set.tile_get_region(4).size.x))
-	print("field size y " + str(Map.tile_set.tile_get_region(4).size.y))
 	for x in range(width):
 		for y in range(height):
 			Map.set_cellv(Vector2(x,y), rand_tile_id())

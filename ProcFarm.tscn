@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=1]
 [ext_resource path="res://ProcField.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=5]
 [ext_resource path="res://player.png" type="Texture" id=6]
 [ext_resource path="res://HandFurniture.tscn" type="PackedScene" id=7]
+[ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 7.6195 )
@@ -97,7 +98,8 @@ z_as_relative = false
 position = Vector2( 0, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
-position = Vector2( 100, 100 )
+editor/display_folded = true
+position = Vector2( 70, 100 )
 z_as_relative = false
 script = ExtResource( 5 )
 
@@ -121,5 +123,7 @@ anims/WalkUp = SubResource( 6 )
 current = true
 
 [node name="HandFurniture" parent="DeepZIndexHack" instance=ExtResource( 7 )]
-position = Vector2( 80, 54 )
+position = Vector2( 59, 84 )
+
+[node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 8 )]
 
