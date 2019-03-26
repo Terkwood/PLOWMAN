@@ -5,6 +5,10 @@
 
 A procedural farming game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers_Plowman).
 
+🚧 *PROCEED WITH CAUTION* 🚧
+
+🏗 *PROJECT UNDER CONSTRUCTION*  🏗
+
 # Overview
 
 > In a summer season when the sun shone softly
