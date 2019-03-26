@@ -3,7 +3,7 @@
 
 ![PLOWMAN screenshot](/doc/screenshot.png)
 
-A pixel art game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers_Plowman).
+A procedural farming game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers_Plowman).
 
 # Overview
 
