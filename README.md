@@ -62,11 +62,7 @@ It would be nice to be able to assemble the look and feel of NPCs randomly.  Lib
 - [farm animals](https://opengameart.org/content/lpc-style-farm-animals)
 - [farming tiles](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements)
 
-# References
-
-- Opening quotation is [from George Economou's verse translation of C text](http://piers.chass.ncsu.edu/resources/university.html)
-
-# License Attributions
+# Attributions
 
 Thank you to all open source contributors!
 
@@ -76,3 +72,9 @@ Thank you to all open source contributors!
 - [Universal LPC character generator](http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/)
 - [jrconway3's universal LPC spritesheet](https://github.com/jrconway3/Universal-LPC-spritesheet)
 - [Leshy spritesheet generator](https://www.leshylabs.com/apps/sstool/)
+
+## References
+
+Opening quotation is [from George Economou's verse translation of C text](http://piers.chass.ncsu.edu/resources/university.html).
+
+For further reading, we recommend [E. Talbot Donaldson's Alliterative Verse Translation](https://www.amazon.com/Wills-vision-Plowman-William-Langland/dp/0393027724/).  This version reads clearly in modern English, and contains helpful annotations.
