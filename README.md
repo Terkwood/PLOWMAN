@@ -1,9 +1,9 @@
 
 # PLOWMAN
 
-A pixel art game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers_Plowman).
+![PLOWMAN screenshot](/doc/screenshot.png)
 
-![Page from the 14th-century Luttrell Psalter, showing drolleries on the right margin and a ploughman at the bottom](/drolleries.png)
+A pixel art game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers_Plowman).
 
 # Overview
 
@@ -19,9 +19,13 @@ A pixel art game inspired by [Piers Plowman](https://en.wikipedia.org/wiki/Piers
 
 The dreamer will seek, among other things, the allegorical characters Dowel ("Do-Well"), Dobet ("Do-Better"), and Dobest ("Do-Best").
 
-Score points for undertaking wholesome actions. If you do enough evil, the adventure ends.
+Grow crops in a procedural world. Earn rewards for undertaking wholesome actions. Barter with nearby civilians.
 
-Specific interactions, item placement, dungeons, and NPC spawns should be randomized. Cutscenes are not randomized. Important NPC interactions are scripted. World map is not randomized. 
+If you do too much evil, the adventure ends.
+
+In "the real world", specific interactions, item placement, and NPC spawns should be randomized.
+
+Dreams which tell the story of Piers Plowman are scripted by hand.
 
 ## Running the game
 
