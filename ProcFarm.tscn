@@ -6,10 +6,10 @@
 [ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player.gd" type="Script" id=5]
 [ext_resource path="res://player.png" type="Texture" id=6]
-[ext_resource path="res://lpc_base_farm.png" type="Texture" id=7]
+[ext_resource path="res://HandFurniture.tscn" type="PackedScene" id=7]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 2.20726
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 7.6195 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -97,14 +97,13 @@ z_as_relative = false
 position = Vector2( 0, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
-editor/display_folded = true
 position = Vector2( 100, 100 )
 z_as_relative = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeepZIndexHack/Player"]
-position = Vector2( 0, 16.1036 )
-shape = SubResource( 1 )
+position = Vector2( 0, 22.1036 )
+shape = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="DeepZIndexHack/Player"]
 z_as_relative = false
@@ -121,10 +120,6 @@ anims/WalkUp = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="DeepZIndexHack/Player"]
 current = true
 
-[node name="Chair" type="Sprite" parent="DeepZIndexHack"]
-position = Vector2( 60, 170 )
-z_as_relative = false
-texture = ExtResource( 7 )
-region_enabled = true
-region_rect = Rect2( 192, 260, 32, 50 )
+[node name="HandFurniture" parent="DeepZIndexHack" instance=ExtResource( 7 )]
+position = Vector2( 80, 54 )
 

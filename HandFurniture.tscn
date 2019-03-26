@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.7391, 6.00301 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.7101, 8.07769 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3.08969, 1.68068 )
+
+[node name="HandFurniture" type="Node2D"]
+
+[node name="Chair" type="StaticBody2D" parent="."]
+position = Vector2( 77, 0 )
+
+[node name="Chair" type="Sprite" parent="Chair"]
+z_as_relative = false
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 260, 32, 50 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chair"]
+position = Vector2( 0, 6 )
+shape = SubResource( 1 )
+
+[node name="Bookshelf" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Bookshelf"]
+position = Vector2( -0.555542, -22.8889 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1088, 644, 32, 70 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf"]
+position = Vector2( -1, 4 )
+shape = SubResource( 2 )
+
+[node name="Lamp" type="StaticBody2D" parent="."]
+position = Vector2( 40, 30 )
+
+[node name="Sprite" type="Sprite" parent="Lamp"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 320, 32, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp"]
+position = Vector2( 1, 12 )
+shape = SubResource( 3 )
+

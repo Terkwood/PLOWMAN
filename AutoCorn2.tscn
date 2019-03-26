@@ -3,14 +3,14 @@
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.82288, 10.1384 )
+extents = Vector2( 3.82288, 2.31918 )
 
 [node name="AutoCorn2" type="StaticBody2D"]
 position = Vector2( 71, 276 )
 z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 15 )
+position = Vector2( -1, 27 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
