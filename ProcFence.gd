@@ -66,17 +66,36 @@ func make_fence():
 	return [offset_x, offset_y, width, height]
 	
 const TILE_SIZE = 32
-func place_cow(offset_x, offset_y, width, height):
-	Cow.position.x = (offset_x + 1 + randi()%(width-2)) * TILE_SIZE
-	Cow.position.y = (offset_y + 1 + randi()%(height-2)) * TILE_SIZE
+func place_cow(tile_offset_x, tile_offset_y, width, height):
+	Cow.position.x = (tile_offset_x + 2 + randi()%(int(min(1,width-3)))) * TILE_SIZE
+	Cow.position.y = (tile_offset_y + 1 + randi()%(height-2)) * TILE_SIZE
+	
+func animate_cow():
+	var available_anims = $Animals/Cow/Sprite/AnimationPlayer.get_animation_list()
+	$Animals/Cow/Sprite/AnimationPlayer.play(available_anims[randi()%available_anims.size()])
+
+
+func place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y):
+	var xy = Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE)
+	$Area2D.position = xy
+	var shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
+	var sz = Vector2(TILE_SIZE * num_tiles_x, TILE_SIZE * num_tiles_y)
+	shape.extents = sz
+	var color_rect = $Area2D/ColorRect
+	color_rect.rect_size = sz
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	var fc = make_fence()
-	place_cow(fc[0], fc[1], fc[2], fc[3])
-	var available_anims = $Animals/Cow/Sprite/AnimationPlayer.get_animation_list()
-	$Animals/Cow/Sprite/AnimationPlayer.play(available_anims[randi()%available_anims.size()])
+	var tile_offset_x = fc[0]
+	var tile_offset_y = fc[1]
+	var num_tiles_x = fc[2]
+	var num_tiles_y = fc[3]
+	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
+	animate_cow()
+	place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
