@@ -67,7 +67,7 @@ func make_fence():
 	
 const TILE_SIZE = 32
 func place_cow(tile_offset_x, tile_offset_y, width, height):
-	Cow.position.x = (tile_offset_x + 2 + randi()%(int(min(1,width-3)))) * TILE_SIZE
+	Cow.position.x = (tile_offset_x + 2 + randi()%(int(max(1,width-3)))) * TILE_SIZE
 	Cow.position.y = (tile_offset_y + 1 + randi()%(height-2)) * TILE_SIZE
 	
 func animate_cow():
