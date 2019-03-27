@@ -38,7 +38,20 @@ func make_corn():
 			corn.position = Vector2(
 				(x * corn_tile_size.x + offset_x) ,
 				(y * corn_tile_size.y + offset_y) )
-			
+	return [Vector2(offset_x, offset_y), Vector2(width, height)]
+		
+func place_area(offset_px, width_height):
+	print("hallo offset")
+	print(str(offset_px))
+	var size_px = width_height * corn_tile_size
+	$Area2D.position = offset_px
+	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
+	collision_shape.extents = size_px
+	$Area2D/ColorRect.rect_size = size_px
+
 func _ready():
-	make_corn()
+	var corn_placement = make_corn()
+	print("HALLO CORN")
+	print(str(corn_placement))
+	place_area(corn_placement[0], corn_placement[1])
 
