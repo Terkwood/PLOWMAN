@@ -15,11 +15,11 @@ const min_height =   1     # in tiles
 var max_height =  int(min(20, Global.world_height * 0.33))     # in tiles
 
 
-# in tiles
+# returns px
 func max_offset_x(w):
 	var rem = Global.TILE_SIZE / corn_tile_size.x  * Global.world_width - w
 	return int(rem * corn_tile_size.x)
-# in tiles  
+# returns px
 func max_offset_y(h):
 	var rem = Global.TILE_SIZE / corn_tile_size.y  * Global.world_height - h
 	return int(rem * corn_tile_size.y )
@@ -41,8 +41,6 @@ func make_corn():
 	return [Vector2(offset_x, offset_y), Vector2(width, height)]
 		
 func place_area(offset_px, width_height):
-	print("hallo offset")
-	print(str(offset_px))
 	var size_px = width_height * corn_tile_size
 	$Area2D.position = offset_px
 	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
@@ -51,7 +49,5 @@ func place_area(offset_px, width_height):
 
 func _ready():
 	var corn_placement = make_corn()
-	print("HALLO CORN")
-	print(str(corn_placement))
 	place_area(corn_placement[0], corn_placement[1])
 
