@@ -8,7 +8,9 @@
 position = Vector2( -1, 1 )
 script = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=[
+"proc_corn",
+]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
@@ -18,3 +20,4 @@ margin_right = 40.0
 margin_bottom = 40.0
 color = Color( 0.960784, 0.992157, 0, 1 )
 
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered" flags=6]

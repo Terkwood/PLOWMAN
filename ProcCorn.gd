@@ -5,7 +5,7 @@ onready var auto_corn2 = preload("res://AutoCorn2.tscn")
 onready var auto_corn3 = preload("res://AutoCorn3.tscn")
 onready var auto_corn4 = preload("res://AutoCorn4.tscn")
 onready var auto_corn_young = preload("res://AutoCornYoung.tscn")
-	
+
 onready var corns = [auto_corn, auto_corn2, auto_corn3, auto_corn4, auto_corn_young]
 onready var corn_tile_size = auto_corn4.instance().get_node("Sprite").get_region_rect().size
 
@@ -35,6 +35,7 @@ func make_corn():
 		for y in range(height):
 			var corn = rand_corn.instance()
 			add_child(corn)
+			add_to_group("proc_corn")
 			corn.position = Vector2(
 				(x * corn_tile_size.x + offset_x) ,
 				(y * corn_tile_size.y + offset_y) )
@@ -46,8 +47,17 @@ func place_area(offset_px, width_height):
 	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
 	collision_shape.extents = size_px
 	$Area2D/ColorRect.rect_size = size_px
+	placement_complete = true
 
+var placement_complete = false
 func _ready():
 	var corn_placement = make_corn()
 	place_area(corn_placement[0], corn_placement[1])
 
+func _on_Area2D_area_shape_entered(area_id, area, _area_shape, _self_shape):
+	if placement_complete:
+		print("proc_corn has an area entry " + str(area_id))
+		if area.get_parent().get("proc_area"):
+			print("...and parent is a procedurally generated area! ")
+		else:
+			print("whatevs")

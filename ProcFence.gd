@@ -8,6 +8,7 @@ var max_width  = 10     # in tiles
 var min_height =  3     # in tiles
 var max_height =  8     # in tiles
 
+export var proc_area = true
 
 const NW = 6
 const NE = 8
