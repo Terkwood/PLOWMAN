@@ -109,7 +109,7 @@ region_rect = Rect2( 928, 672, 32, 32 )
 [node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_6"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_6/StaticBody2D"]
-polygon = PoolVector2Array( 16, 8, 16, -15, 7, -15, 2, -13, -4, -13, -4, 10, -2, 16, 3, 16, 3, 8 )
+polygon = PoolVector2Array( 16, 8, 16, 5, -4, 5, -4, 9, -2, 16, 3, 16, 3, 8 )
 
 [node name="fence_alt_7" type="Sprite" parent="."]
 position = Vector2( 52, 78 )
@@ -126,7 +126,7 @@ region_rect = Rect2( 992, 672, 32, 32 )
 [node name="StaticBody2D" type="StaticBody2D" parent="fence_alt_8"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fence_alt_8/StaticBody2D"]
-polygon = PoolVector2Array( 3, 16, 3, -13, -8, -13, -16, -13, -16, 8, -3, 8, -3, 16 )
+polygon = PoolVector2Array( 1, 16, 3, 8, 3, 5, -16, 5, -16, 8, -3, 8, -3, 16 )
 
 [node name="fence_alt_9" type="Sprite" parent="."]
 position = Vector2( 20, 110 )
