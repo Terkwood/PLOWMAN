@@ -58,18 +58,5 @@ func make_corn():
 				(y * corn_tile_size.y + zone["rect"].position.y) )
 	return zone["rect"]
 
-
-func place_area(offset_px, size):
-	$Area2D.position = offset_px
-	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
-	collision_shape.extents = size
-	$Area2D/ColorRect.rect_size = size
-
 func _ready():
 	proc_zone = make_corn()
-	place_area(proc_zone.position, proc_zone.size)
-
-func _on_Area2D_area_entered(area):
-	print("proc_corn has an area entry ")
-	if area.get_parent().get("proc_overlap"):
-		print("... its name is " + str(area.get_parent().name))

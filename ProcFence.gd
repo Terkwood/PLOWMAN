@@ -75,16 +75,6 @@ func animate_cow():
 	var available_anims = $Animals/Cow/Sprite/AnimationPlayer.get_animation_list()
 	$Animals/Cow/Sprite/AnimationPlayer.play(available_anims[randi()%available_anims.size()])
 
-
-func place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y):
-	var xy = Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE)
-	$Area2D.position = xy
-	var shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
-	var sz = Vector2(TILE_SIZE * num_tiles_x, TILE_SIZE * num_tiles_y)
-	shape.extents = sz
-	var color_rect = $Area2D/ColorRect
-	color_rect.rect_size = sz
-	
 func _ready():
 	randomize()
 	var fc = make_fence()
@@ -94,8 +84,6 @@ func _ready():
 	var num_tiles_y = fc[3]
 	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	animate_cow()
-	place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
-	$Area2D.monitorable = true
 	ProcZoneRepo.try_add_proc_zone(Rect2(
 		Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE),
 		Vector2(num_tiles_x * TILE_SIZE, num_tiles_y * TILE_SIZE)))
