@@ -13,5 +13,5 @@ region_rect = Rect2( 960, 608, 32, 32 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 16, 0 )
-polygon = PoolVector2Array( -3, 9, -4, 9, -4, 8, -16, 8, -16, 4, 16, 4, 16, 8, 3, 8, 3, 9 )
+polygon = PoolVector2Array( -4, 8, -16, 8, -16, 4, 16, 4, 16, 8, 3, 8 )
 

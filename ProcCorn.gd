@@ -10,19 +10,19 @@ onready var corns = [auto_corn, auto_corn2, auto_corn3, auto_corn4, auto_corn_yo
 onready var corn_tile_size = auto_corn4.instance().get_node("Sprite").get_region_rect().size
 
 const min_width  =   1     # in tiles
-var max_width  =  int(min(20,Chunk.world_width * 0.33))      # in tiles
+var max_width  =  int(min(20,Chunk.num_tiles_x * 0.33))      # in tiles
 const min_height =   1     # in tiles
-var max_height =  int(min(20, Chunk.world_height * 0.33))     # in tiles
+var max_height =  int(min(20, Chunk.num_tiles_y * 0.33))     # in tiles
 
 export var proc_zone = Rect2(0,0,0,0)
 
 # returns px
 func max_offset_x(w):
-	var rem = Chunk.TILE_SIZE / corn_tile_size.x  * Chunk.world_width - w
+	var rem = Chunk.TILE_SIZE / corn_tile_size.x  * Chunk.num_tiles_x - w
 	return int(rem * corn_tile_size.x)
 # returns px
 func max_offset_y(h):
-	var rem = Chunk.TILE_SIZE / corn_tile_size.y  * Chunk.world_height - h
+	var rem = Chunk.TILE_SIZE / corn_tile_size.y  * Chunk.num_tiles_y - h
 	return int(rem * corn_tile_size.y )
 
 func gen_candidate_zone():
