@@ -14,72 +14,65 @@ radius = 6.0
 [node name="AutoTomato" type="Node2D"]
 position = Vector2( -1, 0 )
 
-[node name="Young" type="StaticBody2D" parent="."]
+[node name="TomatoYoung" type="StaticBody2D" parent="."]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="Young"]
+[node name="Sprite" type="Sprite" parent="TomatoYoung"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 32, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Young"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoYoung"]
 position = Vector2( -2, 10 )
 shape = SubResource( 1 )
-disabled = true
 
-[node name="Growing" type="StaticBody2D" parent="."]
+[node name="TomatoGrowing" type="StaticBody2D" parent="."]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="Growing"]
+[node name="Sprite" type="Sprite" parent="TomatoGrowing"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 96, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Growing"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoGrowing"]
 position = Vector2( -2, 10 )
 shape = SubResource( 2 )
 
-[node name="Growing2" type="StaticBody2D" parent="."]
+[node name="TomatoGrowing2" type="StaticBody2D" parent="."]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="Growing2"]
+[node name="Sprite" type="Sprite" parent="TomatoGrowing2"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 160, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Growing2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoGrowing2"]
 position = Vector2( -2, 10 )
 shape = SubResource( 2 )
-disabled = true
 
-[node name="Mature" type="StaticBody2D" parent="."]
-visible = false
+[node name="TomatoMature" type="StaticBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Mature"]
+[node name="Sprite" type="Sprite" parent="TomatoMature"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 224, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mature"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoMature"]
 position = Vector2( -2, 10 )
 shape = SubResource( 2 )
-disabled = true
 
-[node name="Harvested" type="StaticBody2D" parent="."]
-visible = false
+[node name="TomatoHarvested" type="StaticBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Harvested"]
+[node name="Sprite" type="Sprite" parent="TomatoHarvested"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 288, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Harvested"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoHarvested"]
 position = Vector2( -2, 10 )
 shape = SubResource( 2 )
-disabled = true
 
 [node name="Produce" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="Sprite" type="Sprite" parent="Produce"]
 texture = ExtResource( 1 )
@@ -89,5 +82,4 @@ region_rect = Rect2( 1344, 352, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Produce"]
 position = Vector2( 0, 3 )
 shape = SubResource( 3 )
-disabled = true
 
