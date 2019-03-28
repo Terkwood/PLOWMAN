@@ -1,5 +1,7 @@
 extends Node2D
 
+export var proc_zone = Rect2(0,0,0,0)
+
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
 var max_offset_x = Global.world_width - 3  # in tiles
 var max_offset_y = Global.world_height - 3 # in tiles
@@ -25,6 +27,8 @@ onready var Cow = $Animals/Cow
 
 func tile(c):
 	return Set.find_tile_by_name("fence_alt_"+str(c))
+
+
 
 func make_fence():
 	var width = min_width + randi()%max_width
@@ -97,6 +101,9 @@ func _ready():
 	animate_cow()
 	place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	$Area2D.monitorable = true
+	ProcZoneRepo.try_add_proc_zone(Rect2(
+		Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE),
+		Vector2(num_tiles_x * TILE_SIZE, num_tiles_y * TILE_SIZE)))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
