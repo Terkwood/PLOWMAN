@@ -12,19 +12,16 @@ onready var sprite_size = mature.instance().get_node("Sprite").get_region_rect()
 const TILE_BUFFER = Vector2(8,8)
 onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + TILE_BUFFER.y)
 
-export onready var size = Vector2(128,128)
+export var size = Vector2(128,128)
 
-func init(size):
-	size = size
+func _init(s: Vector2):
+	size = s
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var zone = ProcZoneRepo.assign_zone(size)
-	print("potato zone! " +str(zone))
 	var num_potatoes_x = zone.size.x / tile_size.x
 	var num_potatoes_y = zone.size.y / tile_size.y
-	print("num in x " +str(num_potatoes_x))
-	print("num in y " +str(num_potatoes_y))
 	
 	var stage = stages[randi()%stages.size()]
 	for x in num_potatoes_x:
