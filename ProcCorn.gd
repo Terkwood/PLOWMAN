@@ -39,7 +39,10 @@ func gen_candidate_zone():
 	}
 
 func gen_zone():
-	return gen_candidate_zone() # TODO
+	var c = gen_candidate_zone()
+	while !ProcZoneRepo.try_add_proc_zone(c["rect"]):
+		c = gen_candidate_zone()
+	return c
 
 func make_corn():
 	var zone = gen_zone()

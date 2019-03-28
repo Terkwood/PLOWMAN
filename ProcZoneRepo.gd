@@ -2,8 +2,15 @@ extends Node
 
 var proc_zones = []
 
-func add_proc_zones(zone: Rect2):
-	proc_zones.push_front(zone)
+func try_add_proc_zone(zone: Rect2):
+	if !contains(zone):
+		proc_zones.push_front(zone)
+		return true
+	return false
 	
-func get_proc_zones():
-	return proc_zones
+func contains(zone: Rect2):
+	for existing in proc_zones:
+		if existing.clip(zone):
+			return true
+	return false
+	
