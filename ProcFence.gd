@@ -3,8 +3,8 @@ extends Node2D
 export var proc_zone = Rect2(0,0,0,0)
 
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var max_offset_x = Global.world_width - 3  # in tiles
-var max_offset_y = Global.world_height - 3 # in tiles
+var max_offset_x = Chunk.num_tiles_x - 3  # in tiles
+var max_offset_y = Chunk.num_tiles_y - 3 # in tiles
 var min_width  =  3     # in tiles
 var max_width  = 10     # in tiles
 var min_height =  3     # in tiles
