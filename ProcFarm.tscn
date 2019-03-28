@@ -103,6 +103,8 @@ position = Vector2( 0, -1 )
 
 [node name="ProcPlants" parent="DeepZIndexHack" instance=ExtResource( 6 )]
 
+[node name="ProcPlants2" parent="DeepZIndexHack" instance=ExtResource( 6 )]
+
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
 editor/display_folded = true
 position = Vector2( 70, 100 )
