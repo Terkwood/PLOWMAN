@@ -3,8 +3,8 @@ extends Node
 var proc_zones = []
 
 func rand_pos(size: Vector2):
-	return Vector2(randi()%int(Global.TILE_SIZE * Global.world_width - size.x),
-		randi()%int(Global.TILE_SIZE * Global.world_width - size.y))
+	return Vector2(randi()%int(max(1,Global.TILE_SIZE * Global.world_width - size.x)),
+		randi()%int(max(1,Global.TILE_SIZE * Global.world_width - size.y)))
 
 func assign_zone(size: Vector2):
 	var fail_count = 0

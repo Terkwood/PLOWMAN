@@ -19,6 +19,7 @@ func _init(s: Vector2):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("potatos with size " + str(size))
 	var zone = ProcZoneRepo.assign_zone(size)
 	var num_potatoes_x = zone.size.x / tile_size.x
 	var num_potatoes_y = zone.size.y / tile_size.y
