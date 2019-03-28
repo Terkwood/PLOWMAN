@@ -8,7 +8,7 @@ var max_width  = 10     # in tiles
 var min_height =  3     # in tiles
 var max_height =  8     # in tiles
 
-export var proc_area = true
+export var proc_overlap = true
 
 const NW = 6
 const NE = 8
@@ -96,7 +96,7 @@ func _ready():
 	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	animate_cow()
 	place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
-
+	$Area2D.monitorable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

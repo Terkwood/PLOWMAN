@@ -40,24 +40,21 @@ func make_corn():
 				(x * corn_tile_size.x + offset_x) ,
 				(y * corn_tile_size.y + offset_y) )
 	return [Vector2(offset_x, offset_y), Vector2(width, height)]
-		
+
+
 func place_area(offset_px, width_height):
 	var size_px = width_height * corn_tile_size
 	$Area2D.position = offset_px
 	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
 	collision_shape.extents = size_px
 	$Area2D/ColorRect.rect_size = size_px
-	placement_complete = true
 
-var placement_complete = false
 func _ready():
 	var corn_placement = make_corn()
 	place_area(corn_placement[0], corn_placement[1])
+	$Area2D.monitoring = true
 
-func _on_Area2D_area_shape_entered(area_id, area, _area_shape, _self_shape):
-	if placement_complete:
-		print("proc_corn has an area entry " + str(area_id))
-		if area.get_parent().get("proc_area"):
-			print("...and parent is a procedurally generated area! ")
-		else:
-			print("whatevs")
+func _on_Area2D_area_entered(area):
+	print("proc_corn has an area entry ")
+	if area.get_parent().get("proc_overlap"):
+		print("... its name is " + str(area.get_parent().name))
