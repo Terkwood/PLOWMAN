@@ -14,6 +14,7 @@ var max_width  =  int(min(20,Global.world_width * 0.33))      # in tiles
 const min_height =   1     # in tiles
 var max_height =  int(min(20, Global.world_height * 0.33))     # in tiles
 
+export var proc_zone = Rect2(0,0,0,0)
 
 # returns px
 func max_offset_x(w):
@@ -65,8 +66,8 @@ func place_area(offset_px, size):
 	$Area2D/ColorRect.rect_size = size
 
 func _ready():
-	var corn_placement = make_corn()
-	place_area(corn_placement.position, corn_placement.size)
+	proc_zone = make_corn()
+	place_area(proc_zone.position, proc_zone.size)
 	$Area2D.monitoring = true
 
 func _on_Area2D_area_entered(area):

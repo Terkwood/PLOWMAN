@@ -2,8 +2,8 @@
 
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=1]
 [ext_resource path="res://ProcField.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ProcFence.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ProcFence.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player.gd" type="Script" id=5]
 [ext_resource path="res://player.png" type="Texture" id=6]
 [ext_resource path="res://HandFurniture.tscn" type="PackedScene" id=7]
@@ -92,10 +92,10 @@ script = ExtResource( 1 )
 z_index = -4096
 z_as_relative = false
 
-[node name="ProcFence" parent="DeepZIndexHack" instance=ExtResource( 3 )]
-
-[node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 4 )]
+[node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 3 )]
 position = Vector2( 0, -1 )
+
+[node name="ProcFence" parent="DeepZIndexHack" instance=ExtResource( 4 )]
 
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
 editor/display_folded = true
