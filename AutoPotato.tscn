@@ -24,10 +24,10 @@ region_rect = Rect2( 1376, 32, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Young"]
 position = Vector2( 1, 10 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Growing" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 32, 0 )
 
 [node name="Sprite" type="Sprite" parent="Growing"]
 texture = ExtResource( 1 )
@@ -37,10 +37,10 @@ region_rect = Rect2( 1376, 96, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Growing"]
 position = Vector2( 0, 9 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Growing2" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 64, 0 )
 
 [node name="Sprite" type="Sprite" parent="Growing2"]
 texture = ExtResource( 1 )
@@ -50,10 +50,10 @@ region_rect = Rect2( 1376, 160, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Growing2"]
 position = Vector2( 0, 9 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Mature" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 96, 0 )
 
 [node name="Sprite" type="Sprite" parent="Mature"]
 texture = ExtResource( 1 )
@@ -63,6 +63,7 @@ region_rect = Rect2( 1376, 224, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mature"]
 position = Vector2( 0, 9 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Harvested" type="Sprite" parent="."]
 visible = false
@@ -73,7 +74,6 @@ region_rect = Rect2( 1376, 288, 32, 32 )
 
 [node name="Produce" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 160, 0 )
 
 [node name="Sprite" type="Sprite" parent="Produce"]
 texture = ExtResource( 1 )
@@ -83,4 +83,5 @@ region_rect = Rect2( 1376, 352, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Produce"]
 position = Vector2( 0, 7 )
 shape = SubResource( 3 )
+disabled = true
 
