@@ -42,7 +42,9 @@ func gen_candidate_zone():
 func gen_zone():
 	var c = gen_candidate_zone()
 	while !ProcZoneRepo.try_add_proc_zone(c["rect"]):
+		print ("corn gen")
 		c = gen_candidate_zone()
+	print("corn added " + str(c))
 	return c
 
 func make_corn():
