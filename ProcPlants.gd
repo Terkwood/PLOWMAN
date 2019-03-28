@@ -1,6 +1,6 @@
 extends Node2D
 
-export onready var size = Vector2(1024,1024)
+export var size = Vector2(1024,1024)
 
 onready var TOMATO_SCENES = [
 	preload("res://TomatoYoung.tscn"),
