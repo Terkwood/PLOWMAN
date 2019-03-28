@@ -24,34 +24,46 @@ func max_offset_y(h):
 	var rem = Global.TILE_SIZE / corn_tile_size.y  * Global.world_height - h
 	return int(rem * corn_tile_size.y )
 
-
-func make_corn():
+func gen_candidate_zone():
 	var width = max(min_width, randi()%max_width)
 	var height = max(min_height, randi()%max_height)
 	var offset_x = randi()%max_offset_x(width)
 	var offset_y = randi()%max_offset_y(height)
+	return {
+		"position": Vector2(offset_x, offset_y),
+	 	"width_in_tiles": width,
+		"height_in_tiles":height
+	}
+
+func gen_zone():
+	return gen_candidate_zone() # TODO
+
+func make_corn():
+	var zone = gen_zone()
 	var rand_corn = corns[randi()%corns.size()]
-	for x in range(width):
-		for y in range(height):
+	for x in range(zone["width_in_tiles"]):
+		for y in range(zone["height_in_tiles"]):
 			var corn = rand_corn.instance()
 			add_child(corn)
 			add_to_group("proc_corn")
 			corn.position = Vector2(
-				(x * corn_tile_size.x + offset_x) ,
-				(y * corn_tile_size.y + offset_y) )
-	return [Vector2(offset_x, offset_y), Vector2(width, height)]
+				(x * corn_tile_size.x + zone["position"].x) ,
+				(y * corn_tile_size.y + zone["position"].y) )
+	return Rect2(
+			Vector2(zone["position"].x, zone["position"].y),
+			Vector2(zone["width_in_tiles"] * corn_tile_size.x,
+					zone["height_in_tiles"] * corn_tile_size.y))
 
 
-func place_area(offset_px, width_height):
-	var size_px = width_height * corn_tile_size
+func place_area(offset_px, size):
 	$Area2D.position = offset_px
 	var collision_shape: RectangleShape2D = $Area2D/CollisionShape2D.shape
-	collision_shape.extents = size_px
-	$Area2D/ColorRect.rect_size = size_px
+	collision_shape.extents = size
+	$Area2D/ColorRect.rect_size = size
 
 func _ready():
 	var corn_placement = make_corn()
-	place_area(corn_placement[0], corn_placement[1])
+	place_area(corn_placement.position, corn_placement.size)
 	$Area2D.monitoring = true
 
 func _on_Area2D_area_entered(area):
