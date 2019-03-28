@@ -5,7 +5,7 @@ onready var tomato = preload("res://AutoTomato.gd")
 
 onready var plants = [potato]#, tomato]
 
-export var size = Vector2(128,128)
+export onready var size = Vector2(1024,1024)
 
 func _ready():
 	var rand_size = Vector2(max(96,randi()%int(size.x)), max (96,randi()%int(size.y)))
