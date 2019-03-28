@@ -14,9 +14,7 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 var size = Vector2(128,128)
 
-func _init(args):
-	var s = args[0]
-	var preloads = args[1]
+func _init(s: Vector2, preloads):
 	size = s
 	young = preloads[0]
 	growing = preloads[1]
