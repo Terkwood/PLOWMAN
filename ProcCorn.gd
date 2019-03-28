@@ -30,7 +30,10 @@ func gen_candidate_zone():
 	var offset_x = randi()%max_offset_x(width)
 	var offset_y = randi()%max_offset_y(height)
 	return {
-		"position": Vector2(offset_x, offset_y),
+		"rect": Rect2(
+				Vector2(offset_x, offset_y),
+				Vector2(width * corn_tile_size.x,
+						height * corn_tile_size.y)),
 	 	"width_in_tiles": width,
 		"height_in_tiles":height
 	}
@@ -47,12 +50,9 @@ func make_corn():
 			add_child(corn)
 			add_to_group("proc_corn")
 			corn.position = Vector2(
-				(x * corn_tile_size.x + zone["position"].x) ,
-				(y * corn_tile_size.y + zone["position"].y) )
-	return Rect2(
-			Vector2(zone["position"].x, zone["position"].y),
-			Vector2(zone["width_in_tiles"] * corn_tile_size.x,
-					zone["height_in_tiles"] * corn_tile_size.y))
+				(x * corn_tile_size.x + zone["rect"].position.x) ,
+				(y * corn_tile_size.y + zone["rect"].position.y) )
+	return zone["rect"]
 
 
 func place_area(offset_px, size):
