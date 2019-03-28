@@ -8,9 +8,26 @@ onready var harvested = preload("res://PotatoHarvested.tscn")
 onready var produce = preload("res://PotatoProduce.tscn")
 
 onready var stages = [young, growing, growing2, mature, harvested, produce]
+onready var sprite_size = mature.instance().get_node("Sprite").get_region_rect().size
+const TILE_BUFFER = Vector2(8,8)
+onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + TILE_BUFFER.y)
+
+export onready var size = Vector2(128,128)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var zone = ProcZoneRepo.assign_zone(size)
+	print("potato zone! " +str(zone))
+	var num_potatoes_x = zone.size.x / tile_size.x
+	var num_potatoes_y = zone.size.y / tile_size.y
+	print("num in x " +str(num_potatoes_x))
+	print("num in y " +str(num_potatoes_y))
+	
 	var stage = stages[randi()%stages.size()]
-	add_child(stage.instance())
+	for x in num_potatoes_x:
+		for y in num_potatoes_y:
+			var potato = stage.instance()
+			potato.position.x = zone.position.x + x * tile_size.x
+			potato.position.y = zone.position.y + y * tile_size.y
+			add_child(potato)
 	
