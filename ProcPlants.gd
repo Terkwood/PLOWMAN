@@ -2,8 +2,9 @@ extends Node2D
 
 onready var potato = preload("res://AutoPotato.gd")
 onready var tomato = preload("res://AutoTomato.gd")
+onready var carrot = preload("res://AutoCarrot.gd")
 
-onready var plants = [potato, tomato]
+onready var plants = [potato, tomato, carrot]
 
 export onready var size = Vector2(1024,1024)
 

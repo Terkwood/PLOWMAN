@@ -306,3 +306,15 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 448, 128, 32, 64 )
 
+[node name="carrot_harvested" type="Sprite" parent="."]
+position = Vector2( 30, 222 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1408, 288, 32, 32 )
+
+[node name="potato_harvested" type="Sprite" parent="."]
+position = Vector2( 70, 222 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1408, 288, 32, 32 )
+
