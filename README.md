@@ -41,10 +41,6 @@ There are also limited-issue binaries available (expiring ~Apr 2 2019, first com
 - Windows 64-bit: http://tinyurl.com/plowman-0326-win
 - Linux 64-bit: http://tinyurl.com/plowman-0326-linux
 
-## Controls
-
-Favor gamepad input first. Keyboard as a fallback. Eschew touch enabled devices.
-
 ## Procedural Farming
 
 Imitating functionality from Stardew Valley is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
