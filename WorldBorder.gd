@@ -28,6 +28,7 @@ nes.y
 )
 
 func procgen_fences():
+	var chunk_size = Chunk.size()
 	for x in range(num_horizontal_tiles):
 		var fence_top = horizontal_fence.instance()
 		add_child(fence_top)
@@ -38,7 +39,7 @@ func procgen_fences():
 		add_child(fence_bottom)
 		fence_bottom.position = Vector2(
 		x * horizontal_fence_tile_size.x + corner_fence_width_px,
-			Chunk.height())
+			chunk_size.y)
 	for y in range(num_vertical_tiles):
 		var fence_left = vertical_fence.instance()
 		add_child(fence_left)
@@ -48,14 +49,15 @@ func procgen_fences():
 		var fence_right = vertical_fence.instance()
 		add_child(fence_right)
 		fence_right.position = Vector2(
-			Chunk.width() ,
+			chunk_size.x,
 			y * vertical_fence_tile_size.y  + corner_fence_height_px )
 
 func place_corners():
+	var chunk_size = Chunk.size()
 	$NWCornerFence.position = Vector2(0,0)
-	$NECornerFence.position = Vector2(Chunk.width(),0)
-	$SWCornerFence.position = Vector2(0,Chunk.height())
-	$SECornerFence.position = Vector2(Chunk.width(),Chunk.height())
+	$NECornerFence.position = Vector2(chunk_size.x,0)
+	$SWCornerFence.position = Vector2(0,chunk_size.y)
+	$SECornerFence.position = Vector2(chunk_size.x,chunk_size.y)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
