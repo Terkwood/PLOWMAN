@@ -14,6 +14,9 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 export onready var size = Vector2(128,128)
 
+func init(size):
+	size = size
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var zone = ProcZoneRepo.assign_zone(size)
