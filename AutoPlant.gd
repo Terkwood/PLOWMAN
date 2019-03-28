@@ -14,6 +14,8 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 var size = Vector2(128,128)
 
+# You need to supply the expected array of preloads,
+# or we'll fail gloriously at runtime.  See below.
 func _init(s: Vector2, preloads):
 	size = s
 	young = preloads[0]
