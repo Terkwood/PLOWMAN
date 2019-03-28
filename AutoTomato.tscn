@@ -72,14 +72,14 @@ region_rect = Rect2( 1344, 288, 32, 32 )
 position = Vector2( -2, 10 )
 shape = SubResource( 2 )
 
-[node name="Produce" type="StaticBody2D" parent="."]
+[node name="TomatoProduce" type="StaticBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Produce"]
+[node name="Sprite" type="Sprite" parent="TomatoProduce"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1344, 352, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Produce"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TomatoProduce"]
 position = Vector2( 0, 3 )
 shape = SubResource( 3 )
 
