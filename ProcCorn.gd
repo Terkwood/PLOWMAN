@@ -68,7 +68,6 @@ func place_area(offset_px, size):
 func _ready():
 	proc_zone = make_corn()
 	place_area(proc_zone.position, proc_zone.size)
-	$Area2D.monitoring = true
 
 func _on_Area2D_area_entered(area):
 	print("proc_corn has an area entry ")

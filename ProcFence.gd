@@ -10,8 +10,6 @@ var max_width  = 10     # in tiles
 var min_height =  3     # in tiles
 var max_height =  8     # in tiles
 
-export var proc_overlap = true
-
 const NW = 6
 const NE = 8
 const SW = 12
@@ -27,8 +25,6 @@ onready var Cow = $Animals/Cow
 
 func tile(c):
 	return Set.find_tile_by_name("fence_alt_"+str(c))
-
-
 
 func make_fence():
 	var width = min_width + randi()%max_width
@@ -89,7 +85,6 @@ func place_area(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y):
 	var color_rect = $Area2D/ColorRect
 	color_rect.rect_size = sz
 	
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	var fc = make_fence()
@@ -104,7 +99,3 @@ func _ready():
 	ProcZoneRepo.try_add_proc_zone(Rect2(
 		Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE),
 		Vector2(num_tiles_x * TILE_SIZE, num_tiles_y * TILE_SIZE)))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
