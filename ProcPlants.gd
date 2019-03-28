@@ -2,9 +2,21 @@ extends Node2D
 
 export onready var size = Vector2(1024,1024)
 
-onready var potato = preload("res://AutoPotato.gd")
-onready var tomato = preload("res://AutoTomato.gd")
-onready var carrot = preload("res://AutoCarrot.gd")
+onready var TOMATO_SCENES = [
+	preload("res://TomatoYoung.tscn"),
+	preload("res://TomatoGrowing.tscn"),
+	preload("res://TomatoGrowing2.tscn"),
+	preload("res://TomatoMature.tscn"),
+	preload("res://TomatoHarvested.tscn")
+]
+
+onready var CARROT_SCENES = [
+	preload("res://CarrotYoung.tscn"),
+	preload("res://CarrotGrowing.tscn"),
+	preload("res://CarrotGrowing2.tscn"),
+	preload("res://CarrotMature.tscn"),
+	preload("res://CarrotHarvested.tscn")
+]
 
 onready var POTATO_SCENES = [
 	preload("res://PotatoYoung.tscn"),
@@ -13,7 +25,6 @@ onready var POTATO_SCENES = [
 	preload("res://PotatoMature.tscn"),
 	preload("res://PotatoHarvested.tscn")
 ]
-
 
 onready var BROCCOLI_SCENES = [
 	preload("res://CarrotYoung.tscn"), 
@@ -31,8 +42,10 @@ func rand_size():
 
 onready var plants = [
 	auto_plant.new(rand_size(), BROCCOLI_SCENES),
-	auto_plant.new(rand_size(), POTATO_SCENES)
-]#,potato, tomato, carrot ]
+	auto_plant.new(rand_size(), POTATO_SCENES),
+	auto_plant.new(rand_size(), CARROT_SCENES),
+	auto_plant.new(rand_size(), TOMATO_SCENES),
+]
 
 func _ready():
 	var plot = plants[randi()%plants.size()]
