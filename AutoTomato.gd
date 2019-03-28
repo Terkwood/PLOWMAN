@@ -5,9 +5,8 @@ onready var growing = preload("res://TomatoGrowing.tscn")
 onready var growing2 = preload("res://TomatoGrowing2.tscn")
 onready var mature = preload("res://TomatoMature.tscn")
 onready var harvested = preload("res://TomatoHarvested.tscn")
-onready var produce = preload("res://TomatoProduce.tscn")
 
-onready var stages = [young, growing, growing2, mature, harvested, produce]
+onready var stages = [young, growing, growing2, mature, harvested]
 
 func _ready():
 	var stage = stages[randi()%stages.size()]

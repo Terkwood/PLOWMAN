@@ -5,9 +5,8 @@ onready var growing = preload("res://PotatoGrowing.tscn")
 onready var growing2 = preload("res://PotatoGrowing2.tscn")
 onready var mature = preload("res://PotatoMature.tscn")
 onready var harvested = preload("res://PotatoHarvested.tscn")
-onready var produce = preload("res://PotatoProduce.tscn")
 
-onready var stages = [young, growing, growing2, mature, harvested, produce]
+onready var stages = [young, growing, growing2, mature, harvested]
 onready var sprite_size = mature.instance().get_node("Sprite").get_region_rect().size
 const TILE_BUFFER = Vector2(8,8)
 onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + TILE_BUFFER.y)

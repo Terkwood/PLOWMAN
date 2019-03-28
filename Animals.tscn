@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 384, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "EatRight"
 loop = true
 tracks/0/type = "value"
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 912, 128, 96 ), Rect2( 128, 912, 128, 96 ), Rect2( 256, 912, 128, 96 ), Rect2( 384, 912, 128, 96 ), Rect2( 256, 912, 128, 96 ), Rect2( 128, 912, 128, 96 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -83,6 +83,6 @@ playback_process_mode = 0
 playback_speed = 0.33
 anims/EatDown = SubResource( 1 )
 anims/EatLeft = SubResource( 2 )
-anims/EatRight = SubResource( 4 )
-anims/EatUp = SubResource( 3 )
+anims/EatRight = SubResource( 3 )
+anims/EatUp = SubResource( 4 )
 
