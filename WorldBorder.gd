@@ -1,7 +1,7 @@
 extends Node2D
 
-const WORLD_WIDTH_PX = Global.TILE_SIZE * Global.world_width
-const WORLD_HEIGHT_PX = Global.TILE_SIZE * Global.world_height
+const WORLD_WIDTH_PX = Chunk.TILE_SIZE * Chunk.world_width
+const WORLD_HEIGHT_PX = Chunk.TILE_SIZE * Chunk.world_height
 
 #onready var ne_corner_fence = preload("res://NECornerFence.tscn")
 #onready var nw_corner_fence = preload("res://NWCornerFence.tscn")

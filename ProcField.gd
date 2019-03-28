@@ -1,8 +1,8 @@
 extends Node2D
 
 # from http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var width = Global.world_width   # in tiles
-var height = Global.world_height # in tiles
+var width = Chunk.world_width   # in tiles
+var height = Chunk.world_height # in tiles
 
 # get a reference to the map for convenience
 onready var Map = $TileMap
