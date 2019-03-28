@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const WALK_SPEED = 150
+const WALK_SPEED = 450
 
 var velocity = Vector2()
 

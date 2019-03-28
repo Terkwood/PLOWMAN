@@ -8,6 +8,7 @@ onready var plants = [potato]#, tomato]
 export var size = Vector2(128,128)
 
 func _ready():
-	var plot = plants[randi()%plants.size()].new(size)
+	var rand_size = Vector2(max(64,randi()%int(size.x)), max (64,randi()%int(size.y)))
+	var plot = plants[randi()%plants.size()].new(rand_size)
 	add_child(plot)
 	
