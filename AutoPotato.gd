@@ -21,8 +21,9 @@ func _init(s: Vector2):
 func _ready():
 	print("potatos with size " + str(size))
 	var zone = ProcZoneRepo.assign_zone(size)
-	var num_potatoes_x = zone.size.x / tile_size.x
-	var num_potatoes_y = zone.size.y / tile_size.y
+	var num_potatoes_x = max(0,floor(zone.size.x / tile_size.x) - 1)
+	var num_potatoes_y = max(0,floor(zone.size.y / tile_size.y) - 1)
+	
 	
 	var stage = stages[randi()%stages.size()]
 	for x in num_potatoes_x:
