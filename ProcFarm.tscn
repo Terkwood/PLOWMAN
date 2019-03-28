@@ -83,8 +83,6 @@ tracks/0/keys = {
 
 [node name="ProcFarm" type="Node2D"]
 
-[node name="YSort" type="YSort" parent="."]
-
 [node name="DeepZIndexHack" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
