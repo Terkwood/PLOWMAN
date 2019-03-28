@@ -23,6 +23,7 @@ config/icon="res://drolleries_icon.png"
 [autoload]
 
 Global="*res://Global.tscn"
+ProcZoneRepo="*res://ProcZoneRepo.gd"
 
 [rendering]
 
