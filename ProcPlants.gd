@@ -35,6 +35,24 @@ onready var BROCCOLI_SCENES = [
 ]
 
 
+onready var RED_PEPPER_SCENES = [
+	preload("res://RedPepperYoung.tscn"), 
+	preload("res://RedPepperGrowing.tscn"),
+	preload("res://RedPepperGrowing2.tscn"),
+	preload("res://RedPepperMature.tscn"),
+	preload("res://RedPepperHarvested.tscn")
+]
+
+
+onready var ZUCCHINI_SCENES = [
+	preload("res://ZucchiniYoung.tscn"), 
+	preload("res://ZucchiniGrowing.tscn"),
+	preload("res://ZucchiniGrowing2.tscn"),
+	preload("res://ZucchiniMature.tscn"),
+	preload("res://ZucchiniHarvested.tscn")
+]
+
+
 onready var auto_plant = load("res://AutoPlant.gd")
 
 func rand_size():
@@ -45,6 +63,7 @@ onready var plants = [
 	auto_plant.new(rand_size(), POTATO_SCENES),
 	auto_plant.new(rand_size(), CARROT_SCENES),
 	auto_plant.new(rand_size(), TOMATO_SCENES),
+	auto_plant.new(rand_size(), RED_PEPPER_SCENES),
 ]
 
 func _ready():
