@@ -318,3 +318,27 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1408, 288, 32, 32 )
 
+[node name="broccoli_harvested" type="Sprite" parent="."]
+position = Vector2( 30, 252 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1440, 288, 32, 32 )
+
+[node name="red_pepper_harvested" type="Sprite" parent="."]
+position = Vector2( 70, 252 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1472, 288, 32, 32 )
+
+[node name="zucchini_harvested" type="Sprite" parent="."]
+position = Vector2( 105, 252 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1504, 288, 32, 32 )
+
+[node name="tomato_harvested" type="Sprite" parent="."]
+position = Vector2( 145, 252 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1344, 288, 32, 32 )
+

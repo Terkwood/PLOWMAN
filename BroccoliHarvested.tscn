@@ -2,11 +2,10 @@
 
 [ext_resource path="res://lpc_tileset.tres" type="TileSet" id=1]
 
-[node name="TomatoHarvested" type="Node2D"]
+[node name="BroccoliHarvested" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( -16, -16 )
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 0, 39, 0 )
+tile_data = PoolIntArray( 0, 35, 0 )
 
