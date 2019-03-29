@@ -1,14 +1,13 @@
 extends Node2D
 
-export var proc_zone = Rect2(0,0,0,0)
-
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var max_offset_x = Chunk.num_tiles_x - 3  # in tiles
-var max_offset_y = Chunk.num_tiles_y - 3 # in tiles
-var min_width  =  3     # in tiles
-var max_width  = 10     # in tiles
-var min_height =  3     # in tiles
-var max_height =  8     # in tiles
+
+const min_width  =  5     # in tiles
+const max_width  = 12     # in tiles
+const min_height =  5     # in tiles
+const max_height = 12     # in tiles
+const max_offset_x = Chunk.num_tiles_x - min_width  # in tiles
+const max_offset_y = Chunk.num_tiles_y - min_height # in tiles
 
 const NW = 6
 const NE = 8
@@ -22,15 +21,16 @@ onready var Map = $TileMap
 onready var Set = Map.tile_set
 onready var Cow = $Animals/Cow
 
-
 func tile(c):
 	return Set.find_tile_by_name("fence_alt_"+str(c))
 
 func make_fence():
-	var width = min_width + randi()%max_width
-	var height = min_height + randi()%max_height
-	var offset_x = randi()%max_offset_x
-	var offset_y = randi()%max_offset_y	
+	var offset_x = int(max(0, randi()%max_offset_x - min_width))
+	var offset_y = int(max(0, randi()%max_offset_y - min_width))
+	
+	var width = int(min(Chunk.num_tiles_x - offset_x, min_width + randi()%max_width))
+	var height = int(min(Chunk.num_tiles_y - offset_y, min_height + randi()%max_height))
+	
 	Map.set_cellv(
 		Vector2(offset_x, offset_y),
 		tile(NW)
