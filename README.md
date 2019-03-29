@@ -35,11 +35,11 @@ Dreams which tell the story of Piers Plowman are scripted by hand.
 
 You can run the game using Godot engine, version 3.1+.
 
-There are also limited-issue binaries available (expiring ~Apr 2 2019, first come first serve):
+There are also limited-issue binaries available (expiring ~Apr 4 2019, first come first serve):
 
-- Mac OS X: http://tinyurl.com/plowman-0326-mac
-- Windows 64-bit: http://tinyurl.com/plowman-0326-win
-- Linux 64-bit: http://tinyurl.com/plowman-0326-linux
+- Mac OS X: http://tinyurl.com/plowman-mac-v0-0-2
+- Windows 64-bit: http://tinyurl.com/plowman-win-v0-0-2
+- Linux 64-bit: http://tinyurl.com/plowman-linux-v0-0-2
 
 ## Procedural Farming
 
