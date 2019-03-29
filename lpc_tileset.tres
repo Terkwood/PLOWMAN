@@ -546,4 +546,14 @@ extents = Vector2( 10, 11 )
 38/navigation_offset = Vector2( 16, 16 )
 38/shapes = [  ]
 38/z_index = 0
+39/name = "tomato_harvested"
+39/texture = ExtResource( 1 )
+39/tex_offset = Vector2( 0, 0 )
+39/modulate = Color( 1, 1, 1, 1 )
+39/region = Rect2( 1344, 288, 32, 32 )
+39/tile_mode = 0
+39/occluder_offset = Vector2( 16, 16 )
+39/navigation_offset = Vector2( 16, 16 )
+39/shapes = [  ]
+39/z_index = 0
 
