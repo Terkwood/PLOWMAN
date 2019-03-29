@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://AutoChicken.gd" type="Script" id=1]
-[ext_resource path="res://lpc_farm_animals.png" type="Texture" id=2]
+[ext_resource path="res://AutoChickenBody.gd" type="Script" id=2]
+[ext_resource path="res://lpc_farm_animals.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 195, 123 )
@@ -85,21 +86,22 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 7 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 125, 0 )
+[node name="AutoChickenBody" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoChickenBody"]
 position = Vector2( 0, 11 )
 shape = SubResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-texture = ExtResource( 2 )
+[node name="Sprite" type="Sprite" parent="AutoChickenBody"]
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1280, 1184, 32, 32 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AutoChickenBody/Sprite"]
 anims/EatDown = SubResource( 4 )
 anims/EatLeft = SubResource( 2 )
 anims/EatRight = SubResource( 5 )
 anims/EatUp = SubResource( 3 )
 
+[connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
