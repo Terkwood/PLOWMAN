@@ -49,6 +49,7 @@ func animate_cow():
 func make_fence(bb):
 	var fence = AutoFence.instance()
 	fence.init(bb.size)
+	fence.position = bb.position
 	add_child(fence)
 	
 func _ready():
