@@ -7,7 +7,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_Area2D_body_exited(body: PhysicsBody2D):
-	print("wokka wokka " + str(body.get_instance_id()))
-	print("my id       " + str(get_instance_id()))
-	pass # Replace with function body.
+func _on_Area2D_body_exited(body: KinematicBody2D):
+	if body.get_instance_id() == get_instance_id():
+		print("cluck")
