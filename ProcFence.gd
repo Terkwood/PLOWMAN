@@ -21,69 +21,45 @@ onready var Map = $TileMap
 onready var Set = Map.tile_set
 onready var Cow = $Animals/Cow
 
-func tile(c):
-	return Set.find_tile_by_name("fence_alt_"+str(c))
+onready var AutoFence = preload("res://AutoFence.tscn")
 
-func make_fence():
-	var offset_x = int(max(0, randi()%max_offset_x - min_width))
-	var offset_y = int(max(0, randi()%max_offset_y - min_width))
+func pixel_bounding_box(tile_offset_x,tile_offset_y,num_tiles_x,num_tiles_y):
+	return Rect2(
+		Vector2(tile_offset_x * Chunk.TILE_SIZE, tile_offset_y * Chunk.TILE_SIZE),
+		Vector2(num_tiles_x * Chunk.TILE_SIZE, num_tiles_y * Chunk.TILE_SIZE))
+
+func gen_fence_tiles():
+	var tile_offset_x = int(max(0, randi()%max_offset_x - min_width))
+	var tile_offset_y = int(max(0, randi()%max_offset_y - min_width))
 	
-	var width = int(min(Chunk.num_tiles_x - offset_x, min_width + randi()%max_width))
-	var height = int(min(Chunk.num_tiles_y - offset_y, min_height + randi()%max_height))
+	# in tiles
+	var num_tiles_x = int(min(Chunk.num_tiles_x - tile_offset_x, min_width + randi()%max_width))
+	var num_tiles_y = int(min(Chunk.num_tiles_y - tile_offset_y, min_height + randi()%max_height))
 	
-	Map.set_cellv(
-		Vector2(offset_x, offset_y),
-		tile(NW)
-	)
-	Map.set_cellv(
-		Vector2(offset_x + width - 1, offset_y),
-		tile(NE))
-	Map.set_cellv(
-		Vector2(offset_x + width - 1, offset_y + height - 1),
-		tile(SE)
-	)
-	Map.set_cellv(
-		Vector2(offset_x, offset_y + height - 1),
-		tile(SW)
-	)
-	for x in range(width-2):
-		Map.set_cellv(
-			Vector2(x + offset_x + 1, offset_y),
-			tile(HORIZONTAL))
-		Map.set_cellv(
-			Vector2(x + offset_x + 1, offset_y + height - 1),
-			tile(HORIZONTAL))
-	for y in range(height-2):
-		Map.set_cellv(
-			Vector2(
-				offset_x + width - 1,
-				y + offset_y + 1),
-			tile(VERTICAL))
-		Map.set_cellv(
-			Vector2(
-				offset_x ,
-				y + offset_y + 1),
-			tile(VERTICAL))
-	return [offset_x, offset_y, width, height]
+	return [tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y]
 	
-const TILE_SIZE = 32
 func place_cow(tile_offset_x, tile_offset_y, width, height):
-	Cow.position.x = (tile_offset_x + 2 + randi()%(int(max(1,width-3)))) * TILE_SIZE
-	Cow.position.y = (tile_offset_y + 1 + randi()%(height-2)) * TILE_SIZE
+	Cow.position.x = (tile_offset_x + 2 + randi()%(int(max(1,width-3)))) * Chunk.TILE_SIZE
+	Cow.position.y = (tile_offset_y + 1 + randi()%(height-2)) * Chunk.TILE_SIZE
 	
 func animate_cow():
 	var available_anims = $Animals/Cow/Sprite/AnimationPlayer.get_animation_list()
 	$Animals/Cow/Sprite/AnimationPlayer.play(available_anims[randi()%available_anims.size()])
 
+func make_fence(bb):
+	var fence = AutoFence.instance()
+	fence.init(bb.size)
+	add_child(fence)
+	
 func _ready():
 	randomize()
-	var fc = make_fence()
+	var fc = gen_fence_tiles()
 	var tile_offset_x = fc[0]
 	var tile_offset_y = fc[1]
 	var num_tiles_x = fc[2]
 	var num_tiles_y = fc[3]
+	var bb = pixel_bounding_box(tile_offset_x,tile_offset_y,num_tiles_x,num_tiles_y)
 	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	animate_cow()
-	ProcZoneRepo.try_add_proc_zone(Rect2(
-		Vector2(tile_offset_x * TILE_SIZE, tile_offset_y * TILE_SIZE),
-		Vector2(num_tiles_x * TILE_SIZE, num_tiles_y * TILE_SIZE)))
+	make_fence(bb)
+	ProcZoneRepo.try_add_proc_zone(bb)
