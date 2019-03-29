@@ -9,4 +9,4 @@ func _ready():
 
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if body.get_instance_id() == get_instance_id():
-		print("cluck")
+		print("cluck "+str(get_instance_id()))
