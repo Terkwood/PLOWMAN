@@ -1,7 +1,12 @@
-extends Node
+extends Node2D
 
 onready var horizontal_fence = preload("res://HorizontalFence.tscn")
 onready var vertical_fence = preload("res://VerticalFence.tscn")
+onready var ne_corner_fence = preload("res://NECornerFence.tscn")
+onready var nw_corner_fence = preload("res://NWCornerFence.tscn")
+onready var se_corner_fence = preload("res://SECornerFence.tscn")
+onready var sw_corner_fence = preload("res://SWCornerFence.tscn")
+
 	
 onready var horizontal_fence_tile_size = (
 horizontal_fence.instance().get_node("Sprite").get_region_rect().size
@@ -21,7 +26,7 @@ func num_vertical_tiles(size_y):
 		size_y / vertical_fence_tile_size.y
 	) - 1
 
-onready var nes = $NECornerFence.get_node("Sprite").get_region_rect().size
+onready var nes = ne_corner_fence.instance().get_node("Sprite").get_region_rect().size
 onready var corner_fence_width_px = (
 nes.x / 2
 )
@@ -54,10 +59,10 @@ func procgen_fences(size):
 			y * vertical_fence_tile_size.y  + corner_fence_height_px )
 
 func place_corners(size):
-	$NWCornerFence.position = Vector2(0,0)
-	$NECornerFence.position = Vector2(size.x,0)
-	$SWCornerFence.position = Vector2(0,size.y)
-	$SECornerFence.position = Vector2(size.x,size.y)
+	nw_corner_fence.instance().position = Vector2(0,0)
+	ne_corner_fence.instance().position = Vector2(size.x,0)
+	sw_corner_fence.instance().position = Vector2(0,size.y)
+	se_corner_fence.instance().position = Vector2(size.x,size.y)
 
 export var size = Vector2(128,128)
 
