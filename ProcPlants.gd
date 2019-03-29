@@ -27,11 +27,11 @@ onready var POTATO_SCENES = [
 ]
 
 onready var BROCCOLI_SCENES = [
-	preload("res://CarrotYoung.tscn"), 
-	preload("res://CarrotGrowing.tscn"),
-	preload("res://CarrotGrowing2.tscn"),
-	preload("res://CarrotMature.tscn"),
-	preload("res://CarrotHarvested.tscn")
+	preload("res://BroccoliYoung.tscn"), 
+	preload("res://BroccoliGrowing.tscn"),
+	preload("res://BroccoliGrowing2.tscn"),
+	preload("res://BroccoliMature.tscn"),
+	preload("res://BroccoliHarvested.tscn")
 ]
 
 
