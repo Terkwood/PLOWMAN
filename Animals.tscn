@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.8, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 0, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 384, 640, 96, 96 ), Rect2( 256, 640, 96, 96 ), Rect2( 128, 640, 96, 96 ) ]
+"values": [ Rect2( 0, 660, 96, 96 ), Rect2( 128, 660, 96, 96 ), Rect2( 256, 660, 96, 96 ), Rect2( 384, 660, 96, 96 ), Rect2( 256, 660, 96, 96 ), Rect2( 128, 660, 96, 96 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.8, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 0, 912, 128, 96 ), Rect2( 128, 912, 128, 96 ), Rect2( 256, 912, 128, 96 ), Rect2( 384, 912, 128, 96 ), Rect2( 256, 912, 128, 96 ), Rect2( 128, 912, 128, 96 ) ]
+"values": [ Rect2( -10, 912, 128, 96 ), Rect2( 118, 912, 128, 96 ), Rect2( 246, 912, 128, 96 ), Rect2( 374, 912, 128, 96 ), Rect2( 246, 912, 128, 96 ), Rect2( 118, 912, 128, 96 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -63,7 +63,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 0, 512, 96, 128 ), Rect2( 128, 512, 96, 128 ), Rect2( 256, 512, 96, 128 ), Rect2( 384, 512, 96, 128 ) ]
+"values": [ Rect2( 0, 532, 96, 128 ), Rect2( 128, 532, 96, 128 ), Rect2( 256, 532, 96, 128 ), Rect2( 384, 532, 96, 128 ) ]
 }
 
 [node name="Animals" type="Node2D"]
@@ -74,9 +74,10 @@ tracks/0/keys = {
 polygon = PoolVector2Array( -17, -9, 36, -10, 33.796, 32.935, -16, 33 )
 
 [node name="Sprite" type="Sprite" parent="Cow"]
+position = Vector2( -16, 6 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 512, 96, 128 )
+region_rect = Rect2( 128, 660, 96, 96 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cow/Sprite"]
 playback_process_mode = 0
