@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://AutoChicken.gd" type="Script" id=1]
 [ext_resource path="res://lpc_farm_animals.png" type="Texture" id=2]
@@ -21,6 +21,22 @@ tracks/0/keys = {
 "values": [ Rect2( 1280, 1184, 32, 32 ), Rect2( 1312, 1184, 32, 32 ), Rect2( 1344, 1184, 32, 32 ), Rect2( 1376, 1184, 32, 32 ), Rect2( 1312, 1184, 32, 32 ), Rect2( 1280, 1184, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "EatUp"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8, 1.9, 2, 2.2 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0 ),
+"update": 0,
+"values": [ Rect2( 1280, 1152, 32, 32 ), Rect2( 1312, 1152, 32, 32 ), Rect2( 1344, 1152, 32, 32 ), Rect2( 1376, 1152, 32, 32 ), Rect2( 1312, 1152, 32, 32 ), Rect2( 1280, 1152, 32, 32 ) ]
+}
+
 [node name="AutoChicken" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -30,8 +46,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 1280, 1184, 32, 32 )
+region_rect = Rect2( 1280, 1152, 32, 32 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/EatLeft = SubResource( 2 )
+anims/EatUp = SubResource( 3 )
 
