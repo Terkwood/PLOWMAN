@@ -1,11 +1,9 @@
 extends Node2D
 
+export var size = Vector2(128,128)
+
 onready var horizontal_fence = preload("res://HorizontalFence.tscn")
 onready var vertical_fence = preload("res://VerticalFence.tscn")
-onready var ne_corner_fence = preload("res://NECornerFence.tscn")
-onready var nw_corner_fence = preload("res://NWCornerFence.tscn")
-onready var se_corner_fence = preload("res://SECornerFence.tscn")
-onready var sw_corner_fence = preload("res://SWCornerFence.tscn")
 
 	
 onready var horizontal_fence_tile_size = (
@@ -26,7 +24,7 @@ func num_vertical_tiles(size_y):
 		size_y / vertical_fence_tile_size.y
 	) - 1
 
-onready var nes = ne_corner_fence.instance().get_node("Sprite").get_region_rect().size
+onready var nes = $NECornerFence.get_node("Sprite").get_region_rect().size
 onready var corner_fence_width_px = (
 nes.x / 2
 )
@@ -35,7 +33,9 @@ nes.y
 )
 
 func procgen_fences(size):
+	print("procgen fence with size " + str(size))
 	for x in range(num_horizontal_tiles(size.x)):
+		print("x "+str(x))
 		var fence_top = horizontal_fence.instance()
 		add_child(fence_top)
 		fence_top.position = Vector2(
@@ -47,6 +47,7 @@ func procgen_fences(size):
 		x * horizontal_fence_tile_size.x + corner_fence_width_px,
 			size.y)
 	for y in range(num_vertical_tiles(size.y)):
+		print("y " + str(y))
 		var fence_left = vertical_fence.instance()
 		add_child(fence_left)
 		fence_left.position = Vector2(
@@ -59,18 +60,30 @@ func procgen_fences(size):
 			y * vertical_fence_tile_size.y  + corner_fence_height_px )
 
 func place_corners(size):
-	nw_corner_fence.instance().position = Vector2(0,0)
-	ne_corner_fence.instance().position = Vector2(size.x,0)
-	sw_corner_fence.instance().position = Vector2(0,size.y)
-	se_corner_fence.instance().position = Vector2(size.x,size.y)
-
-export var size = Vector2(128,128)
-
-func _init(s):
-	size = s
+	$NWCornerFence.position = Vector2(0,0)
+	$NECornerFence.position = Vector2(size.x,0)
+	$SWCornerFence.position = Vector2(0,size.y)
+	$SECornerFence.position = Vector2(size.x,size.y)
 	
-# Called when the node enters the scene tree for the first time.
-func _ready():
+
+# by default, don't draw on ready
+export var delay_procgen = true
+func procgen():
+	print("autofence procgen with size " + str(size))
 	procgen_fences(size)
 	place_corners(size)
+
+var node_ready = false
+func init(sz):
+	size = sz
+	delay_procgen = false
+	if node_ready:
+		procgen()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	node_ready = true
+	if !delay_procgen:
+		procgen()
+	
 
