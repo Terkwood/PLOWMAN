@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ProcFence.gd" type="Script" id=1]
+[ext_resource path="res://ProcFencedCow.gd" type="Script" id=1]
 [ext_resource path="res://lpc_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Animals.tscn" type="PackedScene" id=3]
 
-[node name="ProcFence" type="Node2D"]
+[node name="ProcFencedCow" type="Node2D"]
 self_modulate = Color( 0.678431, 0.243137, 0.662745, 1 )
 script = ExtResource( 1 )
 

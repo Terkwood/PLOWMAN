@@ -2,7 +2,7 @@
 
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=1]
 [ext_resource path="res://ProcField.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ProcFence.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ProcFencedCow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ProcPlants.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player.gd" type="Script" id=6]
