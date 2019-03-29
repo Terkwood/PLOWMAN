@@ -1,7 +1,13 @@
 extends Node2D
 
-# adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
+### CAUTION!
+### This node needs to execute before the other procgen
+### nodes, as it is blissfully unaware of ProcZoneRepo's
+### capability of assigning it a suitable position in the
+### world.
+### See https://github.com/Terkwood/PLOWMAN/issues/35
 
+# adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
 const min_width  =  5   # in tiles
 const max_width  = 12   # in tiles
 const min_height =  5   # in tiles

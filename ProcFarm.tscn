@@ -90,7 +90,7 @@ script = ExtResource( 1 )
 z_index = -4096
 z_as_relative = false
 
-[node name="ProcFence" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+[node name="ProcFencedCow" parent="DeepZIndexHack" instance=ExtResource( 3 )]
 
 [node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 4 )]
 position = Vector2( 0, -1 )
