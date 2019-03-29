@@ -62,7 +62,7 @@ It would be nice to be able to assemble the look and feel of NPCs randomly.  Lib
 
 Thank you to all open source contributors!
 
-- [Daniel Eddeland's LPC submissions](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements)
+- [Daniel Eddeland's LPC submissions](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements) and [farm animals](https://opengameart.org/content/lpc-style-farm-animals)
 - [Various authors for LPC base assets](/lpc_base_credits.txt)
 - [Base characters](https://opengameart.org/content/lpc-character-skintone-rework). Original adult walkcycles done by Redshrike.
 - [Universal LPC character generator](http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/)
