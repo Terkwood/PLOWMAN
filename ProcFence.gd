@@ -2,10 +2,10 @@ extends Node2D
 
 # adapted with inspiration from http://kidscancode.org/blog/2018/08/godot3_procgen1/
 
-const min_width  =  5     # in tiles
-const max_width  = 12     # in tiles
-const min_height =  5     # in tiles
-const max_height = 12     # in tiles
+const min_width  =  5   # in tiles
+const max_width  = 12   # in tiles
+const min_height =  5   # in tiles
+const max_height = 12   # in tiles
 const max_offset_x = Chunk.num_tiles_x - min_width  # in tiles
 const max_offset_y = Chunk.num_tiles_y - min_height # in tiles
 
