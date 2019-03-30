@@ -26,7 +26,6 @@ func _init(s: Vector2, preloads):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("autoplants with size " + str(size))
 	var zone = ProcZoneRepo.assign_zone(size)
 	var num_carrots_x = max(0,floor(zone.size.x / tile_size.x) - 1)
 	var num_carrots_y = max(0,floor(zone.size.y / tile_size.y) - 1)

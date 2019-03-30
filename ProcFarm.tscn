@@ -1,20 +1,21 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=1]
 [ext_resource path="res://ProcField.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ProcFencedCow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ProcPlants.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Player.gd" type="Script" id=6]
-[ext_resource path="res://player.png" type="Texture" id=7]
-[ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://AutoChicken.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ProcFencedCow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ProcCorn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ProcPlants.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player.gd" type="Script" id=7]
+[ext_resource path="res://player.png" type="Texture" id=8]
+[ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 7.6195 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 7 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 832, 1344 )
 
 [sub_resource type="Animation" id=3]
@@ -90,22 +91,25 @@ script = ExtResource( 1 )
 z_index = -4096
 z_as_relative = false
 
-[node name="ProcFencedCow" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+[node name="AutoChicken" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+position = Vector2( 200, 132 )
 
-[node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 4 )]
+[node name="ProcFencedCow" parent="DeepZIndexHack" instance=ExtResource( 4 )]
+
+[node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 5 )]
 position = Vector2( 0, -1 )
 
-[node name="ProcPlants" parent="DeepZIndexHack" instance=ExtResource( 5 )]
+[node name="ProcPlants" parent="DeepZIndexHack" instance=ExtResource( 6 )]
 
-[node name="ProcPlants2" parent="DeepZIndexHack" instance=ExtResource( 5 )]
+[node name="ProcPlants2" parent="DeepZIndexHack" instance=ExtResource( 6 )]
 
-[node name="ProcPlants3" parent="DeepZIndexHack" instance=ExtResource( 5 )]
+[node name="ProcPlants3" parent="DeepZIndexHack" instance=ExtResource( 6 )]
 
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
 editor/display_folded = true
 position = Vector2( 70, 100 )
 z_as_relative = false
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeepZIndexHack/Player"]
 position = Vector2( 0, 22.1036 )
@@ -126,5 +130,5 @@ anims/WalkUp = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="DeepZIndexHack/Player"]
 current = true
 
-[node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 8 )]
+[node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 9 )]
 
