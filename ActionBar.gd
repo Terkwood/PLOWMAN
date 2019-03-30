@@ -1,6 +1,6 @@
 extends ItemList
 
-cont ItemClass = preload("res://Item.gd")
+const ItemClass = preload("res://Item.gd")
 
 const item_images = [
 	preload("res://turkey.png"),
@@ -13,7 +13,7 @@ const item_lookup = {
 		"item_icon": item_images[0]
 	},
 	1: {
-		"item_iame": "Scroll",
+		"item_name": "Scroll",
 		"item_icon": item_images[1]
 	},
 }
@@ -38,6 +38,7 @@ func add_samples():
 
 func _ready():
 	for item in item_lookup:
+		print("item "+str(item))
 		var item_name = item_lookup[item].item_name
 		var item_icon = item_lookup[item].item_icon
-		contents.append(
+		#contents.append(
