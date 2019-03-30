@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
-enum Movement { STOP, GO }
-
-const FREQ = 0.5
-const MIN_SPEED = 50
-const MAX_SPEED = 250
+const FREQ = 0.25
+const MIN_SPEED = 150
+const MAX_SPEED = 300
+const MIN_STEPS = 2
+const MAX_STEPS = 8
 
 var dir = Vector2(1,0).normalized()
-var mv = Movement.STOP
+var steps = 0
 var out_of_bounds = false
 
 var timestamp = 0
@@ -17,17 +17,42 @@ func opposite(d: Vector2):
 
 func _ready():
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
-	move_and_slide(Vector2(300,0), Vector2())
 
+const GO_RATE = 0.33
+func random_steps():
+	if randf() <= GO_RATE:
+		return MIN_STEPS + randi()%(MAX_STEPS - MIN_STEPS)
+	else:
+		return 0
+
+const POSSIBLE_DIRS = [
+	Vector2(1,0),
+	Vector2(-1,0),
+	Vector2(0,1),
+	Vector2(0,-1),
+	Vector2(1,1),
+	Vector2(-1,-1),
+	Vector2(1,-1),
+	Vector2(-1,1)
+]
+
+func random_dir():
+	return POSSIBLE_DIRS[randi()%POSSIBLE_DIRS.size()].normalized()
+
+func plan_next_move():
+	steps = random_steps()
+	dir = random_dir()
+	
 func move():
-	print("chicken move, oob = " + str(out_of_bounds))
-	print("curr dir " + str(dir))
-	print("dv  " + str(dir))
 	if out_of_bounds:
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
-		move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
+		if steps > 0:
+			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
+			steps -= 1
+		else:
+			plan_next_move()
 	
 func _physics_process(delta):
 	timestamp = timestamp + delta
@@ -46,12 +71,9 @@ func i_am(body: KinematicBody2D):
 	
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
-		print("now " + str(dir))
 		dir = opposite(dir)
-		print("then " + str(dir))
-		mv = Movement.GO
+		steps = MAX_STEPS * 2
 		out_of_bounds = true
-		print("new dir " + str(dir))
 
 func _on_Area2D_body_entered(body):
 	if i_am(body):
