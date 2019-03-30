@@ -6,7 +6,7 @@ func rand_pos(size: Vector2):
 	return Vector2(randi()%int(max(1,Chunk.TILE_SIZE * Chunk.num_tiles_x - size.x)),
 		randi()%int(max(1,Chunk.TILE_SIZE * Chunk.num_tiles_x - size.y)))
 
-const FAIL_ASSIGN=100
+const FAIL_ASSIGN=1000
 func assign_zone(size: Vector2):
 	var fail_count = 0
 	var c = Rect2(rand_pos(size),size)
