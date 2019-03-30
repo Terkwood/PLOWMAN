@@ -17,7 +17,7 @@ func _ready():
 	move_and_collide(Vector2(300,0))
 
 func move():
-	pass
+	print("chicken moves")
 	
 func _physics_process(delta):
 	timestamp = timestamp + delta
@@ -28,6 +28,6 @@ func _physics_process(delta):
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if body.get_instance_id() == get_instance_id():
 		dir = opposite(dir)
-		print("new dir " + str(dir))
 		mv = Movement.GO
 		out_of_bounds = true
+		print("new dir " + str(dir))

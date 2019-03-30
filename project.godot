@@ -24,6 +24,7 @@ config/icon="res://drolleries_icon.png"
 
 ProcZoneRepo="*res://ProcZoneRepo.gd"
 Chunk="*res://Chunk.tscn"
+ZOrder="*res://ZOrder.gd"
 
 [rendering]
 

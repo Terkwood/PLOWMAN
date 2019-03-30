@@ -35,8 +35,5 @@ func _physics_process(_delta):
 	move_and_slide(velocity, Vector2(0, 0))
 
 func _process(_delta):
-	set_z_order(self.position.y, $Sprite)
+	ZOrder.set_z_order(self.position.y, $Sprite, $Sprite)
 	
-func set_z_order(y,N):
-	var g = N.get_global_transform().get_origin().y + $Sprite.region_rect.size.y / 2 * $Sprite.scale.y
-	N.z_index=g
