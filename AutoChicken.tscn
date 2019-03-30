@@ -79,6 +79,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 resource_name = "WalkUp"
 length = 0.8
+loop = true
 step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:region_rect")

@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-const FREQ = 0.25
+const FREQ = 0.3
 const MIN_SPEED = 50
 const MAX_SPEED = 225
-const MIN_STEPS = 3
-const MAX_STEPS = 11
+const MIN_STEPS = 10
+const MAX_STEPS = 20
 
 var dir = Vector2(1,0).normalized()
 var steps = 0
@@ -14,9 +14,6 @@ var timestamp = 0
 
 func opposite(d: Vector2):
 	return d * -1
-
-func _ready():
-	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 
 const GO_RATE = 0.33
 func random_steps():
@@ -46,12 +43,15 @@ func plan_next_move():
 var anim = false
 func move():
 	if out_of_bounds:
+		if !anim:
+			$Sprite/AnimationPlayer.play()
+			anim = true
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
 		if steps > 0:
 			if !anim:
-					$Sprite/AnimationPlayer.play("WalkUp")
+					$Sprite/AnimationPlayer.play()
 					anim = true
 			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 			steps -= 1
@@ -59,7 +59,10 @@ func move():
 			$Sprite/AnimationPlayer.stop(false)
 			anim = false
 			plan_next_move()
-	
+
+func i_am(body: KinematicBody2D):
+	return body && body.get_instance_id() == get_instance_id()
+
 func _physics_process(delta):
 	timestamp = timestamp + delta
 	if timestamp > FREQ:
@@ -71,10 +74,12 @@ func _process(_delta):
 	if self.position.y != last_position_y:
 		last_position_y = self.position.y
 		ZIndex.hack(self.position.y, $Sprite, $Sprite)
-
-func i_am(body: KinematicBody2D):
-	return body && body.get_instance_id() == get_instance_id()
 	
+func _ready():
+	anim = true
+	$Sprite/AnimationPlayer.play("WalkUp")
+	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
 		dir = opposite(dir)
