@@ -3,12 +3,36 @@ extends KinematicBody2D
 enum Direction { N, NE, E, SE, S, SW, W, NW }
 enum Movement { STOP, GO }
 
+const FREQ = 0.5
+const MIN_SPEED = 50
+const MAX_SPEED = 250
+
 var dir = Direction.E
 var mv = Movement.STOP
 var out_of_bounds = false
 
 var timestamp = 0
-const FREQ = 0.5
+
+func dir_vector(d):
+	var r = Vector2()
+	match d:
+		Direction.N:
+			r = Vector2(0,-1)
+		Direction.S:
+			r = Vector2(0,1)
+		Direction.E:
+			r = Vector2(1,0)
+		Direction.W:
+			r = Vector2(-1,0)
+		Direction.NE:
+			r = Vector2(1,-1)
+		Direction.SE:
+			r = Vector2(1,1)
+		Direction.SW:
+			r = Vector2(-1,1)
+		Direction.NW:
+			r = Vector2(-1,-1)
+	return r.normalized()
 
 func opposite(d):
 	return Direction.keys()[Direction.values()[(d + 4)%8]]
