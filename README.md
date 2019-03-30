@@ -47,6 +47,7 @@ Thank you to all open source contributors!
 - [Universal LPC character generator](http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/)
 - [jrconway3's universal LPC spritesheet](https://github.com/jrconway3/Universal-LPC-spritesheet)
 - [Leshy spritesheet generator](https://www.leshylabs.com/apps/sstool/)
+- [Oen44's Inventory Example](https://github.com/Oen44/Godot-Inventory)
 
 ## References
 
