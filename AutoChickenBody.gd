@@ -15,7 +15,7 @@ func opposite(d):
 
 func _ready():
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
-	move_and_collide(Vector2(300,0))
+	move_and_slide(Vector2(300,0), Vector2())
 
 func move():
 	print("chicken moves")
