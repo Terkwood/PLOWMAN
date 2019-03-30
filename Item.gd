@@ -5,11 +5,13 @@ extends TextureRect
 var item_icon
 var item_name
 var item_slot
+var item_count
 var picked = false
 
 func _init(item_name, item_texture, item_slot, item_count):
 	name = item_name
 	self.item_name = item_name
+	self.item_count = item_count
 	texture = item_texture
 	hint_tooltip = "%s [%d]" % [item_name, item_count]
 	self.item_slot = item_slot

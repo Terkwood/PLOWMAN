@@ -9,16 +9,19 @@ const item_images = [
 
 const item_lookup = {
 	0: {
-		"item_name": "Turkey",
-		"item_icon": item_images[0]
+		"name": "Turkey",
+		"icon": item_images[0],
+		"count": 1,
 	},
 	1: {
-		"item_name": "Scroll",
-		"item_icon": item_images[1]
+		"name": "Scroll",
+		"icon": item_images[1],
+		"count": 10,
 	},
 }
 
 var contents = Array()
+
 var holding_item = null
 
 func add_samples():
@@ -39,6 +42,7 @@ func add_samples():
 func _ready():
 	for item in item_lookup:
 		print("item "+str(item))
-		var item_name = item_lookup[item].item_name
-		var item_icon = item_lookup[item].item_icon
-		#contents.append(
+		var item_name = item_lookup[item].name
+		var item_icon = item_lookup[item].icon
+		var item_count = item_lookup[item].count
+		contents.append(ItemClass.new(item_name, item_icon, null, item_count))
