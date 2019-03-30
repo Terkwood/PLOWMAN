@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 const FREQ = 0.3
-const MIN_SPEED = 50
-const MAX_SPEED = 225
-const MIN_STEPS = 10
-const MAX_STEPS = 20
+const MIN_SPEED = 150
+const MAX_SPEED = 325
+const MIN_STEPS = 3
+const MAX_STEPS = 11
 
 var dir = Vector2(1,0).normalized()
 var steps = 0
@@ -79,7 +79,7 @@ func _ready():
 	anim = true
 	$Sprite/AnimationPlayer.play("WalkUp")
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
-
+	
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
 		dir = opposite(dir)
