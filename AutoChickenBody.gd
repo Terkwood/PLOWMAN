@@ -34,7 +34,15 @@ const POSSIBLE_DIRS = [
 ]
 
 func walk_anim_for(direction: Vector2):
-	if direction.x > 0:
+	if direction.x > 0 && direction.y < 0:
+		return ["WalkRight", "WalkUp"][randi()%2]
+	elif direction.x > 0 && direction.y > 0:
+		return ["WalkRight", "WalkDown"][randi()%2]
+	elif direction.x < 0 && direction.y < 0:
+		return ["WalkLeft", "WalkUp"][randi()%2]
+	elif direction.x < 0 && direction.y > 0:
+		return ["WalkLeft", "WalkDown"][randi()%2]
+	elif direction.x > 0:
 		return "WalkRight"
 	elif direction.x < 0:
 		return "WalkLeft"
@@ -42,6 +50,25 @@ func walk_anim_for(direction: Vector2):
 		return "WalkDown"
 	elif direction.y < 0:
 		return "WalkUp"
+	return ""
+	
+func peck_anim_for(direction: Vector2):
+	if direction.x > 0 && direction.y < 0:
+		return ["PeckRight", "PeckUp"][randi()%2]
+	elif direction.x > 0 && direction.y > 0:
+		return ["PeckRight", "PeckDown"][randi()%2]
+	elif direction.x < 0 && direction.y < 0:
+		return ["PeckLeft", "PeckUp"][randi()%2]
+	elif direction.x < 0 && direction.y > 0:
+		return ["PeckLeft", "PeckDown"][randi()%2]
+	elif direction.x > 0:
+		return "PeckRight"
+	elif direction.x < 0:
+		return "PeckLeft"
+	elif direction.y > 0:
+		return "PeckDown"
+	elif direction.y < 0:
+		return "PeckUp"
 	return ""
 
 func random_dir():
