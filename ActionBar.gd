@@ -14,6 +14,5 @@ func add_samples():
 	add_item("   2", $CornIcon.texture)
 	add_item("  11", $RedPepperIcon.texture)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_samples()
