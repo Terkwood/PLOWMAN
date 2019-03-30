@@ -51,24 +51,22 @@ func plan_next_move():
 	steps = random_steps()
 	dir = random_dir()
 
-var anim = false
+func start_anim():
+	if !$Sprite/AnimationPlayer.is_playing():
+		$Sprite/AnimationPlayer.play(walk_anim_for(dir))
+	
 func move():
 	if out_of_bounds:
-		if !anim:
-			$Sprite/AnimationPlayer.play(walk_anim_for(dir))
-			anim = true
+		start_anim()
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
 		if steps > 0:
-			if !anim:
-					$Sprite/AnimationPlayer.play(walk_anim_for(dir))
-					anim = true
+			start_anim()
 			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 			steps -= 1
 		else:
 			$Sprite/AnimationPlayer.stop(false)
-			anim = false
 			plan_next_move()
 
 func i_am(body: KinematicBody2D):
@@ -87,13 +85,13 @@ func _process(_delta):
 		ZIndex.hack(self.position.y, $Sprite, $Sprite)
 	
 func _ready():
-	anim = true
 	$Sprite/AnimationPlayer.assigned_animation = "WalkUp"
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 	
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
 		dir = opposite(dir)
+		start_anim()
 		steps = MAX_STEPS * 2
 		out_of_bounds = true
 

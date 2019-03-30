@@ -167,7 +167,7 @@ shape = SubResource( 2 )
 z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 1344, 1056, 32, 32 )
+region_rect = Rect2( 1376, 1056, 32, 32 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AutoChickenBody/Sprite"]
 anims/EatDown = SubResource( 3 )
