@@ -14,6 +14,7 @@ func opposite(d):
 	return Direction.keys()[Direction.values()[(d + 4)%8]]
 
 func _ready():
+	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 	move_and_collide(Vector2(300,0))
 
 func move():
@@ -24,9 +25,12 @@ func _physics_process(delta):
 	if timestamp > FREQ:
 		move()
 		timestamp = 0
-		
+
+var last_position_y = self.position.y
 func _process(_delta):
-	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+	if self.position.y != last_position_y:
+		last_position_y = self.position.y
+		ZIndex.hack(self.position.y, $Sprite, $Sprite)
 		
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if body && body.get_instance_id() == get_instance_id():
