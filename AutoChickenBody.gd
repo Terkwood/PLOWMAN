@@ -33,6 +33,17 @@ const POSSIBLE_DIRS = [
 	Vector2(-1,1)
 ]
 
+func walk_anim_for(direction: Vector2):
+	if direction.x > 0:
+		return "WalkRight"
+	elif direction.x < 0:
+		return "WalkLeft"
+	elif direction.y > 0:
+		return "WalkDown"
+	elif direction.y < 0:
+		return "WalkUp"
+	return ""
+
 func random_dir():
 	return POSSIBLE_DIRS[randi()%POSSIBLE_DIRS.size()].normalized()
 
@@ -44,14 +55,14 @@ var anim = false
 func move():
 	if out_of_bounds:
 		if !anim:
-			$Sprite/AnimationPlayer.play()
+			$Sprite/AnimationPlayer.play(walk_anim_for(dir))
 			anim = true
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
 		if steps > 0:
 			if !anim:
-					$Sprite/AnimationPlayer.play()
+					$Sprite/AnimationPlayer.play(walk_anim_for(dir))
 					anim = true
 			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 			steps -= 1
@@ -77,7 +88,7 @@ func _process(_delta):
 	
 func _ready():
 	anim = true
-	$Sprite/AnimationPlayer.play("WalkUp")
+	$Sprite/AnimationPlayer.assigned_animation = "WalkUp"
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 	
 func _on_Area2D_body_exited(body: KinematicBody2D):

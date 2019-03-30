@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://AutoChicken.gd" type="Script" id=1]
 [ext_resource path="res://AutoChickenBody.gd" type="Script" id=2]
@@ -77,7 +77,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "WalkUp"
+resource_name = "WalkDown"
 length = 0.8
 loop = true
 step = 0.2
@@ -92,6 +92,60 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 1280, 1086, 32, 32 ), Rect2( 1312, 1086, 32, 32 ), Rect2( 1344, 1086, 32, 32 ), Rect2( 1376, 1086, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "WalkLeft"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 1280, 1120, 32, 32 ), Rect2( 1312, 1120, 32, 32 ), Rect2( 1344, 1120, 32, 32 ), Rect2( 1376, 1120, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "WalkRight"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 1280, 1120, 32, 32 ), Rect2( 1312, 1120, 32, 32 ), Rect2( 1344, 1120, 32, 32 ), Rect2( 1376, 1120, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "WalkUp"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 1280, 1024, 32, 32 ), Rect2( 1312, 1024, 32, 32 ), Rect2( 1344, 1024, 32, 32 ), Rect2( 1376, 1024, 32, 32 ) ]
 }
 
 [node name="AutoChicken" type="Node2D"]
@@ -113,14 +167,17 @@ shape = SubResource( 2 )
 z_as_relative = false
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 1376, 1086, 32, 32 )
+region_rect = Rect2( 1344, 1120, 32, 32 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AutoChickenBody/Sprite"]
 anims/EatDown = SubResource( 3 )
 anims/EatLeft = SubResource( 4 )
 anims/EatRight = SubResource( 5 )
 anims/EatUp = SubResource( 6 )
-anims/WalkUp = SubResource( 7 )
+anims/WalkDown = SubResource( 7 )
+anims/WalkLeft = SubResource( 8 )
+anims/WalkRight = SubResource( 10 )
+anims/WalkUp = SubResource( 9 )
 
 [connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
