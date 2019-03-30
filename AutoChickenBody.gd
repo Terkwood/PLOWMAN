@@ -91,8 +91,8 @@ func _ready():
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
 		dir = opposite(dir)
-		start_anim()
-		steps = MAX_STEPS * 2
+		$Sprite/AnimationPlayer.play(walk_anim_for(dir))
+		steps = MAX_STEPS
 		out_of_bounds = true
 
 func _on_Area2D_body_entered(body):
