@@ -42,7 +42,12 @@ func _ready():
 	move_and_slide(Vector2(300,0), Vector2())
 
 func move():
-	print("chicken moves")
+	print("chicken move")
+	if out_of_bounds:
+		# don't change course until you're in bounds
+		move_and_slide(dir_vector(dir) * MAX_SPEED, Vector2())
+	else:
+		move_and_slide(dir_vector(dir) * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 	
 func _physics_process(delta):
 	timestamp = timestamp + delta
