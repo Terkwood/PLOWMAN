@@ -24,15 +24,15 @@ VScrollBar/styles/grabber_pressed = null
 VScrollBar/styles/scroll = SubResource( 1 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 7.6195 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 832, 1344 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=5]
 loop = true
 step = 0.14
 tracks/0/type = "value"
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 640, 64, 64 ), Rect2( 128, 640, 64, 64 ), Rect2( 192, 640, 64, 64 ), Rect2( 256, 640, 64, 64 ), Rect2( 320, 640, 64, 64 ), Rect2( 384, 640, 64, 64 ), Rect2( 448, 640, 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=6]
 loop = true
 step = 0.14
 tracks/0/type = "value"
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 576, 64, 64 ), Rect2( 128, 576, 64, 64 ), Rect2( 192, 576, 64, 64 ), Rect2( 256, 576, 64, 64 ), Rect2( 320, 576, 64, 64 ), Rect2( 384, 576, 64, 64 ), Rect2( 448, 576, 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=7]
 loop = true
 step = 0.14
 tracks/0/type = "value"
@@ -80,7 +80,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 704, 64, 64 ), Rect2( 128, 704, 64, 64 ), Rect2( 192, 704, 64, 64 ), Rect2( 256, 704, 64, 64 ), Rect2( 320, 704, 64, 64 ), Rect2( 384, 704, 64, 64 ), Rect2( 448, 704, 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=8]
 loop = true
 step = 0.14
 tracks/0/type = "value"
@@ -156,19 +156,19 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeepZIndexHack/Player"]
 position = Vector2( 0, 22.1036 )
-shape = SubResource( 10 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="DeepZIndexHack/Player"]
 z_as_relative = false
-texture = SubResource( 11 )
+texture = SubResource( 4 )
 region_enabled = true
 region_rect = Rect2( 64, 576, 64, 64 )
 
 [node name="WalkAnims" type="AnimationPlayer" parent="DeepZIndexHack/Player/Sprite"]
-anims/WalkDown = SubResource( 12 )
-anims/WalkLeft = SubResource( 13 )
-anims/WalkRight = SubResource( 14 )
-anims/WalkUp = SubResource( 15 )
+anims/WalkDown = SubResource( 5 )
+anims/WalkLeft = SubResource( 6 )
+anims/WalkRight = SubResource( 7 )
+anims/WalkUp = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="DeepZIndexHack/Player"]
 current = true
