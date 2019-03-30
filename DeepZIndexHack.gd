@@ -6,7 +6,6 @@ func _ready():
 func deep_zindex_hack(node):
     for N in node.get_children():
         if N.get_child_count() > 0:
-            print("hack " + node.get_path())
             deep_zindex_hack(N)
         else:
             if N is Sprite:

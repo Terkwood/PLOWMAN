@@ -26,10 +26,10 @@ func _physics_process(delta):
 		timestamp = 0
 		
 func _process(_delta):
-	ZOrder.set_z_order(self.position.y, $Sprite, $Sprite)
+	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 		
 func _on_Area2D_body_exited(body: KinematicBody2D):
-	if body.get_instance_id() == get_instance_id():
+	if body && body.get_instance_id() == get_instance_id():
 		dir = opposite(dir)
 		mv = Movement.GO
 		out_of_bounds = true
