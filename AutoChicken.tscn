@@ -103,4 +103,6 @@ anims/EatLeft = SubResource( 4 )
 anims/EatRight = SubResource( 5 )
 anims/EatUp = SubResource( 6 )
 
+[connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
+[connection signal="body_shape_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_shape_entered"]

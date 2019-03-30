@@ -31,10 +31,18 @@ func _process(_delta):
 	if self.position.y != last_position_y:
 		last_position_y = self.position.y
 		ZIndex.hack(self.position.y, $Sprite, $Sprite)
-		
+
+func i_am(body: KinematicBody2D):
+	return body && body.get_instance_id() == get_instance_id()
+	
 func _on_Area2D_body_exited(body: KinematicBody2D):
-	if body && body.get_instance_id() == get_instance_id():
+	if i_am(body):
 		dir = opposite(dir)
 		mv = Movement.GO
 		out_of_bounds = true
 		print("new dir " + str(dir))
+
+func _on_Area2D_body_entered(body):
+	if i_am(body):
+		out_of_bounds = false
+		
