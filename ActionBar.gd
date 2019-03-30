@@ -2,20 +2,17 @@ extends ItemList
 
 const ItemClass = preload("res://Item.gd")
 
-const item_images = [
-	preload("res://turkey.png"),
-	preload("res://drolleries.png")
-]
+const POTATO_ICON = preload("res://PotatoIcon.tscn")
 
-const item_lookup = {
+onready var item_lookup = {
 	0: {
-		"name": "Turkey",
-		"icon": item_images[0],
+		"name": "Potato",
+		"texture": POTATO_ICON.instance().texture,
 		"count": 1,
 	},
 	1: {
-		"name": "Scroll",
-		"icon": item_images[1],
+		"name": "Potato Stack",
+		"texture": POTATO_ICON.instance().texture,
 		"count": 10,
 	},
 }
@@ -43,6 +40,9 @@ func _ready():
 	for item in item_lookup:
 		print("item "+str(item))
 		var item_name = item_lookup[item].name
-		var item_icon = item_lookup[item].icon
+		var item_texture = item_lookup[item].texture
 		var item_count = item_lookup[item].count
-		contents.append(ItemClass.new(item_name, item_icon, null, item_count))
+		contents.push_back(ItemClass.new(item_name, item_texture, item_count))
+		
+	for i in contents:
+		add_item("%4d" % i.item_count, i.texture)

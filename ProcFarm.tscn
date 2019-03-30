@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://ActionBar.gd" type="Script" id=1]
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=2]
@@ -48,10 +48,6 @@ region = Rect2( 1536, 352, 32, 32 )
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 1408, 352, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 1376, 352, 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 7.6195 )
@@ -137,7 +133,6 @@ margin_right = 756.0
 margin_bottom = 592.0
 
 [node name="ActionBar" type="ItemList" parent="UICanvas/HBoxContainer"]
-editor/display_folded = true
 margin_right = 488.0
 margin_bottom = 56.0
 focus_mode = 0
@@ -198,12 +193,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 texture = SubResource( 8 )
 stretch_mode = 2
-
-[node name="PotatoIcon" type="TextureRect" parent="UICanvas/HBoxContainer/ActionBar"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-texture = SubResource( 9 )
 
 [node name="DeepZIndexHack" type="Node2D" parent="."]
 editor/display_folded = true
