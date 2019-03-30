@@ -26,12 +26,12 @@ onready var POTATO_SCENES = [
 	preload("res://PotatoHarvested.tscn")
 ]
 
-onready var BROCCOLI_SCENES = [
-	preload("res://BroccoliYoung.tscn"), 
-	preload("res://BroccoliGrowing.tscn"),
-	preload("res://BroccoliGrowing2.tscn"),
-	preload("res://BroccoliMature.tscn"),
-	preload("res://BroccoliHarvested.tscn")
+onready var ARTICHOKE_SCENES = [
+	preload("res://ArtichokeYoung.tscn"), 
+	preload("res://ArtichokeGrowing.tscn"),
+	preload("res://ArtichokeGrowing2.tscn"),
+	preload("res://ArtichokeMature.tscn"),
+	preload("res://ArtichokeHarvested.tscn")
 ]
 
 
@@ -59,7 +59,7 @@ func rand_size():
 	return Vector2(max(96,randi()%int(size.x)), max (96,randi()%int(size.y)))
 
 onready var plants = [
-	auto_plant.new(rand_size(), BROCCOLI_SCENES),
+	auto_plant.new(rand_size(), ARTICHOKE_SCENES),
 	auto_plant.new(rand_size(), POTATO_SCENES),
 	auto_plant.new(rand_size(), CARROT_SCENES),
 	auto_plant.new(rand_size(), TOMATO_SCENES),
