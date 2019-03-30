@@ -37,27 +37,6 @@ You can run the game using Godot engine, version 3.1+.
 
 Binaries for various systems are made available on the [Releases Page](https://github.com/Terkwood/PLOWMAN/releases).
 
-## Procedural Farming
-
-Imitating functionality from Stardew Valley is probably a good idea.  We'd like to embrace a procedural component, but implementing something like battles and fighting doesn't make a lot of sense, based on the content of the text.
-
-## Randomization of NPCs
-
-It would be nice to be able to assemble the look and feel of NPCs randomly.  Liberated Pixel Cup collections give a lot of examples of hair, clothing, etc, which should fit base character sprites.
-
-## Story chapters
-
-### Prologue
-
-- [hills for the prologue](https://opengameart.org/content/lpc-cliffsmountains-with-grass-top-and-more)
-- [animated water for the brook where hero lays down](https://opengameart.org/content/lpc-animated-water-and-waterfalls) 
-- [wilderness where the hero has their dream](https://opengameart.org/content/lpc-forest-tiles)
-
-### Appearance of Piers Plowman
-
-- [farm animals](https://opengameart.org/content/lpc-style-farm-animals)
-- [farming tiles](https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements)
-
 # Attributions
 
 Thank you to all open source contributors!
