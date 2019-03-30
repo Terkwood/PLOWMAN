@@ -85,6 +85,7 @@ tracks/0/keys = {
 [node name="ProcFarm" type="Node2D"]
 
 [node name="DeepZIndexHack" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="ProcField" parent="DeepZIndexHack" instance=ExtResource( 2 )]
@@ -116,7 +117,6 @@ position = Vector2( 0, -1 )
 [node name="ProcPlants3" parent="DeepZIndexHack" instance=ExtResource( 6 )]
 
 [node name="Player" type="KinematicBody2D" parent="DeepZIndexHack"]
-editor/display_folded = true
 position = Vector2( 70, 100 )
 z_as_relative = false
 script = ExtResource( 7 )
@@ -141,4 +141,11 @@ anims/WalkUp = SubResource( 6 )
 current = true
 
 [node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 9 )]
+
+[node name="Viewport" type="Viewport" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Viewport"]
+margin_top = 600.0
+margin_right = 800.0
+margin_bottom = 800.0
 
