@@ -47,7 +47,6 @@ var contents = Array()
 
 func _ready():
 	for item in item_lookup:
-		print("item "+str(item))
 		var item_name = item_lookup[item].name
 		var item_texture = item_lookup[item].texture
 		var item_count = item_lookup[item].count
