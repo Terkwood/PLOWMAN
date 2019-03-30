@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
-const FREQ = 0.3
+
+# matches the time for a single peck animation
+const FREQ = 0.4
+
 const MIN_SPEED = 150
 const MAX_SPEED = 325
 const MIN_STEPS = 3
@@ -15,7 +18,8 @@ var timestamp = 0
 func opposite(d: Vector2):
 	return d * -1
 
-const GO_RATE = 0.33
+const GO_RATE = 0.2
+
 func random_steps():
 	if randf() <= GO_RATE:
 		return MIN_STEPS + randi()%(MAX_STEPS - MIN_STEPS)
@@ -78,22 +82,32 @@ func plan_next_move():
 	steps = random_steps()
 	dir = random_dir()
 
-func start_anim():
+var pecking = false
+
+func start_walk_anim():
+	pecking = false
 	if !$Sprite/AnimationPlayer.is_playing():
 		$Sprite/AnimationPlayer.play(walk_anim_for(dir))
-	
+		
 func move():
 	if out_of_bounds:
-		start_anim()
+		start_walk_anim()
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
 		if steps > 0:
-			start_anim()
+			start_walk_anim()
 			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 			steps -= 1
 		else:
-			$Sprite/AnimationPlayer.stop(false)
+			if randi()%6 != 0:
+				$Sprite/AnimationPlayer.stop(false)
+				pecking = false
+			elif !pecking:
+				$Sprite/AnimationPlayer.play(peck_anim_for(dir))
+				pecking = true
+			else:
+				$Sprite/AnimationPlayer.play()
 			plan_next_move()
 
 func i_am(body: KinematicBody2D):
