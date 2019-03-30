@@ -1,53 +1,33 @@
 extends KinematicBody2D
 
-enum Direction { N, NE, E, SE, S, SW, W, NW }
 enum Movement { STOP, GO }
 
 const FREQ = 0.5
 const MIN_SPEED = 50
 const MAX_SPEED = 250
 
-var dir = Direction.E
+var dir = Vector2(1,0).normalized()
 var mv = Movement.STOP
 var out_of_bounds = false
 
 var timestamp = 0
 
-func dir_vector(d):
-	var r = Vector2()
-	match d:
-		Direction.N:
-			r = Vector2(0,-1)
-		Direction.S:
-			r = Vector2(0,1)
-		Direction.E:
-			r = Vector2(1,0)
-		Direction.W:
-			r = Vector2(-1,0)
-		Direction.NE:
-			r = Vector2(1,-1)
-		Direction.SE:
-			r = Vector2(1,1)
-		Direction.SW:
-			r = Vector2(-1,1)
-		Direction.NW:
-			r = Vector2(-1,-1)
-	return r.normalized()
-
-func opposite(d):
-	return Direction.keys()[Direction.values()[(d + 4)%8]]
+func opposite(d: Vector2):
+	return d * -1
 
 func _ready():
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 	move_and_slide(Vector2(300,0), Vector2())
 
 func move():
-	print("chicken move")
+	print("chicken move, oob = " + str(out_of_bounds))
+	print("curr dir " + str(dir))
+	print("dv  " + str(dir))
 	if out_of_bounds:
 		# don't change course until you're in bounds
-		move_and_slide(dir_vector(dir) * MAX_SPEED, Vector2())
+		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
-		move_and_slide(dir_vector(dir) * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
+		move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 	
 func _physics_process(delta):
 	timestamp = timestamp + delta
@@ -66,7 +46,9 @@ func i_am(body: KinematicBody2D):
 	
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):
+		print("now " + str(dir))
 		dir = opposite(dir)
+		print("then " + str(dir))
 		mv = Movement.GO
 		out_of_bounds = true
 		print("new dir " + str(dir))
