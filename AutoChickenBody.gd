@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 const FREQ = 0.25
-const MIN_SPEED = 150
-const MAX_SPEED = 300
-const MIN_STEPS = 2
-const MAX_STEPS = 8
+const MIN_SPEED = 50
+const MAX_SPEED = 225
+const MIN_STEPS = 3
+const MAX_STEPS = 11
 
 var dir = Vector2(1,0).normalized()
 var steps = 0
@@ -42,16 +42,22 @@ func random_dir():
 func plan_next_move():
 	steps = random_steps()
 	dir = random_dir()
-	
+
+var anim = false
 func move():
 	if out_of_bounds:
 		# don't change course until you're in bounds
 		move_and_slide(dir * MAX_SPEED, Vector2())
 	else:
 		if steps > 0:
+			if !anim:
+					$Sprite/AnimationPlayer.play("WalkUp")
+					anim = true
 			move_and_slide(dir * rand_range(MIN_SPEED, MAX_SPEED), Vector2())
 			steps -= 1
 		else:
+			$Sprite/AnimationPlayer.stop(false)
+			anim = false
 			plan_next_move()
 	
 func _physics_process(delta):
