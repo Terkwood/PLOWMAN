@@ -94,6 +94,16 @@ z_as_relative = false
 [node name="AutoChicken" parent="DeepZIndexHack" instance=ExtResource( 3 )]
 position = Vector2( 226, 151 )
 
+[node name="AutoChicken2" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+position = Vector2( 226, 151 )
+
+[node name="AutoChicken3" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+position = Vector2( 226, 151 )
+
+[node name="AutoChicken4" parent="DeepZIndexHack" instance=ExtResource( 3 )]
+position = Vector2( 226, 151 )
+zone_size = Vector2( 512, 512 )
+
 [node name="ProcFencedCow" parent="DeepZIndexHack" instance=ExtResource( 4 )]
 
 [node name="ProcCorn" parent="DeepZIndexHack" instance=ExtResource( 5 )]
