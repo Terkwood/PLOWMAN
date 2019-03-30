@@ -45,8 +45,6 @@ onready var item_lookup = {
 
 var contents = Array()
 
-var holding_item = null
-
 func _ready():
 	for item in item_lookup:
 		print("item "+str(item))
@@ -55,5 +53,7 @@ func _ready():
 		var item_count = item_lookup[item].count
 		contents.push_back(ItemClass.new(item_name, item_texture, item_count))
 		
-	for i in contents:
-		add_item("%4d" % i.item_count, i.texture)
+	for i in range(contents.size()):
+		var item = contents[i]
+		add_item("%4d" % item.item_count, item.texture)
+		set_item_tooltip(i, item.hint_tooltip)
