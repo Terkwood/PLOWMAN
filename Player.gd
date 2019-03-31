@@ -66,7 +66,7 @@ func _process(_delta):
 	
 func _on_PickupArea_body_entered(body):
 	print("Pickup area: %s" % body.name)
-	var pickup_manager = body.get_node("PickupManager")
-	if pickup_manager:
+	var has_pickup_manager = body.has_node("PickupManager")
+	if has_pickup_manager:
 		print("Target has a PickupManager")
-		pickup_manager.destroy_target()
+		body.get_node("PickupManager").destroy_target()
