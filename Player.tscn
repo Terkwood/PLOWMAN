@@ -108,4 +108,4 @@ rotation = 1.5708
 scale = Vector2( 3, 4.5 )
 shape = SubResource( 7 )
 
-[connection signal="body_entered" from="ReachArea" to="." method="_on_PickupArea_body_entered"]
+[connection signal="body_entered" from="ReachArea" to="." method="_on_ReachArea_body_entered"]

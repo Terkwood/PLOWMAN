@@ -15,6 +15,7 @@ var dir = Vector2()
 
 func mutate_reach_cone(d: Vector2):
 	var pcr
+	
 	if d.x == -1:
 		pcr = REACH_CONE_ROTATION.Left
 	elif d.x == 1:
@@ -65,11 +66,13 @@ func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 
 
-var last_pickup_candidate = null
+var pickup_candidates = []
 
-func _on_PickupArea_body_entered(body):
+
+func _on_ReachArea_body_entered(body):
 	print("Pickup area: %s" % body.name)
 	var has_pickup_manager = body.has_node("PickupManager")
 	if has_pickup_manager:
 		print("Target has a PickupManager")
-		body.get_node("PickupManager").destroy_target()
+		pickup_candidates.push_front(body.get_node("PickupManager"))
+
