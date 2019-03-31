@@ -13,7 +13,7 @@ const REACH_CONE_OFFSET = {
 
 var dir = Vector2()
 
-func mutate_pickup_cone(d: Vector2):
+func mutate_reach_cone(d: Vector2):
 	var pcr = []
 	if d.x == -1:
 		pcr = [REACH_CONE_ROTATION.Left]
@@ -59,7 +59,7 @@ func _physics_process(_delta):
 		$Sprite.get_node("WalkAnims").stop()
 
 	move_and_slide(dir.normalized() * WALK_SPEED, Vector2(0, 0))
-	mutate_pickup_cone(dir)
+	mutate_reach_cone(dir)
 
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
