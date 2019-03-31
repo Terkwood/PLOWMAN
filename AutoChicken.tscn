@@ -182,4 +182,3 @@ anims/WalkUp = SubResource( 10 )
 
 [connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
-[connection signal="body_shape_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_shape_entered"]
