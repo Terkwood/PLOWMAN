@@ -14,19 +14,19 @@ const REACH_CONE_OFFSET = {
 var dir = Vector2()
 
 func mutate_reach_cone(d: Vector2):
-	var pcr = []
+	var pcr
 	if d.x == -1:
-		pcr = [REACH_CONE_ROTATION.Left]
+		pcr = REACH_CONE_ROTATION.Left
 	elif d.x == 1:
-		pcr = [REACH_CONE_ROTATION.Right]
+		pcr = REACH_CONE_ROTATION.Right
 	elif d.y == -1:
-		pcr = [REACH_CONE_ROTATION.Up]
+		pcr = REACH_CONE_ROTATION.Up
 	elif d.y == 1:
-		pcr = [REACH_CONE_ROTATION.Down]
+		pcr = REACH_CONE_ROTATION.Down
 
-	for p in pcr:
-		$ReachArea/ReachCone.rotation_degrees = p
-		$ReachArea/ReachCone.position = REACH_CONE_OFFSET[p]
+	if pcr != null:
+		$ReachArea/ReachCone.rotation_degrees = pcr
+		$ReachArea/ReachCone.position = REACH_CONE_OFFSET[pcr]
 
 
 func _physics_process(_delta):
@@ -63,7 +63,10 @@ func _physics_process(_delta):
 
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
-	
+
+
+var last_pickup_candidate = null
+
 func _on_PickupArea_body_entered(body):
 	print("Pickup area: %s" % body.name)
 	var has_pickup_manager = body.has_node("PickupManager")
