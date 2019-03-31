@@ -109,3 +109,4 @@ scale = Vector2( 3, 4.5 )
 shape = SubResource( 7 )
 
 [connection signal="body_entered" from="ReachArea" to="." method="_on_ReachArea_body_entered"]
+[connection signal="body_exited" from="ReachArea" to="." method="_on_ReachArea_body_exited"]
