@@ -6,7 +6,6 @@
 extents = Vector2( 1, 1 )
 
 [node name="ZucchiniMature" type="StaticBody2D"]
-editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

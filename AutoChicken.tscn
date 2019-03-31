@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://AutoChicken.gd" type="Script" id=1]
 [ext_resource path="res://AutoChickenBody.gd" type="Script" id=2]
 [ext_resource path="res://lpc_farm_animals.png" type="Texture" id=3]
+[ext_resource path="res://PickupArea.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 195, 123 )
@@ -149,6 +150,9 @@ tracks/0/keys = {
 "values": [ Rect2( 1280, 1024, 32, 32 ), Rect2( 1312, 1024, 32, 32 ), Rect2( 1344, 1024, 32, 32 ), Rect2( 1376, 1024, 32, 32 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 46, 47 )
+
 [node name="AutoChicken" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -179,6 +183,13 @@ anims/WalkDown = SubResource( 7 )
 anims/WalkLeft = SubResource( 8 )
 anims/WalkRight = SubResource( 9 )
 anims/WalkUp = SubResource( 10 )
+
+[node name="PickupManager" type="Node" parent="AutoChickenBody"]
+
+[node name="PickupArea" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource( 11 )
 
 [connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
