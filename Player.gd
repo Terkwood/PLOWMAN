@@ -66,5 +66,7 @@ func _process(_delta):
 	
 func _on_PickupArea_body_entered(body):
 	print("Pickup area: %s" % body.name)
-	if body.get_node("PickupManager"):
+	var pickup_manager = body.get_node("PickupManager")
+	if pickup_manager:
 		print("Target has a PickupManager")
+		pickup_manager.say_their_name()

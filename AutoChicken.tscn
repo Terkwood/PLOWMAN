@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://AutoChicken.gd" type="Script" id=1]
 [ext_resource path="res://AutoChickenBody.gd" type="Script" id=2]
 [ext_resource path="res://lpc_farm_animals.png" type="Texture" id=3]
+[ext_resource path="res://PickupManager.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 195, 123 )
@@ -180,6 +181,10 @@ anims/WalkDown = SubResource( 7 )
 anims/WalkLeft = SubResource( 8 )
 anims/WalkRight = SubResource( 9 )
 anims/WalkUp = SubResource( 10 )
+
+[node name="PickupManager" type="Node" parent="AutoChickenBody"]
+script = ExtResource( 4 )
+target = NodePath("../..")
 
 [connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]
