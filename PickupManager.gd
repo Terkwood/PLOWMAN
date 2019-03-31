@@ -7,7 +7,7 @@ func say_their_name():
 
 func destroy_target():
 	get_node(target).get_parent().remove_child(get_node(target))
-	print("TARGET DESTROYED")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
