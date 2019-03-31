@@ -25,8 +25,8 @@ func mutate_pickup_cone(d: Vector2):
 		pcr = [PICKUP_CONE_ROTATION.Down]
 
 	for p in pcr:
-		$PickupArea/PickupCone.rotation_degrees = p
-		$PickupArea/PickupCone.position = PICKUP_CONE_OFFSET[p]
+		$ReachArea/ReachCone.rotation_degrees = p
+		$ReachArea/ReachCone.position = PICKUP_CONE_OFFSET[p]
 
 
 func _physics_process(_delta):

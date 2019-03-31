@@ -100,12 +100,12 @@ anims/WalkUp = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="ReachArea" type="Area2D" parent="."]
 
-[node name="PickupCone" type="CollisionShape2D" parent="PickupArea"]
+[node name="ReachCone" type="CollisionShape2D" parent="ReachArea"]
 position = Vector2( -8, 15 )
 rotation = 1.5708
 scale = Vector2( 3, 4.5 )
 shape = SubResource( 7 )
 
-[connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
+[connection signal="body_entered" from="ReachArea" to="." method="_on_PickupArea_body_entered"]
