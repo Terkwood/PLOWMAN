@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="CornHarvested" type="Node2D"]
+
