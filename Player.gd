@@ -1,10 +1,6 @@
 extends KinematicBody2D
 
-# you must connect to the UI Canvas
-# so that you can get a reference to
-# its ActionBar child.  picked up
-# items may fall through 
-export var ui_canvas_path: NodePath
+const ItemClass = preload("res://Item.gd")
 
 const WALK_SPEED = 225
 
@@ -67,10 +63,5 @@ func _unhandled_input(event):
 	if Input.is_action_pressed("game_interact"):
 		if !pickup_candidate_bodies.empty():
 			var body_to_pickup = pickup_candidate_bodies.pop_front()
-			var item = {
-				"name": body_to_pickup.name,
-				"texture": CORN_ICON.instance().texture,
-				"count": 1,
-			}
-			$Inventory.add(item)
+			$Inventory.add(ItemClass.new(body_to_pickup.name, CORN_ICON.instance().texture, 1))
 			

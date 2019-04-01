@@ -5,7 +5,7 @@ extends TextureRect
 var item_name
 var item_count
 
-func _init(item_name, item_texture, item_count):
+func _init(item_name, item_texture, item_count = 1):
 	name = item_name
 	self.item_name = item_name
 	self.item_count = item_count

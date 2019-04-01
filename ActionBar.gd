@@ -18,4 +18,6 @@ func _on_inventory_ready():
 		set_item_tooltip(i, item.hint_tooltip)
 
 func _on_inventory_item_added(item):
-	pass
+	add_item("%4d" % item.item_count, item.texture)
+	set_item_tooltip(items.size() - 1, item.hint_tooltip)
+	
