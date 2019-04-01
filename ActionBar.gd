@@ -5,7 +5,13 @@ onready var inventory: Node =(
 )
 
 func _ready():
-	for i in range(inventory.contents.size()):
-		var item = inventory.contents[i]
+	inventory.connect("ready", self, "_on_inventory_ready")
+	
+func _on_inventory_ready():
+	var inv_size = inventory.get_contents().size()
+	print("inv size %d" % inv_size)
+	for i in range(inv_size):
+		var item = inventory.get_contents()[i]
+		print("actionbar ready")
 		add_item("%4d" % item.item_count, item.texture)
 		set_item_tooltip(i, item.hint_tooltip)

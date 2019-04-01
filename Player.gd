@@ -45,10 +45,6 @@ func _physics_process(_delta):
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
 
-func _unhandled_input(event):
-	if Input.is_action_pressed("game_interact"):
-		print(".")
-
 var pickup_candidate_bodies = []
 
 func _on_ReachArea_body_entered(body):
@@ -63,3 +59,17 @@ func _on_ReachArea_body_exited(body):
 		if pickup_candidate_bodies[c].get_instance_id() == body.get_instance_id():
 			pickup_candidate_bodies.remove(c)
 			print("removed candidate body %s" % body.name)
+
+# TODO remove
+const CORN_ICON = preload("res://CornIcon.tscn")
+
+func _unhandled_input(event):
+	if Input.is_action_pressed("game_interact"):
+		if !pickup_candidate_bodies.empty():
+			var body_to_pickup = pickup_candidate_bodies.pop_front()
+			var item = {
+				"name": body_to_pickup.name,
+				"texture": CORN_ICON.instance().texture,
+				"count": 1,
+			}
+			$Inventory.add(item)

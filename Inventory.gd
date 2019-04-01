@@ -43,7 +43,13 @@ onready var item_lookup = {
 	},
 }
 
-var contents = Array()
+export var contents = Array()
+
+func get_contents():
+	return contents
+
+func add(item):
+	print("inv add %s" % item)
 
 func _ready():
 	for item in item_lookup:
