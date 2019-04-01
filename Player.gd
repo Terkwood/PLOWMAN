@@ -2,33 +2,7 @@ extends KinematicBody2D
 
 const WALK_SPEED = 225
 
-enum REACH_CONE_ROTATION { Down = 0, Left = 90, Up = 180, Right = 270 }
-# use rotation as key
-const REACH_CONE_OFFSET = {
-	0: Vector2(0,30),
-	90: Vector2(-8, 15),
-	180: Vector2(0,0),
-	270: Vector2(8,15),
-}
-
 var dir = Vector2()
-
-func mutate_reach_cone(d: Vector2):
-	var pcr
-	
-	if d.x == -1:
-		pcr = REACH_CONE_ROTATION.Left
-	elif d.x == 1:
-		pcr = REACH_CONE_ROTATION.Right
-	elif d.y == -1:
-		pcr = REACH_CONE_ROTATION.Up
-	elif d.y == 1:
-		pcr = REACH_CONE_ROTATION.Down
-
-	if pcr != null:
-		$ReachArea/ReachCone.rotation_degrees = pcr
-		$ReachArea/ReachCone.position = REACH_CONE_OFFSET[pcr]
-
 
 func _physics_process(_delta):
 	var is_anim = false
@@ -60,7 +34,7 @@ func _physics_process(_delta):
 		$Sprite.get_node("WalkAnims").stop()
 
 	move_and_slide(dir.normalized() * WALK_SPEED, Vector2(0, 0))
-	mutate_reach_cone(dir)
+	$ReachArea.update_reach_cone(dir)
 
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
