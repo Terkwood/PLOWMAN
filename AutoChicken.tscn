@@ -183,6 +183,7 @@ anims/WalkRight = SubResource( 9 )
 anims/WalkUp = SubResource( 10 )
 
 [node name="PickupManager" parent="AutoChickenBody" instance=ExtResource( 4 )]
+item_name = "Chicken"
 
 [connection signal="body_entered" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="AutoChickenBody" method="_on_Area2D_body_exited"]

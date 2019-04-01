@@ -54,12 +54,11 @@ func _on_ReachArea_body_exited(body):
 		if pickup_candidate_bodies[c].get_instance_id() == body.get_instance_id():
 			pickup_candidate_bodies.remove(c)
 
-# TODO remove
-const CORN_ICON = preload("res://CornIcon.tscn")
-
+onready var default_icon_texture = $Inventory.TOMATO_ICON.instance().texture
 func _unhandled_input(event):
 	if Input.is_action_pressed("game_interact"):
 		if !pickup_candidate_bodies.empty():
 			var body_to_pickup = pickup_candidate_bodies.pop_front()
-			$Inventory.add(ItemClass.new(body_to_pickup.name, CORN_ICON.instance().texture, 1))
-			body_to_pickup.get_node("PickupManager").destroy_target()
+			var pickup = body_to_pickup.get_node("PickupManager")
+			$Inventory.add(ItemClass.new(pickup.item_name, default_icon_texture, 1))
+			pickup.destroy_target()

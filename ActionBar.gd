@@ -19,5 +19,7 @@ func _on_inventory_ready():
 
 func _on_inventory_item_added(item):
 	add_item("%4d" % item.item_count, item.texture)
-	set_item_tooltip(items.size() - 1, item.hint_tooltip)
+	var idx = get_item_count() - 1
+	print("set item tooltip %d %s" % [idx, item.hint_tooltip])
+	set_item_tooltip(idx, item.hint_tooltip)
 	
