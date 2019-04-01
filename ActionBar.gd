@@ -1,6 +1,6 @@
 extends ItemList
 
-onready var inventory: Node = $"../../../DeepZIndexHack/Player/Inventory"
+onready var inventory: Node = $"/root".find_node("Player", true, false).get_node("Inventory")
 
 func _ready():
 	for i in range(inventory.contents.size()):
