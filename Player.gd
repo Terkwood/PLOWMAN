@@ -59,10 +59,9 @@ func icon_texture_for(name: String):
 	return $Inventory.texture_lookup.get(name, default_icon_texture)
 	
 func _unhandled_input(event):
-	if Input.is_action_pressed("game_interact"):
+	if Input.is_action_just_pressed("game_interact"):
 		if !pickup_candidate_bodies.empty():
 			var body_to_pickup = pickup_candidate_bodies.pop_front()
 			var pickup = body_to_pickup.get_node("PickupManager")
-			print("pickup item name %s" % pickup.item_name)
 			$Inventory.add(ItemClass.new(pickup.item_name, icon_texture_for(pickup.item_name), 1))
 			pickup.destroy_target()

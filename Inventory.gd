@@ -10,6 +10,7 @@ const CARROT_ICON = preload("res://CarrotIcon.tscn")
 const TOMATO_ICON = preload("res://TomatoIcon.tscn")
 const ZUCCHINI_ICON = preload("res://ZucchiniIcon.tscn")
 const RED_PEPPER_ICON = preload("res://RedPepperIcon.tscn")
+const CHICKEN_ICON = preload("res://ChickenIcon.tscn")
 
 onready var texture_lookup = {
 	"Potato":  POTATO_ICON.instance().texture,
@@ -19,8 +20,8 @@ onready var texture_lookup = {
 	"Zucchini": ZUCCHINI_ICON.instance().texture,
 	"Red Pepper": RED_PEPPER_ICON.instance().texture,
 	"Artichoke": ARTICHOKE_ICON.instance().texture,
+	"Chicken": CHICKEN_ICON.instance().texture,
 }
-
 
 export var contents = Array()
 
