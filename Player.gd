@@ -38,5 +38,7 @@ func _physics_process(_delta):
 
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+
+func _unhandled_input(event):
 	if Input.is_action_pressed("game_interact"):
 		print(".")
