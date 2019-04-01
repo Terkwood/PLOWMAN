@@ -52,7 +52,7 @@ func _on_ReachArea_body_entered(body):
 func _on_ReachArea_body_exited(body):
 	for pcb in pickup_candidate_bodies:
 		if pcb.get_instance_id() == body.get_instance_id():
-			pickup_candidate_bodies.remove(pcb)
+			pickup_candidate_bodies.erase(pcb)
 
 onready var default_icon_texture = $Inventory.TOMATO_ICON.instance().texture
 func icon_texture_for(name: String):

@@ -24,16 +24,21 @@ func _on_inventory_ready():
 		set_item_tooltip(i, item.hint_tooltip)
 
 func _on_inventory_item_added(item):
+	print("bar dict %s" % bar)
 	# have we already drawn this item?
-	var new_item = false
+	var new_item = true
 	for bar_idx in bar:
 		if bar[bar_idx].name == item.item_name:
 			new_item = false
-			bar[bar_idx].count += 1
+			bar[bar_idx].count += item.item_count
 			set_item_text(bar_idx, "%4d" % bar[bar_idx].count)
 			break
 		
-	if !new_item:
+	if new_item:
+		bar[bar.size()] = {
+			"name": item.item_name,
+			"count": item.item_count,
+		}
 		print("new item %s" % item.item_name)
 		add_item("%4d" % item.item_count, item.texture)
 		var idx = get_item_count() - 1
