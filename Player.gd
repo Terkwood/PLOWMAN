@@ -50,15 +50,19 @@ func _on_ReachArea_body_entered(body):
 		pickup_candidate_bodies.push_front(body)
 
 func _on_ReachArea_body_exited(body):
-	for c in range(pickup_candidate_bodies.size()):
-		if pickup_candidate_bodies[c].get_instance_id() == body.get_instance_id():
-			pickup_candidate_bodies.remove(c)
+	for pcb in pickup_candidate_bodies:
+		if pcb.get_instance_id() == body.get_instance_id():
+			pickup_candidate_bodies.remove(pcb)
 
 onready var default_icon_texture = $Inventory.TOMATO_ICON.instance().texture
+func icon_texture_for(name: String):
+	return $Inventory.texture_lookup.get(name, default_icon_texture)
+	
 func _unhandled_input(event):
 	if Input.is_action_pressed("game_interact"):
 		if !pickup_candidate_bodies.empty():
 			var body_to_pickup = pickup_candidate_bodies.pop_front()
 			var pickup = body_to_pickup.get_node("PickupManager")
-			$Inventory.add(ItemClass.new(pickup.item_name, default_icon_texture, 1))
+			print("pickup item name %s" % pickup.item_name)
+			$Inventory.add(ItemClass.new(pickup.item_name, icon_texture_for(pickup.item_name), 1))
 			pickup.destroy_target()

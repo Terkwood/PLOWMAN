@@ -9,10 +9,10 @@ func _ready():
 	inventory.connect("item_added", self, "_on_inventory_item_added")
 	
 func _on_inventory_ready():
-	var inv_size = inventory.get_contents().size()
+	var inv_size = inventory.contents.size()
 	print("inv size %d" % inv_size)
 	for i in range(inv_size):
-		var item = inventory.get_contents()[i]
+		var item = inventory.contents[i]
 		print("actionbar ready")
 		add_item("%4d" % item.item_count, item.texture)
 		set_item_tooltip(i, item.hint_tooltip)
