@@ -52,6 +52,14 @@ onready var ZUCCHINI_SCENES = [
 	preload("res://ZucchiniHarvested.tscn")
 ]
 
+onready var CORN_SCENES = [
+	preload("res://CornYoung.tscn"), 
+	preload("res://CornGrowing.tscn"),
+	preload("res://CornGrowing2.tscn"),
+	preload("res://CornMature.tscn"),
+	preload("res://CornHarvested.tscn")
+]
+
 
 onready var auto_plant = load("res://AutoPlant.gd")
 
@@ -64,6 +72,7 @@ onready var plants = [
 	auto_plant.new(rand_size(), CARROT_SCENES),
 	auto_plant.new(rand_size(), TOMATO_SCENES),
 	auto_plant.new(rand_size(), RED_PEPPER_SCENES),
+	auto_plant.new(rand_size(), CORN_SCENES),
 ]
 
 func _ready():
