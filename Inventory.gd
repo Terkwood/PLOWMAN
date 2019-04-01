@@ -13,6 +13,7 @@ const RED_PEPPER_ICON = preload("res://RedPepperIcon.tscn")
 
 onready var texture_lookup = {
 	"Potato":  POTATO_ICON.instance().texture,
+	"Carrot": CARROT_ICON.instance().texture,
 	"Corn": CORN_ICON.instance().texture,
 	"Tomato": TOMATO_ICON.instance().texture,
 	"Zucchini": ZUCCHINI_ICON.instance().texture,
