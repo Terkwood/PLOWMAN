@@ -27,9 +27,14 @@ func _on_inventory_item_added(item):
 	# have we already drawn this item?
 	var new_item = false
 	for bar_idx in bar:
-		pass
+		if bar[bar_idx].name == item.item_name:
+			new_item = false
+			bar[bar_idx].count += 1
+			set_item_text(bar_idx, "%4d" % bar[bar_idx].count)
+			break
 		
 	if !new_item:
+		print("new item %s" % item.item_name)
 		add_item("%4d" % item.item_count, item.texture)
 		var idx = get_item_count() - 1
 		print("set item tooltip %d %s" % [idx, item.hint_tooltip])
