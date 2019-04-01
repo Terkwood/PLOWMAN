@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://player.png" type="Texture" id=2]
 [ext_resource path="res://ReachArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Inventory.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 7.6195 )
@@ -101,5 +102,7 @@ current = true
 
 [node name="ReachArea" parent="." instance=ExtResource( 3 )]
 
-[connection signal="body_entered" from="ReachArea" to="." method="_on_ReachArea_body_entered"]
-[connection signal="body_exited" from="ReachArea" to="." method="_on_ReachArea_body_exited"]
+[node name="Inventory" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="ReachArea" to="Inventory" method="_on_ReachArea_body_entered"]
+[connection signal="body_exited" from="ReachArea" to="Inventory" method="_on_ReachArea_body_exited"]
