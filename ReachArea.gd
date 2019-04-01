@@ -24,8 +24,3 @@ func update_reach_cone(d: Vector2):
 	if pcr != null:
 		$ReachCone.rotation_degrees = pcr
 		$ReachCone.position = REACH_CONE_OFFSET[pcr]
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
