@@ -1,5 +1,11 @@
 extends KinematicBody2D
 
+# you must connect to the UI Canvas
+# so that you can get a reference to
+# its ActionBar child.  picked up
+# items may fall through 
+export var ui_canvas_path: NodePath
+
 const WALK_SPEED = 225
 
 var dir = Vector2()
