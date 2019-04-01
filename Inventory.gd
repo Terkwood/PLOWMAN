@@ -45,11 +45,13 @@ onready var item_lookup = {
 
 export var contents = Array()
 
+signal item_added(item)
+
 func get_contents():
 	return contents
 
 func add(item):
-	print("inv add %s" % item)
+	emit_signal("item_added", item)
 
 func _ready():
 	for item in item_lookup:
@@ -57,4 +59,4 @@ func _ready():
 		var item_texture = item_lookup[item].texture
 		var item_count = item_lookup[item].count
 		contents.push_back(ItemClass.new(item_name, item_texture, item_count))
-		
+

@@ -73,3 +73,4 @@ func _unhandled_input(event):
 				"count": 1,
 			}
 			$Inventory.add(item)
+			
