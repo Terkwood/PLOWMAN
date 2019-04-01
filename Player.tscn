@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://player.png" type="Texture" id=2]
+[ext_resource path="res://ReachArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Inventory.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 7.6195 )
@@ -75,8 +77,6 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 512, 64, 64 ), Rect2( 128, 512, 64, 64 ), Rect2( 192, 512, 64, 64 ), Rect2( 256, 512, 64, 64 ), Rect2( 320, 512, 64, 64 ), Rect2( 384, 512, 64, 64 ), Rect2( 448, 512, 64, 64 ) ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
-
 [node name="Player" type="KinematicBody2D"]
 z_as_relative = false
 script = ExtResource( 1 )
@@ -100,12 +100,9 @@ anims/WalkUp = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="ReachArea" parent="." instance=ExtResource( 3 )]
 
-[node name="PickupCone" type="CollisionShape2D" parent="PickupArea"]
-position = Vector2( -8, 15 )
-rotation = 1.5708
-scale = Vector2( 3, 4.5 )
-shape = SubResource( 7 )
+[node name="Inventory" parent="." instance=ExtResource( 4 )]
 
-[connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
+[connection signal="body_entered" from="ReachArea" to="." method="_on_ReachArea_body_entered"]
+[connection signal="body_exited" from="ReachArea" to="." method="_on_ReachArea_body_exited"]

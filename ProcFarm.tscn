@@ -48,6 +48,9 @@ size = Vector2( 1024, 512 )
 [node name="ProcPlants3" parent="DeepZIndexHack" instance=ExtResource( 7 )]
 size = Vector2( 768, 768 )
 
+[node name="ProcPlants4" parent="DeepZIndexHack" instance=ExtResource( 7 )]
+size = Vector2( 768, 768 )
+
 [node name="Player" parent="DeepZIndexHack" instance=ExtResource( 8 )]
 position = Vector2( 180, 276 )
 

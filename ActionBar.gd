@@ -1,58 +1,42 @@
 extends ItemList
 
-const ItemClass = preload("res://Item.gd")
-
-const CORN_ICON = preload("res://CornIcon.tscn")
-const POTATO_ICON = preload("res://PotatoIcon.tscn")
-const ARTICHOKE_ICON = preload("res://ArtichokeIcon.tscn")
-const CARROT_ICON = preload("res://CarrotIcon.tscn")
-const TOMATO_ICON = preload("res://TomatoIcon.tscn")
-const ZUCCHINI_ICON = preload("res://ZucchiniIcon.tscn")
-const RED_PEPPER_ICON = preload("res://RedPepperIcon.tscn")
-
-onready var item_lookup = {
-	0: {
-		"name": "Potato",
-		"texture": POTATO_ICON.instance().texture,
-		"count": 1,
-	},
-	1: {
-		"name": "Corn",
-		"texture": CORN_ICON.instance().texture,
-		"count": 10,
-	},
-	2: {
-		"name": "Tomato",
-		"texture": TOMATO_ICON.instance().texture,
-		"count": 3,
-	},
-	3: {
-		"name": "Zucchini",
-		"texture": ZUCCHINI_ICON.instance().texture,
-		"count": 1,
-	},
-	4: {
-		"name": "Red Pepper",
-		"texture": RED_PEPPER_ICON.instance().texture,
-		"count": 7,
-	},
-	5: {
-		"name": "Artichoke",
-		"texture": ARTICHOKE_ICON.instance().texture,
-		"count": 2,
-	},
-}
-
-var contents = Array()
+onready var inventory: Node =(
+	$"/root".find_node("Player", true, false).get_node("Inventory")
+)
 
 func _ready():
-	for item in item_lookup:
-		var item_name = item_lookup[item].name
-		var item_texture = item_lookup[item].texture
-		var item_count = item_lookup[item].count
-		contents.push_back(ItemClass.new(item_name, item_texture, item_count))
-		
-	for i in range(contents.size()):
-		var item = contents[i]
+	inventory.connect("ready", self, "_on_inventory_ready")
+	inventory.connect("item_added", self, "_on_inventory_item_added")
+
+var bar = {}
+
+func _on_inventory_ready():
+	var inv_size = inventory.contents.size()
+	for i in range(inv_size):
+		var item = inventory.contents[i]
+		bar[i] = {
+			"name": item.item_name,
+			"count": item.item_count
+		}
 		add_item("%4d" % item.item_count, item.texture)
 		set_item_tooltip(i, item.hint_tooltip)
+
+func _on_inventory_item_added(item):
+	var new_item = true
+	for bar_idx in bar:
+		# have we already drawn this item?
+		if bar[bar_idx].name == item.item_name:
+			new_item = false
+			bar[bar_idx].count += item.item_count
+			set_item_text(bar_idx, "%4d" % bar[bar_idx].count)
+			break
+		
+	if new_item:
+		bar[bar.size()] = {
+			"name": item.item_name,
+			"count": item.item_count,
+		}
+		add_item("%4d" % item.item_count, item.texture)
+		var idx = get_item_count() - 1
+		set_item_tooltip(idx, item.hint_tooltip)
+	

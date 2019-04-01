@@ -1,33 +1,10 @@
 extends KinematicBody2D
 
+const ItemClass = preload("res://Item.gd")
+
 const WALK_SPEED = 225
 
-enum PICKUP_CONE_ROTATION { Down = 0, Left = 90, Up = 180, Right = 270 }
-# use rotation as key
-const PICKUP_CONE_OFFSET = {
-	0: Vector2(0,30),
-	90: Vector2(-8, 15),
-	180: Vector2(0,0),
-	270: Vector2(8,15),
-}
-
 var dir = Vector2()
-
-func mutate_pickup_cone(d: Vector2):
-	var pcr = []
-	if d.x == -1:
-		pcr = [PICKUP_CONE_ROTATION.Left]
-	elif d.x == 1:
-		pcr = [PICKUP_CONE_ROTATION.Right]
-	elif d.y == -1:
-		pcr = [PICKUP_CONE_ROTATION.Up]
-	elif d.y == 1:
-		pcr = [PICKUP_CONE_ROTATION.Down]
-
-	for p in pcr:
-		$PickupArea/PickupCone.rotation_degrees = p
-		$PickupArea/PickupCone.position = PICKUP_CONE_OFFSET[p]
-
 
 func _physics_process(_delta):
 	var is_anim = false
@@ -59,10 +36,32 @@ func _physics_process(_delta):
 		$Sprite.get_node("WalkAnims").stop()
 
 	move_and_slide(dir.normalized() * WALK_SPEED, Vector2(0, 0))
-	mutate_pickup_cone(dir)
+	$ReachArea.update_reach_cone(dir)
 
 func _process(_delta):
 	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+
+var pickup_candidate_bodies = []
+
+func _on_ReachArea_body_entered(body):
+	var has_pickup_manager = body.has_node("PickupManager")
+	if has_pickup_manager:
+		print("Pickup OK: %s" % body.name)
+		pickup_candidate_bodies.push_front(body)
+
+func _on_ReachArea_body_exited(body):
+	for pcb in pickup_candidate_bodies:
+		if pcb.get_instance_id() == body.get_instance_id():
+			pickup_candidate_bodies.erase(pcb)
+
+onready var default_icon_texture = $Inventory.TOMATO_ICON.instance().texture
+func icon_texture_for(name: String):
+	return $Inventory.texture_lookup.get(name, default_icon_texture)
 	
-func _on_PickupArea_body_entered(body):
-	print("Pickup area: %s" % body.name)
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("game_interact"):
+		if !pickup_candidate_bodies.empty():
+			var body_to_pickup = pickup_candidate_bodies.pop_front()
+			var pickup = body_to_pickup.get_node("PickupManager")
+			$Inventory.add(ItemClass.new(pickup.item_name, icon_texture_for(pickup.item_name), 1))
+			pickup.destroy_target()
