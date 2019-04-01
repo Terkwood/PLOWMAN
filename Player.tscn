@@ -104,5 +104,5 @@ current = true
 
 [node name="Inventory" parent="." instance=ExtResource( 4 )]
 
-[connection signal="body_entered" from="ReachArea" to="Inventory" method="_on_ReachArea_body_entered"]
-[connection signal="body_exited" from="ReachArea" to="Inventory" method="_on_ReachArea_body_exited"]
+[connection signal="body_entered" from="ReachArea" to="." method="_on_ReachArea_body_entered"]
+[connection signal="body_exited" from="ReachArea" to="." method="_on_ReachArea_body_exited"]
