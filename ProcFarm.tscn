@@ -57,6 +57,4 @@ position = Vector2( 180, 276 )
 [node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 8 )]
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 9 )]
-day_duration_real_minutes = 15
-day_start_hour = 5.0
 

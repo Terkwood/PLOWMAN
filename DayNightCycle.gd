@@ -1,7 +1,7 @@
 extends CanvasModulate
 
-export var day_duration_real_minutes = 3
-var day_duration_real_seconds = 60 * 60 * day_duration_real_minutes
+export var day_duration_minutes = 10
+var day_duration_real_seconds = 60 * 60 * day_duration_minutes
 
 enum { NIGHT, DAWN, DAY, DUSK }
 
@@ -12,7 +12,7 @@ const PERIOD_START = {
 	DUSK: 19,
 }
 
-export (float) var day_start_hour = 10 # 24 hours time (0-23)
+export (float) var game_start_hour = 5 # 24 hours time (0-23)
 var day_start_number = 1
 
 var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
@@ -46,7 +46,7 @@ func debug_print():
 
 func _ready():
 	current_day_number = day_start_number
-	current_time = (day_duration_real_seconds / 24) * day_start_hour
+	current_time = (day_duration_real_seconds / 24) * game_start_hour
 	current_day_hour = current_time / (day_duration_real_seconds / 24)
 	
 	transition_duration = (((day_duration_real_seconds / 24) * transition_duration_time) / 60)
