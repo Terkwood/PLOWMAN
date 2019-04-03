@@ -1,7 +1,7 @@
 extends CanvasModulate
 
-export var day_duration_minutes = 10
-var day_duration_real_seconds = 60 * 60 * day_duration_minutes
+const day_duration_minutes = 10
+const day_duration_real_seconds = 60 * 60 * day_duration_minutes
 
 enum { NIGHT, DAWN, DAY, DUSK }
 
@@ -12,7 +12,7 @@ const PERIOD_START = {
 	DUSK: 19,
 }
 
-export (float) var game_start_hour = 5 # 24 hours time (0-23)
+const game_start_hour = 5 # 24 hours time (0-23)
 var day_start_number = 1
 
 var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
