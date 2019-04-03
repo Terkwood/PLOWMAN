@@ -3,6 +3,7 @@ extends Node
 const RATE = 0.25
 
 func hack(s: Sprite):
+	# You can set the "actual z index", if you want!
 	var az = s.get("actual_z_index")
 	var actual_z_index = az if az else 0.0
 

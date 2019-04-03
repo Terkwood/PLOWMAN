@@ -1,25 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://LPC_Ancient_Greece_Architecture.png" type="Texture" id=1]
+[ext_resource path="res://ThatchedRoofZIndex.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 65, 42 )
+extents = Vector2( 65, 52 )
 
 [node name="HouseThatchedRoof" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite6" type="Sprite" parent="StaticBody2D"]
-position = Vector2( 32, 0 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 32, 512, 96, 32 )
 
 [node name="Sprite7" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 0, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 512, 64, 32 )
+script = ExtResource( 2 )
 
 [node name="Sprite12" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 0, 64 )
@@ -56,11 +52,21 @@ position = Vector2( 64, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 512, 64, 32 )
+script = ExtResource( 2 )
+
+[node name="Sprite6" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 32, 0 )
+z_as_relative = false
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 512, 96, 32 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 224, 480, 64, 96 )
+script = ExtResource( 2 )
 
 [node name="Sprite3" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 0, -48 )
@@ -73,20 +79,23 @@ position = Vector2( 80, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 352, 480, 32, 96 )
+script = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 32, -32 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 288, 416, 32, 128 )
+script = ExtResource( 2 )
 
 [node name="Sprite4" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 64, -16 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 320, 448, 32, 96 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 31, 69 )
+position = Vector2( 31, 60 )
 shape = SubResource( 1 )
 
