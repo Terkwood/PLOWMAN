@@ -8,7 +8,7 @@ extents = Vector2( 109, 73 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 62, 16 )
 
-[node name="HouseOutdoor" type="Node2D"]
+[node name="HouseOutdoorDarkBrick" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -25,7 +25,7 @@ position = Vector2( 16, -16 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 448, 1024, 32, 96 )
+region_rect = Rect2( 64, 1024, 32, 96 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 2, -32 )
@@ -204,47 +204,47 @@ position = Vector2( 32, -16 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 416, 1024, 64, 32 )
+region_rect = Rect2( 0, 1024, 64, 32 )
 
 [node name="Sprite31" type="Sprite" parent="StaticBody2D"]
 position = Vector2( -64, -48 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 416, 1024, 64, 32 )
+region_rect = Rect2( 0, 1024, 64, 32 )
 
 [node name="Sprite32" type="Sprite" parent="StaticBody2D"]
 position = Vector2( -16, -16 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 448, 1024, 32, 96 )
+region_rect = Rect2( 64, 1024, 32, 96 )
 
 [node name="Sprite27" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 96, -16 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 448, 1024, 64, 32 )
+region_rect = Rect2( 32, 1024, 64, 32 )
 
 [node name="Sprite28" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 96, 32 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 448, 1056, 64, 64 )
+region_rect = Rect2( 32, 1056, 64, 64 )
 
 [node name="Sprite29" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 416, 1056, 64, 64 )
+region_rect = Rect2( 0, 1056, 64, 64 )
 
 [node name="Sprite30" type="Sprite" parent="StaticBody2D"]
 position = Vector2( -64, 0 )
 texture = ExtResource( 1 )
 offset = Vector2( -14, 16 )
 region_enabled = true
-region_rect = Rect2( 416, 1056, 64, 64 )
+region_rect = Rect2( 0, 1056, 64, 64 )
 

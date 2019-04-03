@@ -49,6 +49,7 @@ Thank you to all open source contributors!
 - [Leshy spritesheet generator](https://www.leshylabs.com/apps/sstool/)
 - [Oen44's Inventory Example](https://github.com/Oen44/Godot-Inventory)
 - [hiulit's day/night cycle example](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle)
+- [Wolthera van Hövell tot Westerflier for the Ancient Greek Architecture and various graphics](https://opengameart.org/content/lpc-compatible-ancient-greek-architecture)
 
 ## References
 
