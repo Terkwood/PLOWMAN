@@ -39,11 +39,6 @@ func is_day():
 func is_dusk():
 	return current_day_hour >= PERIOD_START[DUSK] and current_day_hour <= PERIOD_START[NIGHT]
 
-var debug_mode = true
-func debug_print():
-	if debug_mode == true:
-		print(str(current_time) + " - " + str(int(current_day_hour)) + " - " + str(period) + " - " + str(current_day_number))
-
 func _ready():
 	current_day_number = day_start_number
 	current_time = (day_duration_real_seconds / 24) * game_start_hour
@@ -81,8 +76,6 @@ func _physics_process(delta):
 		update_period(DAY)
 	elif is_dusk():
 		update_period(DUSK)
-
-	debug_print()
 
 	current_time += 1
 
