@@ -18,10 +18,10 @@ var current_day_number
 var transition_duration
 var transition_duration_time = 1 # In hours
 
-var cycle
+var period
 enum { NIGHT, DAWN, DAY, DUSK }
 
-const CYCLE_START = {
+const PERIOD_START = {
 	NIGHT: 22,
 	DAWN: 5,
 	DAY: 8,
@@ -29,18 +29,18 @@ const CYCLE_START = {
 }
 
 func is_night():
-	return current_day_hour >= CYCLE_START[NIGHT] or current_day_hour <= CYCLE_START[DAWN]
+	return current_day_hour >= PERIOD_START[NIGHT] or current_day_hour <= PERIOD_START[DAWN]
 func is_dawn():
-	return current_day_hour >= CYCLE_START[DAWN] and current_day_hour <= CYCLE_START[DAY]
+	return current_day_hour >= PERIOD_START[DAWN] and current_day_hour <= PERIOD_START[DAY]
 func is_day():
-	return current_day_hour >= CYCLE_START[DAY] and current_day_hour <= CYCLE_START[DUSK]
+	return current_day_hour >= PERIOD_START[DAY] and current_day_hour <= PERIOD_START[DUSK]
 func is_dusk():
-	return current_day_hour >= CYCLE_START[DUSK] and current_day_hour <= CYCLE_START[NIGHT]
+	return current_day_hour >= PERIOD_START[DUSK] and current_day_hour <= PERIOD_START[NIGHT]
 
 var debug_mode = true
 func debug_print():
 	if debug_mode == true:
-		print(str(current_time) + " - " + str(int(current_day_hour)) + " - " + str(cycle) + " - " + str(current_day_number))
+		print(str(current_time) + " - " + str(int(current_day_hour)) + " - " + str(period) + " - " + str(current_day_number))
 
 func _ready():
 	current_day_number = day_start_number
@@ -50,16 +50,16 @@ func _ready():
 	transition_duration = (((day_duration_real_seconds / 24) * transition_duration_time) / 60)
 	
 	if is_night():
-		cycle = NIGHT
+		period = NIGHT
 		color = color_night
 	elif is_dawn():
-		cycle = DAWN
+		period = DAWN
 		color = color_dawn
 	elif is_day():
-		cycle = DAY
+		period = DAY
 		color = color_day
 	elif is_dusk():
-		cycle = DUSK
+		period = DUSK
 		color = color_dusk
 
 
@@ -72,34 +72,34 @@ func _physics_process(delta):
 		current_day_number += 1
 		
 	if is_night():
-		update_cycle(NIGHT)
+		update_period(NIGHT)
 	elif is_dawn():
-		update_cycle(DAWN)
+		update_period(DAWN)
 	elif is_day():
-		update_cycle(DAY)
+		update_period(DAY)
 	elif is_dusk():
-		update_cycle(DUSK)
+		update_period(DUSK)
 
 	debug_print()
 
 	current_time += 1
 
-func update_cycle(new_cycle):
-	if cycle != new_cycle:
-		cycle = new_cycle
+func update_period(new_period):
+	if period != new_period:
+		period = new_period
 
-		if cycle == NIGHT:
+		if period == NIGHT:
 			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 			
-		if cycle == DAWN:
+		if period == DAWN:
 			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 	
-		if cycle == DAY:
+		if period == DAY:
 			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 	
-		if cycle == DUSK:
+		if period == DUSK:
 			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
