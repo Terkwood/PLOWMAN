@@ -1,7 +1,17 @@
 extends CanvasModulate
 
-const day_duration_real_minutes = 3
-const day_duration_real_seconds = 60 * 60 * day_duration_real_minutes
+export var day_duration_real_minutes = 3
+var day_duration_real_seconds = 60 * 60 * day_duration_real_minutes
+
+enum { NIGHT, DAWN, DAY, DUSK }
+
+const PERIOD_START = {
+	NIGHT: 22,
+	DAWN: 5,
+	DAY: 8,
+	DUSK: 19,
+}
+
 export (float) var day_start_hour = 10 # 24 hours time (0-23)
 var day_start_number = 1
 
@@ -19,14 +29,6 @@ var transition_duration
 var transition_duration_time = 1 # In hours
 
 var period
-enum { NIGHT, DAWN, DAY, DUSK }
-
-const PERIOD_START = {
-	NIGHT: 22,
-	DAWN: 5,
-	DAY: 8,
-	DUSK: 19,
-}
 
 func is_night():
 	return current_day_hour >= PERIOD_START[NIGHT] or current_day_hour <= PERIOD_START[DAWN]
