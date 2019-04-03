@@ -39,7 +39,7 @@ func _physics_process(_delta):
 	$ReachArea.update_reach_cone(dir)
 
 func _process(_delta):
-	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+	ZIndex.hack($Sprite)
 
 var pickup_candidate_bodies = []
 
