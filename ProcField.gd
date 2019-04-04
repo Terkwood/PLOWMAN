@@ -1,8 +1,8 @@
 extends Node2D
 
 # inspired by http://kidscancode.org/blog/2018/08/godot3_procgen1/
-var width = Chunk.num_tiles_x   # in tiles
-var height = Chunk.num_tiles_y # in tiles
+const width = Chunk.num_tiles_x   # in tiles
+const height = Chunk.num_tiles_y # in tiles
 
 # get a reference to the map for convenience
 onready var Map = $TileMap
