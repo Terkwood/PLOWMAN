@@ -25,4 +25,6 @@ func make_field():
 
 func _ready():
 	print("field chunk id %s" % chunk_id)
+#	self.position = chunk_id * Chunk.size()
+#	Map.position = chunk_id * Chunk.size()
 	make_field()
