@@ -1,5 +1,7 @@
 extends CanvasModulate
 
+const game_start_hour = 5
+
 const day_duration_minutes = 10
 const day_duration_real_seconds = 60 * 60 * day_duration_minutes
 
@@ -12,8 +14,6 @@ const HOURS = {
 	DAY: 8,
 	DUSK: 19,
 }
-
-const game_start_hour = 23
 
 const day_start_number = 1
 

@@ -6,13 +6,13 @@
 [ext_resource path="res://LPC_Ancient_Greece_Architecture.png" type="Texture" id=4]
 [ext_resource path="res://ThatchedRoofZIndex.gd" type="Script" id=5]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 3 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 3, 3 )
-
-[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63, 46 )
 
 [node name="HouseThatchedRoof" type="Node2D"]
@@ -31,11 +31,11 @@ position = Vector2( 0, -26 )
 texture = ExtResource( 3 )
 texture_scale = 13.0
 color = Color( 1, 0.898039, 0.345098, 1 )
-energy = 0.7
+energy = 0.33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TorchBody"]
 position = Vector2( 0, 37 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Torch2Body" type="StaticBody2D" parent="."]
 position = Vector2( 128, 96 )
@@ -50,11 +50,11 @@ position = Vector2( 0, -26 )
 texture = ExtResource( 3 )
 texture_scale = 13.0
 color = Color( 1, 0.898039, 0.345098, 1 )
-energy = 0.7
+energy = 0.33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch2Body"]
 position = Vector2( 0, 37 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="HouseBody" type="StaticBody2D" parent="."]
 editor/display_folded = true
@@ -156,5 +156,5 @@ actual_z_index = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HouseBody"]
 position = Vector2( 31, 70 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
