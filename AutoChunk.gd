@@ -1,6 +1,7 @@
 extends Node2D
 
 const HOUSE = preload("res://HouseThatchedRoof.tscn")
+const FIELD = preload("res://ProcField.tscn")
 
 var chunk_id = null
 
@@ -17,4 +18,6 @@ func _init(chunk_id: Vector2):
 
 	print("auto chunk id  %s, pos %s" % [chunk_id,self.position])
 	add_child(HOUSE.instance())
+	
+	add_child(FIELD.instance())
 

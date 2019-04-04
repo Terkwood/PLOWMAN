@@ -13,7 +13,7 @@ const AutoChunk = preload("res://AutoChunk.gd")
 
 func id(node: Node):
 	if node == null || node is Viewport:
-		return 0
+		return Vector2(0,0)
 
 	if node is AutoChunk:
 		return node.chunk_id
