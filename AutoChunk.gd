@@ -25,7 +25,7 @@ func _init(chunk_id: Vector2):
 	
 	add_child(ProcFencedCow.instance())
 
-	for i in range(5):
+	for i in range(3):
 		add_child(ProcPlants.instance())
 	
 	add_child(ProcPonds.instance())
