@@ -14,24 +14,37 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
-func place():
-	var zone: Rect2 = ProcZoneRepo.assign_zone(size)
-	var num_tiles_x = int(size.x / Chunk.TILE_SIZE)
-	var num_tiles_y = int(size.y / Chunk.TILE_SIZE)
-	# FIXME zone placement doesn't obey chunking
-	var offset_x = int(zone.position.x / Chunk.TILE_SIZE)
-	var offset_y = int(zone.position.y / Chunk.TILE_SIZE)
-	
-	# Place corners
-	$TileMap.set_cellv(Vector2(offset_x, offset_y),
-						null)
-
 # Obey chunk tile sizing
 func snap_size():
 	size = Vector2(floor(size.x / Chunk.TILE_SIZE) * Chunk.TILE_SIZE,
 					floor(size.y / Chunk.TILE_SIZE) * Chunk.TILE_SIZE)
 
-func _ready():
+func place():
 	snap_size()
+	
+	var zone: Rect2 = ProcZoneRepo.assign_zone(size)
+	position = zone.position
+	
+	var tx = zone.size.x - int(ceil(zone.size.x)) % Chunk.TILE_SIZE
+	var ty = zone.size.y - int(ceil(zone.size.y)) % Chunk.TILE_SIZE
+	var trimmed_size = Vector2(tx, ty)
+								 
+	var num_tiles_x = int(trimmed_size.x / Chunk.TILE_SIZE)
+	var num_tiles_y = int(trimmed_size.y / Chunk.TILE_SIZE)
+	
+	# Place corners
+	$TileMap.set_cellv(Vector2(0, 0),
+						$TileMap.tile_set.find_tile_by_name(NW_CORNER_TILE))
+
+	$TileMap.set_cellv(Vector2(num_tiles_x, 0),
+						$TileMap.tile_set.find_tile_by_name(NE_CORNER_TILE))
+	
+	$TileMap.set_cellv(Vector2(0, num_tiles_y),
+						$TileMap.tile_set.find_tile_by_name(SW_CORNER_TILE))
+	
+	$TileMap.set_cellv(Vector2(num_tiles_x, num_tiles_y),
+						$TileMap.tile_set.find_tile_by_name(SE_CORNER_TILE))
+
+func _ready():
 	if !delay_placement:
 		place()

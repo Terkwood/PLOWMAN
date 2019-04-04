@@ -57,6 +57,7 @@ size = Vector2( 768, 768 )
 position = Vector2( 384, 192 )
 
 [node name="ProcPonds" parent="DeepZIndexHack" instance=ExtResource( 8 )]
+num_ponds = 4
 
 [node name="Player" parent="DeepZIndexHack" instance=ExtResource( 9 )]
 position = Vector2( 180, 276 )

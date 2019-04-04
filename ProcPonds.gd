@@ -5,7 +5,15 @@ extends Node2D
 export var num_ponds = 1
 export var max_size = Vector2(128,128)
 
+const min_size = Vector2(64,64)
+
 const AutoPond = preload("res://AutoPond.tscn")
 
 func _ready():
-	pass
+	for i in range(num_ponds):
+		var pond = AutoPond.instance()
+		pond.size = Vector2(max(min_size.x,randi()%int(max_size.x)),
+							max(min_size.y,randi()%int(max_size.y)))
+		pond.place()
+		add_child(pond)
+		print("placed pond at %s" % pond.position)
