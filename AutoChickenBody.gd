@@ -123,11 +123,11 @@ var last_position_y = self.position.y
 func _process(_delta):
 	if self.position.y != last_position_y:
 		last_position_y = self.position.y
-		ZIndex.hack(self.position.y, $Sprite, $Sprite)
+		ZIndex.hack($Sprite)
 	
 func _ready():
 	$Sprite/AnimationPlayer.assigned_animation = "WalkUp"
-	ZIndex.hack(self.position.y, $Sprite, $Sprite)
+	ZIndex.hack($Sprite)
 	
 func _on_Area2D_body_exited(body: KinematicBody2D):
 	if i_am(body):

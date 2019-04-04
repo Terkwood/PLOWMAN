@@ -13,7 +13,7 @@ const HOURS = {
 	DUSK: 19,
 }
 
-const game_start_hour = 5
+const game_start_hour = 23
 
 const day_start_number = 1
 
