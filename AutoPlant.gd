@@ -14,6 +14,8 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 var size = Vector2(128,128)
 
+onready var chunk_id = Chunk.id(self)
+
 # You need to supply the expected array of preloads,
 # or we'll fail gloriously at runtime.  See below.
 func _init(s: Vector2, preloads):
@@ -26,7 +28,7 @@ func _init(s: Vector2, preloads):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var zone = ProcZoneRepo.assign_zone(size)
+	var zone = ProcZoneRepo.assign_zone(size, chunk_id)
 	var num_plants_x = max(0,floor(zone.size.x / tile_size.x) - 1)
 	var num_plants_y = max(0,floor(zone.size.y / tile_size.y) - 1)
 	

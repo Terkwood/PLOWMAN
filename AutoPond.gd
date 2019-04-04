@@ -14,6 +14,7 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
+var chunk_id = null
 
 func rand_water_tile():
 	var full_waters = [
@@ -33,10 +34,11 @@ func snap_size():
 					floor(size.y / Chunk.TILE_SIZE) * Chunk.TILE_SIZE)
 
 func place():
+	chunk_id = Chunk.id(self)
 	set_cell_size()
 	snap_size()
 	
-	var zone: Rect2 = ProcZoneRepo.assign_zone(size)
+	var zone: Rect2 = ProcZoneRepo.assign_zone(size, chunk_id)
 	position = zone.position
 	
 	var tx = zone.size.x - int(ceil(zone.size.x)) % Chunk.TILE_SIZE
