@@ -14,7 +14,7 @@ func assign_zone(size: Vector2):
 		c = Rect2(rand_pos(size),size)
 		fail_count += 1
 	if fail_count == FAIL_ASSIGN:
-		print("fail assign zone")
+		print("failed to assign zone with size %s" % size)
 	return c
 
 func try_add_proc_zone(zone: Rect2):
