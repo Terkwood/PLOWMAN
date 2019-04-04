@@ -41,12 +41,13 @@ Binaries for various systems are made available on the [Releases Page](https://g
 
 A running list of potentially-useful artwork, which is not yet included in this repo:
 
+- [LPC assets: multiple collections](https://opengameart.org/content/liberated-pixel-cup-0)
 - [LPC Farming game collection](https://opengameart.org/content/lpc-farming-game-collection)
 - [LPC tree recolors](https://opengameart.org/content/lpc-tree-recolors)
 - [LPC leaf recolor](https://opengameart.org/content/lpc-leaf-recolor)
 - [Harvest Moon clone assets](https://opengameart.org/content/harvest-moon-clone-assets)
 - [LPC style well](https://opengameart.org/content/lpc-style-well)
-- [LPC assets en masse](https://opengameart.org/content/liberated-pixel-cup-0)
+- [LPC Tile atlas 2](https://opengameart.org/content/lpc-tile-atlas2)
 
 # Attributions
 
