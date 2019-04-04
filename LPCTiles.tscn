@@ -410,3 +410,67 @@ region_rect = Rect2( 768, 864, 32, 32 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="grass_island_sw/StaticBody2D"]
 polygon = PoolVector2Array( 2, -16, 2, -4, 16, 0, 16, 16, -16, 16, -16, -16 )
 
+[node name="grass_water_edge_nw" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 736, 896, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_nw"]
+
+[node name="grass_water_edge_n" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 768, 896, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_n"]
+
+[node name="grass_water_edge_ne" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 800, 896, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_ne"]
+
+[node name="grass_water_edge_e" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 800, 928, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_e"]
+
+[node name="grass_water_edge_se" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 800, 960, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_se"]
+
+[node name="grass_water_edge_s" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 768, 960, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_s"]
+
+[node name="grass_water_edge_sw" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 736, 960, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_sw"]
+
+[node name="grass_water_edge_w" type="Sprite" parent="."]
+position = Vector2( 320, 115 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 736, 928, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass_water_edge_w"]
+
