@@ -8,4 +8,5 @@ script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
+format = 1
 
