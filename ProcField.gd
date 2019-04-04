@@ -20,7 +20,7 @@ func make_field():
 	print("     eg      %s " % str(Vector2(1,1) + offset))
 	for x in range(width):
 		for y in range(height):
-			var p = Vector2(x,y) + offset
+			var p = Vector2(x,y) #+ offset
 			Map.set_cellv(p, rand_tile_id())
 
 func _ready():
