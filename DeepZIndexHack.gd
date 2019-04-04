@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-    deep_zindex_hack(self)
+	deep_zindex_hack(self)
 
 func deep_zindex_hack(node):
     for N in node.get_children():
