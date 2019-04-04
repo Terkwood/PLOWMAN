@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UICanvas.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://ProcPonds.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=10]
-[ext_resource path="res://DayNightCycle.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ProcChunks.tscn" type="PackedScene" id=11]
+[ext_resource path="res://DayNightCycle.tscn" type="PackedScene" id=12]
 
 [node name="ProcFarm" type="Node2D"]
 
@@ -65,5 +66,7 @@ position = Vector2( 180, 276 )
 
 [node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 10 )]
 
-[node name="DayNightCycle" parent="." instance=ExtResource( 11 )]
+[node name="ProcChunks" parent="DeepZIndexHack" instance=ExtResource( 11 )]
+
+[node name="DayNightCycle" parent="." instance=ExtResource( 12 )]
 

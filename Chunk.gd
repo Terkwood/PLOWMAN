@@ -13,11 +13,16 @@ const AutoChunk = preload("res://AutoChunk.gd")
 
 func id(node: Node):
 	if node == null || node is Viewport:
+		print("root")
 		return 0
-	elif node is AutoChunk:
+	if node is AutoChunk:
+		print("IS CHUNK")
 		return node.chunk_id
 	else:
-		return Chunk.id(get_parent())
+		print("+ i am a %s" % node)
+		print("+ my parent %s" % node.get_parent())
+		var parent_chunk_id = Chunk.id(node.get_parent())
+		return parent_chunk_id
 
 func _ready():
 	randomize()
