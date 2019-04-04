@@ -14,6 +14,15 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
+var full_waters = [
+	$TileMap.tile_set.find_tile_by_name("grass_water_full"),
+	$TileMap.tile_set.find_tile_by_name("grass_water_full2"),
+	$TileMap.tile_set.find_tile_by_name("grass_water_full3"),
+]
+
+func rand_water_tile():
+	return randi()%full_waters.size()
+
 func set_cell_size():
 	$TileMap.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
 
