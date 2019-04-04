@@ -14,14 +14,15 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
-var full_waters = [
-	$TileMap.tile_set.find_tile_by_name("grass_water_full"),
-	$TileMap.tile_set.find_tile_by_name("grass_water_full2"),
-	$TileMap.tile_set.find_tile_by_name("grass_water_full3"),
-]
 
 func rand_water_tile():
-	return randi()%full_waters.size()
+	var full_waters = [
+		$TileMap.tile_set.find_tile_by_name("grass_water_full"),
+		$TileMap.tile_set.find_tile_by_name("grass_water_full2"),
+		$TileMap.tile_set.find_tile_by_name("grass_water_full3"),
+	]
+
+	return full_waters[randi()%full_waters.size()]
 
 func set_cell_size():
 	$TileMap.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
@@ -70,6 +71,10 @@ func place():
 	for y in range(max(0, num_tiles_y - 1)):
 		$TileMap.set_cellv(Vector2(0, y + 1), w_border)
 		$TileMap.set_cellv(Vector2(num_tiles_x, y + 1), e_border)
+	
+	for x in range(max(0, num_tiles_x - 1)):
+		for y in range(max(0, num_tiles_y - 1)):
+			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func _ready():
 	if !delay_placement:
