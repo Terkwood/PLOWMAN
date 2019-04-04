@@ -33,7 +33,6 @@ nes.y
 )
 
 func procgen_fences(size):
-	print("procgen fence with size " + str(size))
 	for x in range(num_horizontal_tiles(size.x)):
 		var fence_top = horizontal_fence.instance()
 		add_child(fence_top)
@@ -68,7 +67,6 @@ func init(sz: Vector2):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("autofence procgen with size " + str(size))
 	procgen_fences(size)
 	place_corners(size)
 	
