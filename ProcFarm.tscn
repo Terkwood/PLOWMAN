@@ -16,7 +16,6 @@
 [node name="UICanvas" parent="." instance=ExtResource( 1 )]
 
 [node name="DeepZIndexHack" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="ProcField" parent="DeepZIndexHack" instance=ExtResource( 3 )]
