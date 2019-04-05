@@ -21,7 +21,9 @@ func _init(chunk_id: Vector2):
 	add_child(HouseThatchedRoof.instance())
 
 	for i in range(4):
-		add_child(AutoChicken.instance())
+		var cluck = AutoChicken.instance()
+		cluck.zone_size = Vector2(32,32)
+		add_child(cluck)
 	
 	add_child(ProcFencedCow.instance())
 
