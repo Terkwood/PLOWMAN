@@ -8,20 +8,14 @@ const ProcPlants = preload("res://ProcPlants.tscn")
 const ProcPonds = preload("res://ProcPonds.tscn")
 
 var chunk_id = null
+onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
 	self.position = Vector2(
-		chunk_id.x * Chunk.TILE_SIZE * Chunk.num_tiles_x,
-		chunk_id.y * Chunk.TILE_SIZE * Chunk.num_tiles_y
+		chunk_id.x * Chunk.width(),
+		chunk_id.y * Chunk.height()
 	)
-
-	var area_2d = Area2D.new()
-	var collision_area = CollisionShape2D.new()
-	collision_area.shape = RectangleShape2D.new()
-	collision_area.shape.extents = Chunk.size()
-	area_2d.add_child(collision_area)
-	add_child(area_2d)
 
 	add_child(ProcField.instance())
 	
@@ -51,3 +45,16 @@ func _init(chunk_id: Vector2):
 	var ponds = ProcPonds.instance()
 	ponds.num_ponds = 2
 	add_child(ponds)
+
+func _ready():
+	var area_2d = Area2D.new()
+	var collision_area = CollisionShape2D.new()
+	collision_area.shape = RectangleShape2D.new()
+	collision_area.shape.extents = Chunk.size()
+	area_2d.connect("body_entered", self, "_on_Chunk_entered")
+	add_child(area_2d)
+	area_2d.add_child(collision_area)
+
+func _on_Chunk_entered(body: PhysicsBody2D):
+	if body == player:
+		print("player entered chunk %s" % chunk_id)
