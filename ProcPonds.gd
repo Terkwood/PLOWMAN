@@ -14,6 +14,6 @@ func _ready():
 		var pond = AutoPond.instance()
 		pond.size = Vector2(max(min_size.x,randi()%int(max_size.x)),
 							max(min_size.y,randi()%int(max_size.y)))
-		pond.place()
+		pond.delay_placement = false
 		add_child(pond)
 		print("placed pond at %s" % pond.position)

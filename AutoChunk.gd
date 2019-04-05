@@ -17,7 +17,6 @@ func _init(chunk_id: Vector2):
 	)
 	add_child(ProcField.instance())
 	
-	print("auto chunk id  %s, pos %s" % [chunk_id,self.position])
 	add_child(HouseThatchedRoof.instance())
 
 	for i in range(4):
