@@ -17,7 +17,6 @@ func assign_zone(size: Vector2, chunk_id: Vector2):
 		fail_count += 1
 	if fail_count == FAIL_ASSIGN:
 		print("failed to assign zone with size %s" % size)
-	print("assigned %s" % c)
 	return c
 
 func try_add_proc_zone(zone: Rect2, chunk_id: Vector2):
