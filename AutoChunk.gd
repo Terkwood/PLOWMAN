@@ -50,7 +50,7 @@ func _ready():
 	var area_2d = Area2D.new()
 	var collision_area = CollisionShape2D.new()
 	collision_area.shape = RectangleShape2D.new()
-	collision_area.shape.extents = Chunk.size()
+	collision_area.shape.extents = Chunk.size() / 2
 	area_2d.connect("body_entered", self, "_on_Chunk_entered")
 	add_child(area_2d)
 	area_2d.add_child(collision_area)
