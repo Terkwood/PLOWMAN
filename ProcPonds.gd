@@ -3,7 +3,7 @@
 extends Node2D
 
 export var num_ponds = 1
-export var max_size = Vector2(128,128)
+export var max_size = Vector2(512,512)
 
 const min_size = Vector2(64,64)
 

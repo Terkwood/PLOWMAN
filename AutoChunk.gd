@@ -22,12 +22,25 @@ func _init(chunk_id: Vector2):
 
 	for i in range(4):
 		var cluck = AutoChicken.instance()
-		cluck.zone_size = Vector2(32,32)
+		if i == 3:
+			cluck.zone_size = Vector2(512,512)
 		add_child(cluck)
 	
 	add_child(ProcFencedCow.instance())
 
-	for i in range(3):
-		add_child(ProcPlants.instance())
+	var plant_sizes = [
+		Vector2(512,1024),
+		Vector2(1024,512),
+		Vector2(768,768),
+		Vector2(768,768),
+		Vector2(768,768)
+	]
 	
-	add_child(ProcPonds.instance())
+	for s in plant_sizes:
+		var plants = ProcPlants.instance()
+		plants.size = s
+		add_child(plants)
+	
+	var ponds = ProcPonds.instance()
+	ponds.num_ponds = 2
+	add_child(ponds)
