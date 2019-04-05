@@ -5,7 +5,7 @@ export var size = Vector2(4,4)
 const AutoChunk = preload("res://AutoChunk.gd")
 
 var active_chunks = {}
-var packed_chunks = {}
+var stored_chunks = {}
 
 func _ready():
 	for x in range(size.x):

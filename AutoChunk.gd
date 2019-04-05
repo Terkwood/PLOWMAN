@@ -13,7 +13,7 @@ var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 onready var storage = SceneStorage.new()
-onready var storage_name = "chunk_%d_%d" % [OS.get_unix_time(), get_instance_id()]
+onready var storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
@@ -73,8 +73,10 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 			):
 				var chunk = get_parent().active_chunks[i]
 				get_parent().remove_child(chunk)
-				var file = storage.save(chunk, storage_name)
-				print("removed %s" % get_parent().active_chunks[i])
+				var file = storage.save_scene(chunk, storage_name)
+				get_parent().active_chunks.erase(i)
+				get_parent().stored_chunks[i] = file
+				print("saved to disk: %s" % file)
 		var adjacents = [
 			Vector2(1,0),
 			Vector2(-1,0),
@@ -87,6 +89,6 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 		]
 
 		for a in adjacents:
-			if get_parent().packed_chunks.has(chunk_id + a) && !get_parent().packed_chunks[chunk_id + a].is_inside_tree():
-				get_parent().add_child(get_parent().packed_chunks[chunk_id + a])
+			if get_parent().stored_chunks.has(chunk_id + a):
+				storage.load_scene(get_parent().stored_chunks[chunk_id + a], get_parent())
 				print("loaded %s" % str(chunk_id + a))
