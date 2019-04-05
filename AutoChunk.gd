@@ -21,11 +21,11 @@ func _init(chunk_id: Vector2):
 	
 	add_child(HouseThatchedRoof.instance())
 
-#	for i in range(4):
-#		var cluck = AutoChicken.instance()
-#		if i == 3:
-#			cluck.zone_size = Vector2(512,512)
-#		add_child(cluck)
+	for i in range(4):
+		var cluck = AutoChicken.instance()
+		if i == 3:
+			cluck.zone_size = Vector2(512,512)
+		add_child(cluck)
 	
 	add_child(ProcFencedCow.instance())
 
@@ -48,6 +48,8 @@ func _init(chunk_id: Vector2):
 
 func _ready():
 	var area_2d = Area2D.new()
+	area_2d.position.x += Chunk.width() / 2
+	area_2d.position.y += Chunk.height() / 2
 	var collision_area = CollisionShape2D.new()
 	collision_area.shape = RectangleShape2D.new()
 	collision_area.shape.extents = Chunk.size() / 2
