@@ -78,7 +78,8 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:
 		print("player entered chunk %s" % chunk_id)
 		for i in get_parent().active_chunks:
-			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
+			if (
+				i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1 ||
 				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 			):
 				var cr = get_parent().active_chunks[i]
