@@ -13,7 +13,14 @@ var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 onready var storage = SceneStorage.new()
-var storage_name = null
+
+var _storage_name = null
+func storage_name():
+	if !_storage_name:
+		_storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
+	return _storage_name
+
+const NUM_CHICKENS = 1
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
@@ -24,15 +31,15 @@ func _init(chunk_id: Vector2):
 
 	add_child(ProcField.instance())
 	
-	add_child(HouseThatchedRoof.instance())
+	#add_child(HouseThatchedRoof.instance())
 
-	for i in range(4):
+	for i in range(1):
 		var cluck = AutoChicken.instance()
-		if i == 3:
-			cluck.zone_size = Vector2(512,512)
+#		if i == 0:
+		cluck.zone_size = Vector2(32,32)
 		add_child(cluck)
 	
-	add_child(ProcFencedCow.instance())
+	#add_child(ProcFencedCow.instance())
 
 	var plant_sizes = [
 		Vector2(512,1024),
@@ -42,17 +49,16 @@ func _init(chunk_id: Vector2):
 		Vector2(768,768)
 	]
 	
-	for s in plant_sizes:
-		var plants = ProcPlants.instance()
-		plants.size = s
-		add_child(plants)
+#	for s in plant_sizes:
+#		var plants = ProcPlants.instance()
+#		plants.size = s
+#		add_child(plants)
 	
-	var ponds = ProcPonds.instance()
-	ponds.num_ponds = 2
-	add_child(ponds)
+#	var ponds = ProcPonds.instance()
+#	ponds.num_ponds = 2
+#	add_child(ponds)
 	
-	if storage_name == null:
-		storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
+	print("chunk _init complete: %s" % chunk_id)
 
 var live = false
 func _ready():
@@ -66,6 +72,7 @@ func _ready():
 	add_child(area_2d)
 	area_2d.add_child(collision_area)
 	live = true
+	print("chunk _ready complete: %s" % chunk_id)
 
 func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:
@@ -74,10 +81,11 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
 				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 			):
-				print("chunk %s to save" % i)
-				var chunk = get_parent().active_chunks[i]
+				var cr = get_parent().active_chunks[i]
+				print("chunk %s to save: %s" % [i, cr["chunk"]])
+				var chunk = cr.chunk
+				var file = storage.save_scene(chunk, cr["storage_name"])
 				get_parent().remove_child(chunk)
-				var file = storage.save_scene(chunk, chunk.storage_name)
 				get_parent().active_chunks.erase(i)
 				get_parent().stored_chunks[i] = file
 				print("saved to disk: %s" % file)
@@ -97,5 +105,5 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 				var file = get_parent().stored_chunks[chunk_id + a]
 				var chunk = storage.load_scene(file, get_parent())
 				get_parent().stored_chunks.erase(file)
-				get_parent().active_chunks[chunk_id + a] = chunk
+				get_parent().active_chunks[chunk_id + a] = {"chunk":chunk,"storage_name":file}
 				print("loaded %s" % str(chunk_id + a))

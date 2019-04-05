@@ -11,6 +11,9 @@ func _ready():
 	for x in range(size.x):
 		for y in range(size.y):
 			var i = Vector2(x,y)
-			var c = AutoChunk.new(i)
-			active_chunks[i] = c
+			var c: AutoChunk = AutoChunk.new(i)
+			active_chunks[i] = {
+				"chunk": c,
+				"storage_name": c.storage_name()
+			}
 			add_child(c)
