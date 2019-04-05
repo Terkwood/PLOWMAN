@@ -16,3 +16,4 @@ func load_scene(file_name: String, parent: Node):
 	var i = packed_scene.instance()
 	add_child(i)
 	i.set_owner(parent)
+	return i

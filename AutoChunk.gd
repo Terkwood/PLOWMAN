@@ -13,7 +13,7 @@ var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 onready var storage = SceneStorage.new()
-onready var storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
+var storage_name = null
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
@@ -50,6 +50,9 @@ func _init(chunk_id: Vector2):
 	var ponds = ProcPonds.instance()
 	ponds.num_ponds = 2
 	add_child(ponds)
+	
+	if storage_name == null:
+		storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
 
 var live = false
 func _ready():
@@ -71,9 +74,10 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
 				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 			):
+				print("chunk %s to save" % i)
 				var chunk = get_parent().active_chunks[i]
 				get_parent().remove_child(chunk)
-				var file = storage.save_scene(chunk, storage_name)
+				var file = storage.save_scene(chunk, chunk.storage_name)
 				get_parent().active_chunks.erase(i)
 				get_parent().stored_chunks[i] = file
 				print("saved to disk: %s" % file)
@@ -90,5 +94,8 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 
 		for a in adjacents:
 			if get_parent().stored_chunks.has(chunk_id + a):
-				storage.load_scene(get_parent().stored_chunks[chunk_id + a], get_parent())
+				var file = get_parent().stored_chunks[chunk_id + a]
+				var chunk = storage.load_scene(file, get_parent())
+				get_parent().stored_chunks.erase(file)
+				get_parent().active_chunks[chunk_id + a] = chunk
 				print("loaded %s" % str(chunk_id + a))

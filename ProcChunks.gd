@@ -1,6 +1,6 @@
 extends Node2D
 
-export var size = Vector2(4,4)
+export var size = Vector2(3,3)
 
 const AutoChunk = preload("res://AutoChunk.gd")
 
