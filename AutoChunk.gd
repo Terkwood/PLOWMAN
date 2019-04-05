@@ -1,5 +1,7 @@
 extends Node2D
 
+const SceneStorage = preload("res://SceneStorage.gd")
+
 const HouseThatchedRoof = preload("res://HouseThatchedRoof.tscn")
 const ProcField = preload("res://ProcField.tscn")
 const AutoChicken = preload("res://AutoChicken.tscn")
@@ -9,6 +11,9 @@ const ProcPonds = preload("res://ProcPonds.tscn")
 
 var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
+
+onready var storage = SceneStorage.new()
+onready var storage_name = "chunk_%d_%d" % [OS.get_unix_time(), get_instance_id()]
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
@@ -66,7 +71,9 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
 				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 			):
-				get_parent().remove_child(get_parent().active_chunks[i])
+				var chunk = get_parent().active_chunks[i]
+				get_parent().remove_child(chunk)
+				var file = storage.save(chunk, storage_name)
 				print("removed %s" % get_parent().active_chunks[i])
 		var adjacents = [
 			Vector2(1,0),
