@@ -62,12 +62,12 @@ func _ready():
 func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:
 		print("player entered chunk %s" % chunk_id)
-		for i in get_parent().chunks:
+		for i in get_parent().active_chunks:
 			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
 				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 			):
-				get_parent().remove_child(get_parent().chunks[i])
-				print("removed %s" % get_parent().chunks[i])
+				get_parent().remove_child(get_parent().active_chunks[i])
+				print("removed %s" % get_parent().active_chunks[i])
 		var adjacents = [
 			Vector2(1,0),
 			Vector2(-1,0),
@@ -80,6 +80,6 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 		]
 
 		for a in adjacents:
-			if get_parent().chunks.has(chunk_id + a) && !get_parent().chunks[chunk_id + a].is_inside_tree():
-				get_parent().add_child(get_parent().chunks[chunk_id + a])
+			if get_parent().packed_chunks.has(chunk_id + a) && !get_parent().packed_chunks[chunk_id + a].is_inside_tree():
+				get_parent().add_child(get_parent().packed_chunks[chunk_id + a])
 				print("loaded %s" % str(chunk_id + a))
