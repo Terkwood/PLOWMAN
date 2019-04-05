@@ -69,4 +69,4 @@ func _ready():
 	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	animate_cow()
 	make_fence(bb)
-	ProcZoneRepo.try_add_proc_zone(bb)
+	ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
