@@ -2,18 +2,17 @@ extends Node
 
 var proc_zones = {}
 
-func rand_pos(size: Vector2, chunk_id: Vector2):
-	return Vector2(#Chunk.width() * chunk_id.x + 
+func rand_pos(size: Vector2):
+	return Vector2(
 		randi()%int(max(1, Chunk.width() - size.x)),
-		#Chunk.height() * chunk_id.y + 
 		randi()%int(max(1, Chunk.height() - size.y)))
 
 const FAIL_ASSIGN=1000
 func assign_zone(size: Vector2, chunk_id: Vector2):
 	var fail_count = 0
-	var c = Rect2(rand_pos(size, chunk_id), size)
+	var c = Rect2(rand_pos(size), size)
 	while !try_add_proc_zone(c, chunk_id) && fail_count < FAIL_ASSIGN:
-		c = Rect2(rand_pos(size, chunk_id), size)
+		c = Rect2(rand_pos(size), size)
 		fail_count += 1
 	if fail_count == FAIL_ASSIGN:
 		print("failed to assign zone with size %s" % size)
