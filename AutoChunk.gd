@@ -95,11 +95,11 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 				var cr = get_parent().active_chunks[i]
 				print("chunk %s to save: %s" % [i, cr["chunk"]])
 				var chunk = cr.chunk
-				var file = storage.save_scene(chunk, cr["storage_name"])
+				storage.save_scene(chunk, cr["storage_name"])
 				get_parent().remove_child(chunk)
 				get_parent().active_chunks.erase(i)
-				get_parent().stored_chunks[i] = file
-				print("saved to disk: %s" % file)
+				get_parent().stored_chunks[i] = cr["storage_name"]
+				print("saved to disk: %s" % cr["storage_name"])
 		var adjacents = [
 			Vector2(1,0),
 			Vector2(-1,0),

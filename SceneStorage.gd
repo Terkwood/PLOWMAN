@@ -8,7 +8,6 @@ func save_scene(node: Node, name: String):
 	var file = "res://%s/%s.tscn" % [OUTPUT_FOLDER,name]
 	ResourceSaver.save(file, packed_scene)
 	print("saved %s " % file)
-	return name
 
 # make sure to set the owner of the child nodes (otherwise the children won't be saved)
 func load_scene(file_name: String):
