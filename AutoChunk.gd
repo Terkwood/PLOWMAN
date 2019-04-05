@@ -46,6 +46,7 @@ func _init(chunk_id: Vector2):
 	ponds.num_ponds = 2
 	add_child(ponds)
 
+var live = false
 func _ready():
 	var area_2d = Area2D.new()
 	area_2d.position.x += Chunk.width() / 2
@@ -56,9 +57,10 @@ func _ready():
 	area_2d.connect("body_entered", self, "_on_Chunk_entered")
 	add_child(area_2d)
 	area_2d.add_child(collision_area)
+	live = true
 
 func _on_Chunk_entered(body: PhysicsBody2D):
-	if body == player:
+	if live && body == player:
 		print("player entered chunk %s" % chunk_id)
 		for i in get_parent().chunks:
 			if (i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1) && (
@@ -76,6 +78,7 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 			Vector2(1,-1),
 			Vector2(1,1)
 		]
+
 		for a in adjacents:
 			if get_parent().chunks.has(chunk_id + a) && !get_parent().chunks[chunk_id + a].is_inside_tree():
 				get_parent().add_child(get_parent().chunks[chunk_id + a])
