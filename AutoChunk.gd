@@ -29,17 +29,23 @@ func _init(chunk_id: Vector2):
 		chunk_id.y * Chunk.height()
 	)
 
-	add_child(ProcField.instance())
+	var field = ProcField.instance()
+	add_child(field)
+	field.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
 	
-	#add_child(HouseThatchedRoof.instance())
+	# var house = HouseThatchedRoof.instance()
+	# add_child(house)
+	# house.set_owner(self)# set owner so that resource saving works
 
 	for i in range(1):
 		var cluck = AutoChicken.instance()
-#		if i == 0:
 		cluck.zone_size = Vector2(32,32)
 		add_child(cluck)
+		cluck.set_owner(self) # set owner so that resource saving works
 	
-	#add_child(ProcFencedCow.instance())
+	# var fenced_cow = ProcFencedCow.instance()
+	# add_child(fenced_cow)
+	# fenced_cow.set_owner(self) # set owner so that resource saving works
 
 	var plant_sizes = [
 		Vector2(512,1024),
@@ -53,10 +59,12 @@ func _init(chunk_id: Vector2):
 #		var plants = ProcPlants.instance()
 #		plants.size = s
 #		add_child(plants)
+#       plants.set_owner(self) # set owner so that resource saving works
 	
 #	var ponds = ProcPonds.instance()
 #	ponds.num_ponds = 2
 #	add_child(ponds)
+#   ponds.set_owner(self) # set owner so that resource saving works
 	
 	print("chunk _init complete: %s" % chunk_id)
 
@@ -70,7 +78,9 @@ func _ready():
 	collision_area.shape.extents = Chunk.size() / 2
 	area_2d.connect("body_entered", self, "_on_Chunk_entered")
 	add_child(area_2d)
+	area_2d.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
 	area_2d.add_child(collision_area)
+	collision_area.set_owner(area_2d) # set owner so that resource saving works
 	live = true
 	print("chunk _ready complete: %s" % chunk_id)
 
@@ -104,7 +114,9 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 		for a in adjacents:
 			if get_parent().stored_chunks.has(chunk_id + a):
 				var file = get_parent().stored_chunks[chunk_id + a]
-				var chunk = storage.load_scene(file, get_parent())
+				var chunk = storage.load_scene(file)
+				get_parent().add_child(chunk)
+				chunk.set_owner(get_parent()) # set owner so that resource saving works
 				get_parent().stored_chunks.erase(file)
 				get_parent().active_chunks[chunk_id + a] = {"chunk":chunk,"storage_name":file}
-				print("loaded %s" % str(chunk_id + a))
+				
