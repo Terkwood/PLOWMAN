@@ -37,7 +37,7 @@ func _init(chunk_id: Vector2):
 	# add_child(house)
 	# house.set_owner(self)# set owner so that resource saving works
 
-	for i in range(1):
+	for i in range(NUM_CHICKENS):
 		var cluck = AutoChicken.instance()
 		cluck.zone_size = Vector2(32,32)
 		add_child(cluck)
@@ -112,11 +112,12 @@ func _on_Chunk_entered(body: PhysicsBody2D):
 		]
 
 		for a in adjacents:
-			if get_parent().stored_chunks.has(chunk_id + a):
-				var file = get_parent().stored_chunks[chunk_id + a]
+			var cid_a = chunk_id + a
+			if !get_parent().active_chunks.has(cid_a) && get_parent().stored_chunks.has(cid_a):
+				var file = get_parent().stored_chunks[cid_a]
 				var chunk = storage.load_scene(file)
 				get_parent().add_child(chunk)
 				chunk.set_owner(get_parent()) # set owner so that resource saving works
 				get_parent().stored_chunks.erase(file)
-				get_parent().active_chunks[chunk_id + a] = {"chunk":chunk,"storage_name":file}
+				get_parent().active_chunks[cid_a] = {"chunk":chunk,"storage_name":file}
 				
