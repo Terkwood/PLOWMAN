@@ -15,15 +15,23 @@ func _init(chunk_id: Vector2):
 		chunk_id.x * Chunk.TILE_SIZE * Chunk.num_tiles_x,
 		chunk_id.y * Chunk.TILE_SIZE * Chunk.num_tiles_y
 	)
+
+	var area_2d = Area2D.new()
+	var collision_area = CollisionShape2D.new()
+	collision_area.shape = RectangleShape2D.new()
+	collision_area.shape.extents = Chunk.size()
+	area_2d.add_child(collision_area)
+	add_child(area_2d)
+
 	add_child(ProcField.instance())
 	
 	add_child(HouseThatchedRoof.instance())
 
-	for i in range(4):
-		var cluck = AutoChicken.instance()
-		if i == 3:
-			cluck.zone_size = Vector2(512,512)
-		add_child(cluck)
+#	for i in range(4):
+#		var cluck = AutoChicken.instance()
+#		if i == 3:
+#			cluck.zone_size = Vector2(512,512)
+#		add_child(cluck)
 	
 	add_child(ProcFencedCow.instance())
 
