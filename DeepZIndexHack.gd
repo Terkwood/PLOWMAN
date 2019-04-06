@@ -13,4 +13,5 @@ func deep_zindex_hack(node):
 				ZIndex.hack(N)
 
 func _on_chunk_restored(_chunk_id: Vector2):
-	deep_zindex_hack(self)
+	pass
+	#deep_zindex_hack(self)
