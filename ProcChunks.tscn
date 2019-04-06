@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ProcChunks.gd" type="Script" id=1]
+[ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=2]
 
 [node name="ProcChunks" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,4 +14,6 @@ margin_bottom = 37.0
 align = 3
 valign = 2
 uppercase = true
+
+[node name="WorldBorder" parent="." instance=ExtResource( 2 )]
 

@@ -4,11 +4,13 @@ export var size = Vector2(3,3)
 
 const AutoChunk = preload("res://AutoChunk.tscn")
 const SceneStorage = preload("res://SceneStorage.gd")
+const DeepZIndexHack = preload("res://DeepZIndexHack.gd")
 
 var active_chunks = {}
 var stored_chunks = {}
 
 onready var storage = SceneStorage.new()
+onready var dzi = DeepZIndexHack.new()
 
 func _ready():
 	for x in range(size.x):
