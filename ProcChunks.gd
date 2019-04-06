@@ -12,8 +12,6 @@ var stored_chunks = {}
 onready var storage = SceneStorage.new()
 onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
 
-signal chunk_restored(chunk_id)
-
 func _ready():
 	for x in range(size.x):
 		for y in range(size.y):
@@ -87,7 +85,3 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	stored_chunks.erase(file)
 	active_chunks[chunk_id] = {"chunk":chunk,"storage_name":file}
 	_pend_restore.erase(chunk_id)
-
-
-func _on_ProcChunks_chunk_restored(chunk_id):
-	pass # Replace with function body.

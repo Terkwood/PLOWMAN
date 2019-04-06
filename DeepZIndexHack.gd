@@ -4,14 +4,9 @@ func _ready():
 	deep_zindex_hack(self)
 
 func deep_zindex_hack(node):
-	print("deep zindex hack")
 	for N in node.get_children():
 		if N.get_child_count() > 0:
 			deep_zindex_hack(N)
 		else:
 			if N is Sprite:
 				ZIndex.hack(N)
-
-func _on_chunk_restored(_chunk_id: Vector2):
-	pass
-	#deep_zindex_hack(self)

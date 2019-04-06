@@ -14,13 +14,13 @@ onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 const NUM_CHICKENS = 4
 const PLANT_SIZES = [
-		Vector2(512,1024),
-		Vector2(1024,512),
-		Vector2(768,768),
-		Vector2(768,768),
-		Vector2(768,768)
+		Vector2(512,768),
+		Vector2(768,512),
+		Vector2(512,768),
+		Vector2(512,256),
+		Vector2(256,512)
 	]
-const NUM_PONDS = 2
+const NUM_PONDS = 1
 const DRAW_HOUSE = true
 const DRAW_FENCED_COW = true
 
