@@ -22,7 +22,9 @@ func _ready():
 			add_child(c)
 
 func _on_player_entered_chunk(chunk_id: Vector2):
-	print("active chunks: %s" % str(active_chunks.keys()))
+	print("player entered chunk %s" % chunk_id)
+	$ChunkLabel.set_text("%s" % chunk_id)
+	#print("active chunks: %s" % str(active_chunks.keys()))
 	var to_erase = []
 	for i in active_chunks:
 		if (
@@ -30,7 +32,6 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 			i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
 		):
 			var cr = active_chunks[i]
-			print("chunk %s to save: %s" % [i, cr["chunk"]])
 			var chunk = cr.chunk
 			storage.save_scene(chunk, cr["storage_name"])
 			remove_child(chunk)
