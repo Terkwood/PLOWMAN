@@ -1,6 +1,6 @@
 extends Node2D
 
-const SceneStorage = preload("res://SceneStorage.gd")
+signal player_entered_chunk(chunk_id)
 
 const HouseThatchedRoof = preload("res://HouseThatchedRoof.tscn")
 const ProcField = preload("res://ProcField.tscn")
@@ -12,15 +12,13 @@ const ProcPonds = preload("res://ProcPonds.tscn")
 var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
-onready var storage = SceneStorage.new()
+const NUM_CHICKENS = 1
 
 var _storage_name = null
 func storage_name():
 	if !_storage_name:
 		_storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
 	return _storage_name
-
-const NUM_CHICKENS = 1
 
 func _init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
@@ -70,6 +68,7 @@ func _init(chunk_id: Vector2):
 
 var live = false
 func _ready():
+	connect("player_entered_chunk", get_parent(), "_on_player_entered_chunk")
 	var area_2d = Area2D.new()
 	area_2d.position.x += Chunk.width() / 2
 	area_2d.position.y += Chunk.height() / 2
@@ -87,37 +86,4 @@ func _ready():
 func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:
 		print("player entered chunk %s" % chunk_id)
-		for i in get_parent().active_chunks:
-			if (
-				i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1 ||
-				i.y < chunk_id.y - 1 || i.y > chunk_id.y + 1
-			):
-				var cr = get_parent().active_chunks[i]
-				print("chunk %s to save: %s" % [i, cr["chunk"]])
-				var chunk = cr.chunk
-				storage.save_scene(chunk, cr["storage_name"])
-				get_parent().remove_child(chunk)
-				get_parent().active_chunks.erase(i)
-				get_parent().stored_chunks[i] = cr["storage_name"]
-				print("saved to disk: %s" % cr["storage_name"])
-		var adjacents = [
-			Vector2(1,0),
-			Vector2(-1,0),
-			Vector2(0,1),
-			Vector2(0,-1),
-			Vector2(-1,-1),
-			Vector2(-1,1),
-			Vector2(1,-1),
-			Vector2(1,1)
-		]
-
-		for a in adjacents:
-			var cid_a = chunk_id + a
-			if !get_parent().active_chunks.has(cid_a) && get_parent().stored_chunks.has(cid_a):
-				var file = get_parent().stored_chunks[cid_a]
-				var chunk = storage.load_scene(file)
-				get_parent().add_child(chunk)
-				chunk.set_owner(get_parent()) # set owner so that resource saving works
-				get_parent().stored_chunks.erase(file)
-				get_parent().active_chunks[cid_a] = {"chunk":chunk,"storage_name":file}
-				
+		emit_signal("player_entered_chunk", chunk_id)
