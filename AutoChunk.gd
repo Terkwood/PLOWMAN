@@ -20,7 +20,7 @@ func storage_name():
 		_storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
 	return _storage_name
 
-func _init(chunk_id: Vector2):
+func init(chunk_id: Vector2):
 	self.chunk_id = chunk_id
 	self.position = Vector2(
 		chunk_id.x * Chunk.width(),
