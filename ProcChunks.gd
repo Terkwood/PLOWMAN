@@ -72,6 +72,7 @@ func save_chunk(cr, chunk_id: Vector2):
 	active_chunks.erase(chunk_id)
 	stored_chunks[chunk_id] = cr["storage_name"]
 	_pend_save.erase(chunk_id)
+	ProcZoneRepo.erase_chunk(chunk_id)
 	print("saved to disk: %s" % cr["storage_name"])
 
 # dict prevents multiple calls at the same time

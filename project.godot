@@ -22,10 +22,10 @@ config/icon="res://drolleries_icon.png"
 
 [autoload]
 
-ProcZoneRepo="*res://ProcZoneRepo.gd"
 Chunk="*res://Chunk.tscn"
 ZIndex="*res://ZIndex.gd"
 PlowmanInput="*res://PlowmanInput.gd"
+ProcZoneRepo="*res://ProcZoneRepo.gd"
 
 [rendering]
 

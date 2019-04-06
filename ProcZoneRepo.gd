@@ -32,4 +32,7 @@ func contains(zone: Rect2, chunk_id: Vector2):
 			if existing.clip(zone):
 				return true
 	return false
-	
+
+func erase_chunk(chunk_id: Vector2):
+	if proc_zones.has(chunk_id):
+		proc_zones.erase(chunk_id)
