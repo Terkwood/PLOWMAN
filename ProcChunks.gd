@@ -22,6 +22,8 @@ func _ready():
 			add_child(c)
 
 func _on_player_entered_chunk(chunk_id: Vector2):
+	print("active chunks: %s" % str(active_chunks.keys()))
+	var to_erase = []
 	for i in active_chunks:
 		if (
 			i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1 ||
@@ -32,7 +34,7 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 			var chunk = cr.chunk
 			storage.save_scene(chunk, cr["storage_name"])
 			remove_child(chunk)
-			active_chunks.erase(i)
+			to_erase.push_front(i)
 			stored_chunks[i] = cr["storage_name"]
 			print("saved to disk: %s" % cr["storage_name"])
 
@@ -56,4 +58,6 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 				chunk.set_owner(get_parent()) # set owner so that resource saving works
 				stored_chunks.erase(file)
 				active_chunks[cid_a] = {"chunk":chunk,"storage_name":file}
-				
+
+	for e in to_erase:
+		active_chunks.erase(e)	
