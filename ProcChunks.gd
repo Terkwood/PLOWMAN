@@ -10,7 +10,9 @@ var active_chunks = {}
 var stored_chunks = {}
 
 onready var storage = SceneStorage.new()
-onready var dzi = DeepZIndexHack.new()
+onready var deep_zindex_hack = find_node("DeepZIndexHack",true)
+
+signal chunk_restored(chunk_id)
 
 func _ready():
 	for x in range(size.x):
@@ -23,6 +25,8 @@ func _ready():
 				"storage_name": c.storage_name()
 			}
 			add_child(c)
+	
+	connect("chunk_restored", deep_zindex_hack, "_on_chunk_restored")
 
 func _on_player_entered_chunk(chunk_id: Vector2):
 	print("player entered chunk %s" % chunk_id)
@@ -76,9 +80,12 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	var chunk = storage.load_scene(file)
 	chunk.chunk_id = chunk_id
 	chunk._storage_name = file
-	dzi.deep_zindex_hack(chunk)
 	add_child(chunk)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
 	stored_chunks.erase(file)
 	active_chunks[chunk_id] = {"chunk":chunk,"storage_name":file}
 	_pend_restore.erase(chunk_id)
+
+
+func _on_ProcChunks_chunk_restored(chunk_id):
+	pass # Replace with function body.
