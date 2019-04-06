@@ -13,6 +13,16 @@ var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
 const NUM_CHICKENS = 1
+const PLANT_SIZES = [
+#		Vector2(512,1024),
+#		Vector2(1024,512),
+#		Vector2(768,768),
+#		Vector2(768,768),
+#		Vector2(768,768)
+	]
+const NUM_PONDS = 0
+const DRAW_HOUSE = false
+const DRAW_FENCED_COW = false
 
 var _storage_name = null
 func storage_name():
@@ -31,9 +41,10 @@ func init(chunk_id: Vector2):
 	add_child(field)
 	field.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
 
-	var house = HouseThatchedRoof.instance()
-	add_child(house)
-	house.set_owner(self)# set owner so that resource saving works
+	if DRAW_HOUSE:
+		var house = HouseThatchedRoof.instance()
+		add_child(house)
+		house.set_owner(self)# set owner so that resource saving works
 
 	for i in range(NUM_CHICKENS):
 		var cluck = AutoChicken.instance()
@@ -41,26 +52,19 @@ func init(chunk_id: Vector2):
 		add_child(cluck)
 		cluck.set_owner(self) # set owner so that resource saving works
 
-	var fenced_cow = ProcFencedCow.instance()
-	add_child(fenced_cow)
-	fenced_cow.set_owner(self) # set owner so that resource saving works
+	if DRAW_FENCED_COW:
+		var fenced_cow = ProcFencedCow.instance()
+		add_child(fenced_cow)
+		fenced_cow.set_owner(self) # set owner so that resource saving works
 
-	var plant_sizes = [
-		Vector2(512,1024),
-		Vector2(1024,512),
-		Vector2(768,768),
-		Vector2(768,768),
-		Vector2(768,768)
-	]
-
-	for s in plant_sizes:
+	for s in PLANT_SIZES:
 		var plants = ProcPlants.instance()
 		plants.size = s
 		add_child(plants)
 		plants.set_owner(self) # set owner so that resource saving works
 
 	var ponds = ProcPonds.instance()
-	ponds.num_ponds = 2
+	ponds.num_ponds = NUM_PONDS
 	add_child(ponds)
 	ponds.set_owner(self) # set owner so that resource saving works
 	
