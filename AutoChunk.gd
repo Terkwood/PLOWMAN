@@ -70,7 +70,6 @@ func init(chunk_id: Vector2):
 		add_child(house)
 		house.set_owner(self)# set owner so that resource saving works
 
-	
 	print("chunk _init complete: %s" % chunk_id)
 
 var live = false
