@@ -78,5 +78,8 @@ func place():
 func manifest():
 	return StorageManifest.size_position_manifest(self)
 
+func set_manifest(mfst: Dictionary):
+	print("pond set manifest")
+
 func _ready():
 	place()

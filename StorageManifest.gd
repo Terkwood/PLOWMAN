@@ -41,8 +41,6 @@ static func generate(node: Node, accum: Dictionary = {}):
 	
 	return accum
 
-
-
 static func position_manifest(node: Node):
 	return { "position": node.position }
 

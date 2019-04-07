@@ -31,6 +31,9 @@ var _manifest = {}
 func manifest():
 	return _manifest
 
+func set_manifest(mfst: Dictionary):
+	print("auto plant set manifest")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var zone = ProcZoneRepo.assign_zone(size, chunk_id)

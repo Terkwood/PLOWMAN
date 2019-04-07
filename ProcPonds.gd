@@ -15,4 +15,3 @@ func _ready():
 		pond.size = Vector2(max(min_size.x,randi()%int(max_size.x)),
 							max(min_size.y,randi()%int(max_size.y)))
 		add_child(pond)
-		print("placed pond at %s" % pond.position)

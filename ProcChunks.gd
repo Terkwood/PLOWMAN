@@ -9,6 +9,7 @@ const DeepZIndexHack = preload("res://DeepZIndexHack.gd")
 
 var active_chunks = {}
 var stored_chunks = {}
+var chunk_manifests = {}
 
 onready var storage = SceneStorage.new()
 onready var manifest = StorageManifest.new()
@@ -66,21 +67,20 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 var _pend_save = {}
 func save_chunk(cr, chunk_id: Vector2):
 	var chunk = cr.chunk
-	var chunk_manifest = manifest.generate(chunk)
-	print("manifest : %s" % chunk_manifest)
+	var cmf = manifest.generate(chunk)
 	storage.save_scene(chunk, cr["storage_name"])
 	remove_child(chunk)
 	active_chunks.erase(chunk_id)
 	stored_chunks[chunk_id] = cr["storage_name"]
+	chunk_manifests[chunk_id] = cmf
 	_pend_save.erase(chunk_id)
 	ProcZoneRepo.erase_chunk(chunk_id)
-	print("saved to disk: %s" % cr["storage_name"])
 
 # It's important to pass this flag so that we can easily
 # match the paths generated in the storage manifest.
 # If we don't pass it, `storage.load_scene` will continue
 # to add '@' characters onto the front of the instance name.
-const RESTORE_WITH_LEGIBLE_NAMES = true
+const _RESTORE_WITH_LEGIBLE_NAMES = true
 
 # dict prevents multiple calls at the same time
 var _pend_restore = {}
@@ -89,11 +89,22 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	chunk.chunk_id = chunk_id
 	chunk._storage_name = file
 	
-	## TODO: descend through the chunk's scene tree and
-	##       call with_manifest() on each individual node
-	add_child(chunk, RESTORE_WITH_LEGIBLE_NAMES)
+	if chunk_manifests.has(chunk_id):
+		deep_set_manifests(chunk, chunk_manifests[chunk_id])
+
+	add_child(chunk, _RESTORE_WITH_LEGIBLE_NAMES)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
 	dzi.call("deep_zindex_hack", chunk)
 	stored_chunks.erase(file)
 	active_chunks[chunk_id] = {"chunk":chunk,"storage_name":file}
 	_pend_restore.erase(chunk_id)
+
+const SET_MANIFEST_METHOD = "set_manifest"
+func deep_set_manifests(chunk, mnfst: Dictionary):
+	for child in chunk.get_children():
+		if child.has_method(SET_MANIFEST_METHOD):
+			print("child has method " % child)
+			child.call(SET_MANIFEST_METHOD, mnfst)
+		if child.get_child_count() > 0:
+			deep_set_manifests(child, mnfst)
+

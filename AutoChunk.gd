@@ -69,7 +69,6 @@ func init(chunk_id: Vector2):
 		add_child(house)
 		house.set_owner(self)# set owner so that resource saving works
 
-	print("chunk _init complete: %s" % chunk_id)
 
 var live = false
 func _ready():
@@ -86,7 +85,6 @@ func _ready():
 	area_2d.add_child(collision_area)
 	collision_area.set_owner(self) # set owner so that resource saving works
 	live = true
-	print("chunk _ready complete: %s" % chunk_id)
 
 func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:
