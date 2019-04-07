@@ -78,6 +78,7 @@ func place(zone: Rect2):
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
+	var entry = StorageManifest.find_entry(StorageManifest.trim_path(get_path()), mfst)
 	#TODO
 	return Rect2(Vector2(0,0),Vector2(0,0))
 
