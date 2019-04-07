@@ -66,7 +66,7 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 var _pend_save = {}
 func save_chunk(cr, chunk_id: Vector2):
 	var chunk = cr.chunk
-	var chunk_manifest = manifest.generate(chunk, NodePath("."))
+	var chunk_manifest = manifest.generate(chunk)
 	print("manifest : %s" % chunk_manifest)
 	storage.save_scene(chunk, cr["storage_name"])
 	remove_child(chunk)
