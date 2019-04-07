@@ -11,6 +11,8 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
+const StorageManifest = preload("res://StorageManifest.gd")
+
 var chunk_id = null
 
 func rand_water_tile():
@@ -74,6 +76,9 @@ func place():
 	for x in range(max(0, num_tiles_x - 1)):
 		for y in range(max(0, num_tiles_y - 1)):
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
+
+func manifest():
+	return StorageManifest.size_position_manifest(self)
 
 func _ready():
 	place()

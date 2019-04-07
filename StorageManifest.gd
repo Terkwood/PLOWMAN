@@ -1,12 +1,5 @@
 extends Node
 
-const AutoPond = preload("res://AutoPond.gd")
-const HouseThatchedRoof = preload("res://HouseThatchedRoof.gd")
-
-## TODO TODO TODO
-## Figure out how to deal with the scene tree
-## in some recursive (and accurate) fashion
-
 static func merge_dir(target, patch):
 	for key in patch:
 		if target.has(key):
@@ -23,19 +16,21 @@ static func merge_dir(target, patch):
 ## information on the position of landmarks, etc.
 static func generate(node: Node, accum: Dictionary = {}):
 	var path = node.get_path()
-	# position-only classes
-	if node is HouseThatchedRoof:
-		accum[path] = { "position": node.position }
-	elif node is AutoPond:
-		accum[path] = {
-			"size": node.size,
-			"position": node.position
-		}
-	#elif node.get_class() == "ProcFencedCow":
-	#	return {}
+
+	if node.has_method("manifest"):
+		accum[path] = node.call("manifest")
 	
 	for c in node.get_children():
 		var child_accum = generate(c, accum)
 		merge_dir(accum, child_accum)
 	
 	return accum
+
+static func position_manifest(node: Node):
+	return { "position": node.position }
+
+static func size_position_manifest(node: Node):
+	return {
+			"size": node.size,
+			"position": node.position
+		}
