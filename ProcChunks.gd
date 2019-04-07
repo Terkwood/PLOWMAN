@@ -104,7 +104,6 @@ const SET_MANIFEST_METHOD = "set_manifest"
 func deep_set_manifests(node, mnfst: Dictionary):
 	print("%s (%s) chlrns %s" % [node,node.name,str(node.get_children())])
 	if node.has_method(SET_MANIFEST_METHOD):
-		print("node has set_manifest method " % node)
 		node.call(SET_MANIFEST_METHOD, mnfst)
 	for child in node.get_children():
 		deep_set_manifests(child, mnfst)

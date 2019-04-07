@@ -18,11 +18,14 @@ func assign_zone(size: Vector2, chunk_id: Vector2):
 		print("failed to assign zone with size %s" % size)
 	return c
 
+func force_assign_zone(zone: Rect2, chunk_id: Vector2):
+	if !proc_zones.has(chunk_id):
+		proc_zones[chunk_id] = []
+	proc_zones[chunk_id].push_front(zone)
+
 func try_add_proc_zone(zone: Rect2, chunk_id: Vector2):
 	if !contains(zone, chunk_id):
-		if !proc_zones.has(chunk_id):
-			proc_zones[chunk_id] = []
-		proc_zones[chunk_id].push_front(zone)
+		force_assign_zone(zone, chunk_id)
 		return true
 	return false
 	
