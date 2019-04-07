@@ -26,6 +26,10 @@ func _init(s: Vector2, preloads):
 	mature = preloads[3]
 	harvested = preloads[4]
 
+var _manifest = {}
+func manifest():
+	return _manifest
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var zone = ProcZoneRepo.assign_zone(size, chunk_id)
@@ -39,4 +43,8 @@ func _ready():
 			plant.position.x = zone.position.x + x * tile_size.x
 			plant.position.y = zone.position.y + y * tile_size.y
 			get_parent().add_child(plant)
+	
+	_manifest.clear()
+	_manifest["zone"] = zone
+	_manifest["stage"] = stage
 	

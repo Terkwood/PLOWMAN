@@ -73,4 +73,4 @@ func _ready():
 	
 	_manifest.clear()
 	_manifest = fc
-	_manifest["fence_rect2"] = bb
+	_manifest["zone"] = bb
