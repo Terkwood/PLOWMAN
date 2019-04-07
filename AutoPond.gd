@@ -79,8 +79,9 @@ func place(zone: Rect2):
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
 	var entry = StorageManifest.find_entry(StorageManifest.trim_path(get_path()), mfst)
-	#TODO
-	return Rect2(Vector2(0,0),Vector2(0,0))
+	
+	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
+					Vector2(entry["size_x"],entry["size_y"]))
 
 func _ready():
 	chunk_id = Chunk.id(self)

@@ -42,12 +42,14 @@ func generate(node: Node, accum: Dictionary = {}):
 	return accum
 
 func position_manifest(node: Node):
-	return { "position": node.position }
+	return { "position_x": node.position.x, "position_y": node.position.y }
 
 func size_position_manifest(node: Node):
 	return {
-			"size": node.size,
-			"position": node.position
+			"size_x": node.size.x,
+			"size_y": node.size.y,
+			"position_x": node.position.x,
+			"position_y": node.position.y,
 		}
 
 func find_entry(node_path: NodePath, manifst: Dictionary) -> Dictionary:
