@@ -77,4 +77,4 @@ onready var plants = [
 
 func _ready():
 	var plot = plants[randi()%plants.size()]
-	add_child(plot)
+	add_child(plot, true)

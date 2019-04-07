@@ -76,6 +76,7 @@ func save_chunk(cr, chunk_id: Vector2):
 	ProcZoneRepo.erase_chunk(chunk_id)
 	print("saved to disk: %s" % cr["storage_name"])
 
+const RESTORE_WITH_LEGIBLE_NAMES = true
 # dict prevents multiple calls at the same time
 var _pend_restore = {}
 func restore_chunk(file: String, chunk_id: Vector2):
@@ -85,7 +86,7 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	
 	## TODO: descend through the chunk's scene tree and
 	##       call with_manifest() on each individual node
-	add_child(chunk)
+	add_child(chunk, RESTORE_WITH_LEGIBLE_NAMES)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
 	dzi.call("deep_zindex_hack", chunk)
 	stored_chunks.erase(file)
