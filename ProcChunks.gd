@@ -82,6 +82,9 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	var chunk = storage.load_scene(file)
 	chunk.chunk_id = chunk_id
 	chunk._storage_name = file
+	
+	## TODO: descend through the chunk's scene tree and
+	##       call with_manifest() on each individual node
 	add_child(chunk)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
 	dzi.call("deep_zindex_hack", chunk)
