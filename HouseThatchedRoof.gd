@@ -1,7 +1,5 @@
 extends Node2D
 
-const StorageManifest = preload("res://StorageManifest.gd")
-
 var size = Vector2(196,196)
 
 onready var chunk_id = Chunk.id(self)

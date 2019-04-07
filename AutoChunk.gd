@@ -50,7 +50,6 @@ func init(chunk_id: Vector2):
 
 	for i in range(NUM_CHICKENS):
 		var cluck = AutoChicken.instance()
-		cluck.zone_size = Vector2(32,32)
 		add_child(cluck)
 		cluck.set_owner(self) # set owner so that resource saving works
 
