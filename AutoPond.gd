@@ -1,9 +1,6 @@
 extends Node2D
 
 export var size = Vector2(128,128)
-# Allows programmatic placement via explicit
-# call to the place() function
-export var delay_placement = true
 
 const NE_CORNER_TILE = "grass_water_edge_ne"
 const SE_CORNER_TILE = "grass_water_edge_se"
@@ -79,5 +76,4 @@ func place():
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func _ready():
-	if !delay_placement:
-		place()
+	place()
