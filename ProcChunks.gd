@@ -88,7 +88,7 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	var chunk = storage.load_scene(file)
 	chunk.chunk_id = chunk_id
 	chunk._storage_name = file
-	
+
 	if chunk_manifests.has(chunk_id):
 		print("set manifest %s" % chunk_manifests[chunk_id])
 		deep_set_manifests(chunk, chunk_manifests[chunk_id])

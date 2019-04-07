@@ -1,6 +1,6 @@
 extends Node
 
-static func merge_dir(target, patch):
+func merge_dir(target, patch):
 	for key in patch:
 		if target.has(key):
 			var tv = target[key]
@@ -12,7 +12,7 @@ static func merge_dir(target, patch):
 		    target[key] = patch[key]
 
 const PATH_MATCH = "*AutoChunk*"
-static func trim_path(p: NodePath):
+func trim_path(p: NodePath):
 	var idx = 0
 	var nc = p.get_name_count()
 	for x in range(nc):
@@ -29,7 +29,7 @@ static func trim_path(p: NodePath):
 ## Generate a storage manifest for a given type of node
 ## It should return a dictionary with reasonably-formatted
 ## information on the position of landmarks, etc.
-static func generate(node: Node, accum: Dictionary = {}):
+func generate(node: Node, accum: Dictionary = {}):
 	var path = trim_path(node.get_path())
 
 	if node.has_method("manifest"):
@@ -41,11 +41,20 @@ static func generate(node: Node, accum: Dictionary = {}):
 	
 	return accum
 
-static func position_manifest(node: Node):
+func position_manifest(node: Node):
 	return { "position": node.position }
 
-static func size_position_manifest(node: Node):
+func size_position_manifest(node: Node):
 	return {
 			"size": node.size,
 			"position": node.position
 		}
+
+func find_entry(node_path: NodePath, manifst: Dictionary) -> Dictionary:
+	var found: Dictionary = {}
+	for k in manifst.keys():
+		if k == node_path:
+			found = manifst[k]
+			print("FOUND MANIFEST %s" % found)
+			break
+	return found

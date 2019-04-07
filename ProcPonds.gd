@@ -16,8 +16,10 @@ func set_manifest(mfst: Dictionary):
 func _ready():
 	for i in range(num_ponds):
 		var pond = AutoPond.instance()
-		pond.size = Vector2(max(min_size.x,randi()%int(max_size.x)),
-							max(min_size.y,randi()%int(max_size.y)))
-		pond.set_manifest(_manifest)
+		if _manifest == null || _manifest.empty():
+			pond.size = Vector2(max(min_size.x,randi()%int(max_size.x)),
+								max(min_size.y,randi()%int(max_size.y)))
+		else:
+			pond.set_manifest(_manifest)
 		add_child(pond)
 	_manifest.clear()
