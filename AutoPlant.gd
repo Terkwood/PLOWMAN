@@ -13,18 +13,19 @@ const TILE_BUFFER = Vector2(8,8)
 onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + TILE_BUFFER.y)
 
 var size = Vector2(128,128)
-
 onready var chunk_id = Chunk.id(self)
+var plant_name = ""
 
 # You need to supply the expected array of preloads,
 # or we'll fail gloriously at runtime.  See below.
-func _init(s: Vector2, preloads):
+func _init(s: Vector2, preloads, plant_name: String):
 	size = s
 	young = preloads[0]
 	growing = preloads[1]
 	growing2 = preloads[2]
 	mature = preloads[3]
 	harvested = preloads[4]
+	self.plant_name = plant_name
 
 var _manifest = {}
 func manifest():
@@ -36,7 +37,8 @@ func _ready():
 	var num_plants_x = max(0,floor(zone.size.x / tile_size.x) - 1)
 	var num_plants_y = max(0,floor(zone.size.y / tile_size.y) - 1)
 	
-	var stage = stages[randi()%stages.size()]
+	var stage_num = randi()%stages.size()
+	var stage = stages[stage_num]
 	for x in num_plants_x:
 		for y in num_plants_y:
 			var plant = stage.instance()
@@ -46,5 +48,6 @@ func _ready():
 	
 	_manifest.clear()
 	_manifest["zone"] = zone
-	_manifest["stage"] = stage
+	_manifest["stage_num"] = stage_num
+	_manifest["plant_name"] = self.plant_name
 	

@@ -67,12 +67,12 @@ func rand_size():
 	return Vector2(max(96,randi()%int(size.x)), max (96,randi()%int(size.y)))
 
 onready var plants = [
-	auto_plant.new(rand_size(), ARTICHOKE_SCENES),
-	auto_plant.new(rand_size(), POTATO_SCENES),
-	auto_plant.new(rand_size(), CARROT_SCENES),
-	auto_plant.new(rand_size(), TOMATO_SCENES),
-	auto_plant.new(rand_size(), RED_PEPPER_SCENES),
-	auto_plant.new(rand_size(), CORN_SCENES),
+	auto_plant.new(rand_size(), ARTICHOKE_SCENES, "Artichoke"),
+	auto_plant.new(rand_size(), POTATO_SCENES, "Potato"),
+	auto_plant.new(rand_size(), CARROT_SCENES, "Carrot"),
+	auto_plant.new(rand_size(), TOMATO_SCENES, "Tomato"),
+	auto_plant.new(rand_size(), RED_PEPPER_SCENES, "Red Pepper"),
+	auto_plant.new(rand_size(), CORN_SCENES, "Corn"),
 ]
 
 func _ready():
