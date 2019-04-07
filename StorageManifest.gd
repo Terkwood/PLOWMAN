@@ -1,5 +1,6 @@
 extends Node
 
+const AutoPond = preload("res://AutoPond.gd")
 const HouseThatchedRoof = preload("res://HouseThatchedRoof.gd")
 
 ## TODO TODO TODO
@@ -25,6 +26,11 @@ static func generate(node: Node, accum: Dictionary = {}):
 	# position-only classes
 	if node is HouseThatchedRoof:
 		accum[path] = { "position": node.position }
+	elif node is AutoPond:
+		accum[path] = {
+			"size": node.size,
+			"position": node.position
+		}
 	#elif node.get_class() == "ProcFencedCow":
 	#	return {}
 	
