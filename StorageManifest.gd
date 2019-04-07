@@ -18,7 +18,7 @@ static func trim_path(p: NodePath):
 	for x in range(nc):
 		if p.get_name(x).match (PATH_MATCH):
 			idx = x
-	var trimmed = ""
+	var trimmed = "./"
 	var lim = nc - idx
 	for y in range(lim):
 		trimmed += p.get_name(y + idx)
