@@ -28,7 +28,6 @@ func _ready():
 
 func _on_player_entered_chunk(chunk_id: Vector2):
 	print("player entered chunk %s" % chunk_id)
-	$ChunkLabel.set_text("%s" % chunk_id)
 	for i in active_chunks:
 		if (
 			i.x < chunk_id.x - 1 || i.x > chunk_id.x + 1 ||
