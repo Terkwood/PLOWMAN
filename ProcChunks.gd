@@ -76,7 +76,12 @@ func save_chunk(cr, chunk_id: Vector2):
 	ProcZoneRepo.erase_chunk(chunk_id)
 	print("saved to disk: %s" % cr["storage_name"])
 
+# It's important to pass this flag so that we can easily
+# match the paths generated in the storage manifest.
+# If we don't pass it, `storage.load_scene` will continue
+# to add '@' characters onto the front of the instance name.
 const RESTORE_WITH_LEGIBLE_NAMES = true
+
 # dict prevents multiple calls at the same time
 var _pend_restore = {}
 func restore_chunk(file: String, chunk_id: Vector2):
