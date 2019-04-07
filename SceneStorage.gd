@@ -1,12 +1,13 @@
 extends Node
 
-const OUTPUT_FOLDER = "proc_packed"
+#FIXME
+#const OUTPUT_FOLDER = "proc_packed"
 
-func _ready():
-	var dir = Directory.new()
-	dir.open("user://")
-	dir.make_dir(OUTPUT_FOLDER)
-	dir.close()
+#func _ready():
+#	var dir = Directory.new()
+#	dir.open("user://")
+#	dir.make_dir(OUTPUT_FOLDER)
+#	dir.close()
 
 func save_scene(node: Node, name: String):
 	var packed_scene = PackedScene.new()
