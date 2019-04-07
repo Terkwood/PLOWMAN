@@ -12,8 +12,8 @@ const min_width  =  5   # in tiles
 const max_width  = 12   # in tiles
 const min_height =  5   # in tiles
 const max_height = 12   # in tiles
-const max_offset_x = Chunk.num_tiles_x - min_width  # in tiles
-const max_offset_y = Chunk.num_tiles_y - min_height # in tiles
+var max_offset_x = Chunk.num_tiles_x - min_width  # in tiles
+var max_offset_y = Chunk.num_tiles_y - min_height # in tiles
 
 const NW = 6
 const NE = 8
@@ -69,4 +69,4 @@ func _ready():
 	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
 	animate_cow()
 	make_fence(bb)
-	ProcZoneRepo.try_add_proc_zone(bb)
+	ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))

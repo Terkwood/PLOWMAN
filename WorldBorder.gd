@@ -1,9 +1,13 @@
 extends Node2D
 
-onready var auto_fence = preload("res://AutoFence.tscn")
+const AutoFence = preload("res://AutoFence.tscn")
 
 func _ready():
-	var fence = auto_fence.instance()
-	fence.init(Chunk.size())
+	var proc_chunks_parent = find_parent("ProcChunks")
+	var size = Chunk.size()
+	if proc_chunks_parent != null:
+		size = size * proc_chunks_parent.size
+	var fence = AutoFence.instance()
+	fence.init(size)
 	add_child(fence)
 	

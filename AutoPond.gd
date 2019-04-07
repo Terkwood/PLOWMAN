@@ -1,9 +1,6 @@
 extends Node2D
 
 export var size = Vector2(128,128)
-# Allows programmatic placement via explicit
-# call to the place() function
-export var delay_placement = true
 
 const NE_CORNER_TILE = "grass_water_edge_ne"
 const SE_CORNER_TILE = "grass_water_edge_se"
@@ -14,6 +11,7 @@ const E_BORDER_TILE = "grass_water_edge_e"
 const S_BORDER_TILE = "grass_water_edge_s"
 const W_BORDER_TILE = "grass_water_edge_w"
 
+var chunk_id = null
 
 func rand_water_tile():
 	var full_waters = [
@@ -33,10 +31,11 @@ func snap_size():
 					floor(size.y / Chunk.TILE_SIZE) * Chunk.TILE_SIZE)
 
 func place():
+	chunk_id = Chunk.id(self)
 	set_cell_size()
 	snap_size()
 	
-	var zone: Rect2 = ProcZoneRepo.assign_zone(size)
+	var zone: Rect2 = ProcZoneRepo.assign_zone(size, chunk_id)
 	position = zone.position
 	
 	var tx = zone.size.x - int(ceil(zone.size.x)) % Chunk.TILE_SIZE
@@ -77,5 +76,4 @@ func place():
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func _ready():
-	if !delay_placement:
-		place()
+	place()

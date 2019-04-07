@@ -1,16 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UICanvas.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DeepZIndexHack.gd" type="Script" id=2]
-[ext_resource path="res://ProcField.tscn" type="PackedScene" id=3]
-[ext_resource path="res://AutoChicken.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ProcFencedCow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ProcPlants.tscn" type="PackedScene" id=6]
-[ext_resource path="res://HouseThatchedRoof.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ProcPonds.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=10]
-[ext_resource path="res://DayNightCycle.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ProcChunks.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DayNightCycle.tscn" type="PackedScene" id=5]
 
 [node name="ProcFarm" type="Node2D"]
 
@@ -19,51 +13,10 @@
 [node name="DeepZIndexHack" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="ProcField" parent="DeepZIndexHack" instance=ExtResource( 3 )]
-z_index = -4096
-z_as_relative = false
+[node name="ProcChunks" parent="DeepZIndexHack" instance=ExtResource( 3 )]
 
-[node name="AutoChicken" parent="DeepZIndexHack" instance=ExtResource( 4 )]
-position = Vector2( 226, 151 )
-
-[node name="AutoChicken2" parent="DeepZIndexHack" instance=ExtResource( 4 )]
-position = Vector2( 226, 151 )
-
-[node name="AutoChicken3" parent="DeepZIndexHack" instance=ExtResource( 4 )]
-position = Vector2( 226, 151 )
-
-[node name="AutoChicken4" parent="DeepZIndexHack" instance=ExtResource( 4 )]
-position = Vector2( 226, 151 )
-zone_size = Vector2( 512, 512 )
-
-[node name="ProcFencedCow" parent="DeepZIndexHack" instance=ExtResource( 5 )]
-
-[node name="ProcPlants" parent="DeepZIndexHack" instance=ExtResource( 6 )]
-size = Vector2( 512, 1024 )
-
-[node name="ProcPlants2" parent="DeepZIndexHack" instance=ExtResource( 6 )]
-size = Vector2( 1024, 512 )
-
-[node name="ProcPlants3" parent="DeepZIndexHack" instance=ExtResource( 6 )]
-size = Vector2( 768, 768 )
-
-[node name="ProcPlants4" parent="DeepZIndexHack" instance=ExtResource( 6 )]
-size = Vector2( 768, 768 )
-
-[node name="ProcPlants5" parent="DeepZIndexHack" instance=ExtResource( 6 )]
-size = Vector2( 768, 768 )
-
-[node name="HouseThatchedRoof" parent="DeepZIndexHack" instance=ExtResource( 7 )]
-position = Vector2( 384, 192 )
-
-[node name="ProcPonds" parent="DeepZIndexHack" instance=ExtResource( 8 )]
-num_ponds = 2
-max_size = Vector2( 512, 512 )
-
-[node name="Player" parent="DeepZIndexHack" instance=ExtResource( 9 )]
+[node name="Player" parent="DeepZIndexHack" instance=ExtResource( 4 )]
 position = Vector2( 180, 276 )
 
-[node name="WorldBorder" parent="DeepZIndexHack" instance=ExtResource( 10 )]
-
-[node name="DayNightCycle" parent="." instance=ExtResource( 11 )]
+[node name="DayNightCycle" parent="." instance=ExtResource( 5 )]
 

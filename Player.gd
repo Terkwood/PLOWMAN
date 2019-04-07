@@ -46,7 +46,6 @@ var pickup_candidate_bodies = []
 func _on_ReachArea_body_entered(body):
 	var has_pickup_manager = body.has_node("PickupManager")
 	if has_pickup_manager:
-		print("Pickup OK: %s" % body.name)
 		pickup_candidate_bodies.push_front(body)
 
 func _on_ReachArea_body_exited(body):
