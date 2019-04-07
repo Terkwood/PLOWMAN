@@ -90,6 +90,7 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	chunk._storage_name = file
 	
 	if chunk_manifests.has(chunk_id):
+		print("set manifest %s" % chunk_manifests[chunk_id])
 		deep_set_manifests(chunk, chunk_manifests[chunk_id])
 
 	add_child(chunk, _RESTORE_WITH_LEGIBLE_NAMES)
@@ -100,11 +101,11 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	_pend_restore.erase(chunk_id)
 
 const SET_MANIFEST_METHOD = "set_manifest"
-func deep_set_manifests(chunk, mnfst: Dictionary):
-	for child in chunk.get_children():
-		if child.has_method(SET_MANIFEST_METHOD):
-			print("child has method " % child)
-			child.call(SET_MANIFEST_METHOD, mnfst)
-		if child.get_child_count() > 0:
-			deep_set_manifests(child, mnfst)
+func deep_set_manifests(node, mnfst: Dictionary):
+	print("%s (%s) chlrns %s" % [node,node.name,str(node.get_children())])
+	if node.has_method(SET_MANIFEST_METHOD):
+		print("node has set_manifest method " % node)
+		node.call(SET_MANIFEST_METHOD, mnfst)
+	for child in node.get_children():
+		deep_set_manifests(child, mnfst)
 
