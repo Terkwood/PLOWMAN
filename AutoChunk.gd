@@ -43,7 +43,6 @@ func init(chunk_id: Vector2, manifest: Dictionary = {}):
 	)
 
 	var field = ProcField.instance()
-#	set_manifest(field, manifest)
 	add_child(field)
 	field.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
 
