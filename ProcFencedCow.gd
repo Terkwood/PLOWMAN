@@ -70,7 +70,6 @@ func _ready():
 	animate_cow()
 	make_fence(bb)
 	ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
-	
-	_manifest.clear()
+
 	_manifest = fc
 	_manifest["zone"] = bb

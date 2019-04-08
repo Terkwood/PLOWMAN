@@ -22,4 +22,4 @@ func _ready():
 		else:
 			pond.set_manifest(_manifest)
 		add_child(pond)
-	_manifest.clear()
+	_manifest = {}
