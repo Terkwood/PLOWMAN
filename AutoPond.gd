@@ -80,9 +80,6 @@ func place(zone: Rect2):
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
 	var entry = StorageManifest.find_entry(self, mfst)
-	print("my entry %s" % entry)
-	print("my path %s" % StorageManifest.trim_path(get_path()))
-	print("-")
 	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
 					Vector2(entry["size_x"], entry["size_y"]))
 

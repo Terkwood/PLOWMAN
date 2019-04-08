@@ -70,7 +70,6 @@ func _ready():
 	var force_proc_zone = false
 	if _manifest && !_manifest.empty():
 		var man_entry = StorageManifest.find_entry(self, _manifest)
-		print("procfencedcow manifest entry? %s" % man_entry)
 		if !man_entry.empty():
 			fc = man_entry
 			bb = man_entry["zone"]

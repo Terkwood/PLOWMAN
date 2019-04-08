@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const ItemClass = preload("res://Item.gd")
 
-const WALK_SPEED = 666
+const WALK_SPEED = 1500 # 225
 
 var dir = Vector2()
 
