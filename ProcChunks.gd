@@ -50,7 +50,9 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 
 		for a in adjacents:
 			var cid_a = chunk_id + a
-			if !active_chunks.has(cid_a) && stored_chunks.has(cid_a):
+			var active_has_it = active_chunks.has(cid_a)
+			var stored_has_it = stored_chunks.has(cid_a)
+			if !active_has_it && stored_has_it:
 				var file = stored_chunks[cid_a]
 				# cannot create area2d when another area2d is undergoing
 				# physics processing.  this will defer the execution
@@ -58,6 +60,8 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 				if !_pend_restore.has(cid_a):
 					_pend_restore[cid_a] = file
 					call_deferred("restore_chunk", file, cid_a)
+			if !active_has_it && !stored_has_it:
+				print("GENERATE NEW")
 
 # dict prevents multiple calls at the same time
 var _pend_save = {}
