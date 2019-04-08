@@ -51,11 +51,8 @@ func place(zone: Rect2, stage_num: int):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var manifest_exists = _manifest && !_manifest.empty()
-	print("AutoPlant trimmed node path: %s" % StorageManifest.trim_path(get_path()))
-	print("Manifest: %s" % _manifest)
 	var mf_entry = StorageManifest.find_entry(self, _manifest)
 	if !mf_entry.empty():	
-		print("autoplant has a manifest entry :) %s" % mf_entry)
 		var size = Vector2(mf_entry["size_x"], mf_entry["size_y"])
 		var pos = Vector2(mf_entry["position_x"], mf_entry["position_y"])
 		var zone = Rect2(pos, size)

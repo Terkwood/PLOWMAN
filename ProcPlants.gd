@@ -90,7 +90,6 @@ func set_manifest(mfst: Dictionary):
 func _ready():
 	if _manifest && !_manifest.empty():
 		var man_entry = StorageManifest.find_entry(self, _manifest)
-		print("procpond manifest entry? %s" % man_entry)
 		if man_entry && !man_entry.empty() && man_entry.has(PLANT_TYPE_MANIFEST_KEY):
 			# override class vars
 			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]

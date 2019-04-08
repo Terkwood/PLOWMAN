@@ -15,14 +15,14 @@ onready var player = $"/root/ProcFarm".find_node("Player",true)
 const NUM_CHICKENS = 0
 const PLANT_SIZES = [
 		Vector2(512,1024),
-#		Vector2(1024,512),
-#		Vector2(512,768),
-#		Vector2(768,256),
-#		Vector2(384,384)
+		Vector2(1024,512),
+		Vector2(512,768),
+		Vector2(768,256),
+		Vector2(384,384)
 	]
 const NUM_PONDS = 1
 const DRAW_HOUSE = false
-const DRAW_FENCED_COW = false
+const DRAW_FENCED_COW = true
 
 var _storage_name = null
 func storage_name():
