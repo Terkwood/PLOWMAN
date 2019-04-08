@@ -78,8 +78,8 @@ func place(zone: Rect2):
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
-	var entry = StorageManifest.find_entry(StorageManifest.trim_path(get_path()), mfst)
-	
+	var entry = StorageManifest.find_entry(self, mfst)
+	print("pond storage manifest %s" % entry)
 	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
 					Vector2(entry["size_x"], entry["size_y"]))
 
