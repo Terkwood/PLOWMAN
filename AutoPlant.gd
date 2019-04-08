@@ -32,13 +32,10 @@ func manifest():
 func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var zone = ProcZoneRepo.assign_zone(size, chunk_id)
+func place(zone: Rect2, stage_num: int):
 	var num_plants_x = max(0,floor(zone.size.x / tile_size.x) - 1)
 	var num_plants_y = max(0,floor(zone.size.y / tile_size.y) - 1)
 	
-	var stage_num = randi()%stages.size()
 	var stage = stages[stage_num]
 	for x in num_plants_x:
 		for y in num_plants_y:
@@ -46,7 +43,13 @@ func _ready():
 			plant.position.x = zone.position.x + x * tile_size.x
 			plant.position.y = zone.position.y + y * tile_size.y
 			get_parent().add_child(plant)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var zone = ProcZoneRepo.assign_zone(size, chunk_id)
+	var stage_num = randi()%stages.size()
 	
+	place(zone, stage_num)
 	_manifest.clear()
 	_manifest["zone"] = zone
 	_manifest["stage_num"] = stage_num
