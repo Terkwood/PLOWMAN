@@ -79,17 +79,23 @@ func init(chunk_id: Vector2, manifest: Dictionary = {}):
 var live = false
 func _ready():
 	connect("player_entered_chunk", get_parent(), "_on_player_entered_chunk")
-	var area_2d = Area2D.new()
-	area_2d.position.x += Chunk.width() / 2
-	area_2d.position.y += Chunk.height() / 2
-	var collision_area = CollisionShape2D.new()
-	collision_area.shape = RectangleShape2D.new()
-	collision_area.shape.extents = Chunk.size() / 2
-	area_2d.connect("body_entered", self, "_on_Chunk_entered")
-	add_child(area_2d)
-	area_2d.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
-	area_2d.add_child(collision_area)
-	collision_area.set_owner(self) # set owner so that resource saving works
+	var area_is_declared = false
+	for child in get_children():
+		if child is Area2D:
+			area_is_declared = true
+			break
+	if !area_is_declared:
+		var area_2d = Area2D.new()
+		area_2d.position.x += Chunk.width() / 2
+		area_2d.position.y += Chunk.height() / 2
+		var collision_area = CollisionShape2D.new()
+		collision_area.shape = RectangleShape2D.new()
+		collision_area.shape.extents = Chunk.size() / 2
+		area_2d.connect("body_entered", self, "_on_Chunk_entered")
+		add_child(area_2d)
+		area_2d.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
+		area_2d.add_child(collision_area)
+		collision_area.set_owner(self) # set owner so that resource saving works
 	live = true
 
 func _on_Chunk_entered(body: PhysicsBody2D):
