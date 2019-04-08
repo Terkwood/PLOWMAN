@@ -4,7 +4,6 @@ export var size = Vector2(3,3)
 
 const AutoChunk = preload("res://AutoChunk.tscn")
 const SceneStorage = preload("res://SceneStorage.gd")
-const StorageManifest = preload("res://StorageManifest.gd")
 const DeepZIndexHack = preload("res://DeepZIndexHack.gd")
 
 var active_chunks = {}
@@ -12,7 +11,6 @@ var stored_chunks = {}
 var chunk_manifests = {}
 
 onready var storage = SceneStorage.new()
-onready var manifest = StorageManifest.new()
 onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
 
 func _ready():
@@ -67,7 +65,7 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 var _pend_save = {}
 func save_chunk(cr, chunk_id: Vector2):
 	var chunk = cr.chunk
-	var cmf = manifest.generate(chunk)
+	var cmf = StorageManifest.generate(chunk)
 	storage.save_scene(chunk, cr["storage_name"])
 	remove_child(chunk)
 	active_chunks.erase(chunk_id)

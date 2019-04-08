@@ -12,7 +12,7 @@ const ProcPonds = preload("res://ProcPonds.tscn")
 var chunk_id = null
 onready var player = $"/root/ProcFarm".find_node("Player",true)
 
-const NUM_CHICKENS = 4
+const NUM_CHICKENS = 0
 const PLANT_SIZES = [
 		Vector2(512,1024),
 		Vector2(1024,512),

@@ -30,15 +30,16 @@ func snap_size():
 	size = Vector2(floor(size.x / Chunk.TILE_SIZE) * Chunk.TILE_SIZE,
 					floor(size.y / Chunk.TILE_SIZE) * Chunk.TILE_SIZE)
 
-func manifest():
-	return StorageManifest.size_position_manifest(self)
 
 var _manifest = {}
+func manifest():
+	return _manifest
 func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
 func place(zone: Rect2):
-	position = zone.position
+	self.position = zone.position
+	self.size = zone.size
 	
 	var tx = zone.size.x - int(ceil(zone.size.x)) % Chunk.TILE_SIZE
 	var ty = zone.size.y - int(ceil(zone.size.y)) % Chunk.TILE_SIZE
@@ -79,6 +80,9 @@ func place(zone: Rect2):
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
 	var entry = StorageManifest.find_entry(self, mfst)
+	print("my entry %s" % entry)
+	print("my path %s" % StorageManifest.trim_path(get_path()))
+	print("-")
 	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
 					Vector2(entry["size_x"], entry["size_y"]))
 
@@ -87,11 +91,15 @@ func _ready():
 	set_cell_size()
 	snap_size()
 
-	if _manifest == null || _manifest.empty():
-		var zone: Rect2 = ProcZoneRepo.assign_zone(size, chunk_id)
+	var zone = Rect2(0,0,0,0)
+	var mf_entry = StorageManifest.find_entry(self, _manifest)
+	if mf_entry == null || mf_entry.empty():
+		zone = ProcZoneRepo.assign_zone(size, chunk_id)
 		place(zone)
 	else:
-		var zone: Rect2 = zone_from_manifest(_manifest)
-		self.size = zone.size
+		zone = zone_from_manifest(_manifest)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
 		place(zone)
+	self.set_manifest(StorageManifest.size_position_manifest(zone))
+	if _manifest.empty():
+		print("outbuond path %s,  manifest %s, " % [ StorageManifest.trim_path(get_path()),_manifest])

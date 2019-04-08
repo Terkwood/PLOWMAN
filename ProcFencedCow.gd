@@ -89,4 +89,4 @@ func _ready():
 
 	_manifest = fc
 	_manifest["zone"] = bb
-	print("it's set")
+

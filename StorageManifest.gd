@@ -54,11 +54,9 @@ func size_position_manifest(node):
 
 func find_entry(node: Node, manifst: Dictionary) -> Dictionary:
 	var node_path = trim_path(node.get_path())
-	print("node path %s" % node_path)
 	var found: Dictionary = {}
 	for k in manifst.keys():
 		if k == node_path:
 			found = manifst[k]
-			print("FOUND MANIFEST %s" % found)
 			break
 	return found
