@@ -1,7 +1,5 @@
 extends Node2D
 
-export var size = Vector2(3,3)
-
 const AutoChunk = preload("res://AutoChunk.tscn")
 const SceneStorage = preload("res://SceneStorage.gd")
 const DeepZIndexHack = preload("res://DeepZIndexHack.gd")
@@ -14,8 +12,8 @@ onready var storage = SceneStorage.new()
 onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
 
 func _ready():
-	for x in range(size.x):
-		for y in range(size.y):
+	for x in [-1, 0, 1]:
+		for y in [-1, 0, 1]:
 			var i = Vector2(x,y)
 			var c = AutoChunk.instance()
 			c.init(i)
