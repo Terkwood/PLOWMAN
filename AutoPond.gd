@@ -79,7 +79,6 @@ func place(zone: Rect2):
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
 	var entry = StorageManifest.find_entry(self, mfst)
-	print("pond storage manifest %s" % entry)
 	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
 					Vector2(entry["size_x"], entry["size_y"]))
 
@@ -94,6 +93,5 @@ func _ready():
 	else:
 		var zone: Rect2 = zone_from_manifest(_manifest)
 		self.size = zone.size
-		print("auto pond zone from manifest %s" % zone)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
 		place(zone)

@@ -31,12 +31,6 @@ func storage_name():
 	return _storage_name
 
 const SET_MANIFEST_METHOD = "set_manifest"
-#func use_manifest(node: Node, manifest: Dictionary) -> bool:
-#	return manifest && !manifest.empty() && node && node.has_method(SET_MANIFEST_METHOD)
-#func set_manifest(node: Node, manifest: Dictionary):
-#	if use_manifest(node, manifest):
-#		print("use use use")
-#		node.call(SET_MANIFEST_METHOD, manifest)
 
 # The presence of a manifest indicates that procedurally
 # generated areas should have positions, sizes, etc
@@ -57,13 +51,11 @@ func init(chunk_id: Vector2, manifest: Dictionary = {}):
 	# Because ProcFencedCow does not respect other nodes' proc zones
 	if DRAW_FENCED_COW:
 		var fenced_cow = ProcFencedCow.instance()
-#		set_manifest(fenced_cow, manifest)
 		add_child(fenced_cow)
 		fenced_cow.set_owner(self) # set owner so that resource saving works
 
 	for i in range(NUM_CHICKENS):
 		var cluck = AutoChicken.instance()
-#		set_manifest(cluck, manifest)
 		add_child(cluck)
 		cluck.set_owner(self) # set owner so that resource saving works
 

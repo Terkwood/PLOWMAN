@@ -44,7 +44,7 @@ func generate(node: Node, accum: Dictionary = {}):
 func position_manifest(node: Node):
 	return { "position_x": node.position.x, "position_y": node.position.y }
 
-func size_position_manifest(node: Node):
+func size_position_manifest(node):
 	return {
 			"size_x": node.size.x,
 			"size_y": node.size.y,

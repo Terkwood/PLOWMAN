@@ -90,10 +90,13 @@ func set_manifest(mfst: Dictionary):
 func _ready():
 	if _manifest && !_manifest.empty():
 		var man_entry = StorageManifest.find_entry(self, _manifest)
+		print("procpond manifest entry? %s" % man_entry)
 		if man_entry && !man_entry.empty() && man_entry.has(PLANT_TYPE_MANIFEST_KEY):
+			# override class vars
 			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]
 			size = man_entry[SIZE_MANIFEST_KEY]
 
-	var plot = AutoPlant.new(rand_size(),PLANT_SCENES[plant_type_num])
+	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num])
+	plot.set_manifest(_manifest)
 	add_child(plot, true)
 	self._manifest = {}
