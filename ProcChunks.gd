@@ -8,6 +8,7 @@ const DeepZIndexHack = preload("res://DeepZIndexHack.gd")
 
 var active_chunks = {}
 var stored_chunks = {}
+var chunk_manifests = {}
 
 onready var storage = SceneStorage.new()
 onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
@@ -64,13 +65,20 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 var _pend_save = {}
 func save_chunk(cr, chunk_id: Vector2):
 	var chunk = cr.chunk
+	var cmf = StorageManifest.generate(chunk)
 	storage.save_scene(chunk, cr["storage_name"])
 	remove_child(chunk)
 	active_chunks.erase(chunk_id)
 	stored_chunks[chunk_id] = cr["storage_name"]
+	chunk_manifests[chunk_id] = cmf
 	_pend_save.erase(chunk_id)
 	ProcZoneRepo.erase_chunk(chunk_id)
-	print("saved to disk: %s" % cr["storage_name"])
+
+# It's important to pass this flag so that we can easily
+# match the paths generated in the storage manifest.
+# If we don't pass it, `storage.load_scene` will continue
+# to add '@' characters onto the front of the instance name.
+const _RESTORE_WITH_LEGIBLE_NAMES = true
 
 # dict prevents multiple calls at the same time
 var _pend_restore = {}
@@ -78,9 +86,21 @@ func restore_chunk(file: String, chunk_id: Vector2):
 	var chunk = storage.load_scene(file)
 	chunk.chunk_id = chunk_id
 	chunk._storage_name = file
-	add_child(chunk)
+
+	if chunk_manifests.has(chunk_id):
+		deep_set_manifests(chunk, chunk_manifests[chunk_id])
+
+	add_child(chunk, _RESTORE_WITH_LEGIBLE_NAMES)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
 	dzi.call("deep_zindex_hack", chunk)
 	stored_chunks.erase(file)
 	active_chunks[chunk_id] = {"chunk":chunk,"storage_name":file}
 	_pend_restore.erase(chunk_id)
+
+const SET_MANIFEST_METHOD = "set_manifest"
+func deep_set_manifests(node, mnfst: Dictionary):
+	if node.has_method(SET_MANIFEST_METHOD):
+		node.call(SET_MANIFEST_METHOD, mnfst)
+	for child in node.get_children():
+		deep_set_manifests(child, mnfst)
+

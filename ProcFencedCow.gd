@@ -42,7 +42,7 @@ func gen_fence_tiles():
 	var num_tiles_x = int(min(Chunk.num_tiles_x - tile_offset_x, min_width + randi()%max_width))
 	var num_tiles_y = int(min(Chunk.num_tiles_y - tile_offset_y, min_height + randi()%max_height))
 	
-	return [tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y]
+	return {"tile_offset_x": tile_offset_x, "tile_offset_y":tile_offset_y, "num_tiles_x":num_tiles_x, "num_tiles_y":num_tiles_y}
 	
 func place_cow(tile_offset_x, tile_offset_y, width, height):
 	Cow.position.x = (tile_offset_x + 2 + randi()%(int(max(1,width-3)))) * Chunk.TILE_SIZE
@@ -57,16 +57,35 @@ func make_fence(bb):
 	fence.init(bb.size)
 	fence.position = bb.position
 	add_child(fence)
-	
+
+var _manifest = {}
+func manifest():
+	return _manifest
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
+
 func _ready():
-	randomize()
-	var fc = gen_fence_tiles()
-	var tile_offset_x = fc[0]
-	var tile_offset_y = fc[1]
-	var num_tiles_x = fc[2]
-	var num_tiles_y = fc[3]
-	var bb = pixel_bounding_box(tile_offset_x,tile_offset_y,num_tiles_x,num_tiles_y)
-	place_cow(tile_offset_x, tile_offset_y, num_tiles_x, num_tiles_y)
+	var fc = {}
+	var bb = Rect2(0,0,0,0)
+	var force_proc_zone = false
+	if _manifest && !_manifest.empty():
+		var man_entry = StorageManifest.find_entry(self, _manifest)
+		if !man_entry.empty():
+			fc = man_entry
+			bb = man_entry["zone"]
+			force_proc_zone = true
+	else:
+		fc = gen_fence_tiles()
+		bb = pixel_bounding_box(fc["tile_offset_x"], fc["tile_offset_y"], fc["num_tiles_x"], fc["num_tiles_y"])
+	
+	place_cow(fc["tile_offset_x"], fc["tile_offset_y"], fc["num_tiles_x"], fc["num_tiles_y"])
 	animate_cow()
 	make_fence(bb)
-	ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
+	if force_proc_zone:
+		ProcZoneRepo.force_assign_zone(bb, Chunk.id(self))
+	else:
+		ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
+
+	_manifest = fc
+	_manifest["zone"] = bb
+

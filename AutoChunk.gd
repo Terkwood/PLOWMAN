@@ -30,7 +30,12 @@ func storage_name():
 		_storage_name = "chunk_%d_%s" % [OS.get_unix_time(), chunk_id]
 	return _storage_name
 
-func init(chunk_id: Vector2):
+const SET_MANIFEST_METHOD = "set_manifest"
+
+# The presence of a manifest indicates that procedurally
+# generated areas should have positions, sizes, etc
+# restored to the listed values.
+func init(chunk_id: Vector2, manifest: Dictionary = {}):
 	self.chunk_id = chunk_id
 	self.position = Vector2(
 		chunk_id.x * Chunk.width(),
@@ -50,13 +55,12 @@ func init(chunk_id: Vector2):
 
 	for i in range(NUM_CHICKENS):
 		var cluck = AutoChicken.instance()
-		cluck.zone_size = Vector2(256,256)
 		add_child(cluck)
 		cluck.set_owner(self) # set owner so that resource saving works
 
 	for s in PLANT_SIZES:
 		var plants = ProcPlants.instance()
-		plants.size = s
+		plants.max_size = s
 		add_child(plants)
 		plants.set_owner(self) # set owner so that resource saving works
 
@@ -70,24 +74,30 @@ func init(chunk_id: Vector2):
 		add_child(house)
 		house.set_owner(self)# set owner so that resource saving works
 
-	print("chunk _init complete: %s" % chunk_id)
 
 var live = false
 func _ready():
 	connect("player_entered_chunk", get_parent(), "_on_player_entered_chunk")
-	var area_2d = Area2D.new()
-	area_2d.position.x += Chunk.width() / 2
-	area_2d.position.y += Chunk.height() / 2
-	var collision_area = CollisionShape2D.new()
-	collision_area.shape = RectangleShape2D.new()
-	collision_area.shape.extents = Chunk.size() / 2
+	var area_is_declared = false
+	var area_2d = null
+	for child in get_children():
+		if child is Area2D:
+			area_2d = child
+			area_is_declared = true
+			break
+	if !area_is_declared:
+		area_2d = Area2D.new()
+		area_2d.position.x += Chunk.width() / 2
+		area_2d.position.y += Chunk.height() / 2
+		var collision_area = CollisionShape2D.new()
+		collision_area.shape = RectangleShape2D.new()
+		collision_area.shape.extents = Chunk.size() / 2
+		add_child(area_2d)
+		area_2d.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
+		area_2d.add_child(collision_area)
+		collision_area.set_owner(self) # set owner so that resource saving works
 	area_2d.connect("body_entered", self, "_on_Chunk_entered")
-	add_child(area_2d)
-	area_2d.set_owner(self) # set owner so that resource saving works, https://godotengine.org/qa/903/how-to-save-a-scene-at-run-time
-	area_2d.add_child(collision_area)
-	collision_area.set_owner(self) # set owner so that resource saving works
 	live = true
-	print("chunk _ready complete: %s" % chunk_id)
 
 func _on_Chunk_entered(body: PhysicsBody2D):
 	if live && body == player:

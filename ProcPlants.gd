@@ -1,8 +1,9 @@
 extends Node2D
 
-export var size = Vector2(1024,1024)
+const MIN_SIZE = Vector2(96,96)
+export var max_size = Vector2(1024,1024)
 
-onready var TOMATO_SCENES = [
+const TOMATO_SCENES = [
 	preload("res://TomatoYoung.tscn"),
 	preload("res://TomatoGrowing.tscn"),
 	preload("res://TomatoGrowing2.tscn"),
@@ -10,7 +11,7 @@ onready var TOMATO_SCENES = [
 	preload("res://TomatoHarvested.tscn")
 ]
 
-onready var CARROT_SCENES = [
+const CARROT_SCENES = [
 	preload("res://CarrotYoung.tscn"),
 	preload("res://CarrotGrowing.tscn"),
 	preload("res://CarrotGrowing2.tscn"),
@@ -18,7 +19,7 @@ onready var CARROT_SCENES = [
 	preload("res://CarrotHarvested.tscn")
 ]
 
-onready var POTATO_SCENES = [
+const POTATO_SCENES = [
 	preload("res://PotatoYoung.tscn"),
 	preload("res://PotatoGrowing.tscn"),
 	preload("res://PotatoGrowing2.tscn"),
@@ -26,7 +27,7 @@ onready var POTATO_SCENES = [
 	preload("res://PotatoHarvested.tscn")
 ]
 
-onready var ARTICHOKE_SCENES = [
+const ARTICHOKE_SCENES = [
 	preload("res://ArtichokeYoung.tscn"), 
 	preload("res://ArtichokeGrowing.tscn"),
 	preload("res://ArtichokeGrowing2.tscn"),
@@ -34,8 +35,7 @@ onready var ARTICHOKE_SCENES = [
 	preload("res://ArtichokeHarvested.tscn")
 ]
 
-
-onready var RED_PEPPER_SCENES = [
+const RED_PEPPER_SCENES = [
 	preload("res://RedPepperYoung.tscn"), 
 	preload("res://RedPepperGrowing.tscn"),
 	preload("res://RedPepperGrowing2.tscn"),
@@ -43,8 +43,7 @@ onready var RED_PEPPER_SCENES = [
 	preload("res://RedPepperHarvested.tscn")
 ]
 
-
-onready var ZUCCHINI_SCENES = [
+const ZUCCHINI_SCENES = [
 	preload("res://ZucchiniYoung.tscn"), 
 	preload("res://ZucchiniGrowing.tscn"),
 	preload("res://ZucchiniGrowing2.tscn"),
@@ -52,7 +51,7 @@ onready var ZUCCHINI_SCENES = [
 	preload("res://ZucchiniHarvested.tscn")
 ]
 
-onready var CORN_SCENES = [
+const CORN_SCENES = [
 	preload("res://CornYoung.tscn"), 
 	preload("res://CornGrowing.tscn"),
 	preload("res://CornGrowing2.tscn"),
@@ -60,21 +59,43 @@ onready var CORN_SCENES = [
 	preload("res://CornHarvested.tscn")
 ]
 
-
-onready var auto_plant = load("res://AutoPlant.gd")
+const AutoPlant = preload("res://AutoPlant.gd")
 
 func rand_size():
-	return Vector2(max(96,randi()%int(size.x)), max (96,randi()%int(size.y)))
+	return Vector2(max(MIN_SIZE.x, randi()%int(max_size.x)),
+					max(MIN_SIZE.y, randi()%int(max_size.y)))
 
-onready var plants = [
-	auto_plant.new(rand_size(), ARTICHOKE_SCENES),
-	auto_plant.new(rand_size(), POTATO_SCENES),
-	auto_plant.new(rand_size(), CARROT_SCENES),
-	auto_plant.new(rand_size(), TOMATO_SCENES),
-	auto_plant.new(rand_size(), RED_PEPPER_SCENES),
-	auto_plant.new(rand_size(), CORN_SCENES),
+onready var PLANT_SCENES = [
+	ARTICHOKE_SCENES,
+	POTATO_SCENES,
+	CARROT_SCENES,
+	TOMATO_SCENES,
+	RED_PEPPER_SCENES,
+	CORN_SCENES,
 ]
 
+onready var plant_type_num = randi()%PLANT_SCENES.size()
+
+const PLANT_TYPE_MANIFEST_KEY = "plant_type_num"
+const SIZE_MANIFEST_KEY = "size"
+
+onready var size = rand_size()
+func manifest() -> Dictionary:
+	return { PLANT_TYPE_MANIFEST_KEY: plant_type_num, SIZE_MANIFEST_KEY: size }
+
+var _manifest = {}
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
+
 func _ready():
-	var plot = plants[randi()%plants.size()]
-	add_child(plot)
+	if _manifest && !_manifest.empty():
+		var man_entry = StorageManifest.find_entry(self, _manifest)
+		if man_entry && !man_entry.empty() && man_entry.has(PLANT_TYPE_MANIFEST_KEY):
+			# override class vars
+			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]
+			size = man_entry[SIZE_MANIFEST_KEY]
+
+	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num])
+	plot.set_manifest(_manifest)
+	add_child(plot, true)
+	self._manifest = {}

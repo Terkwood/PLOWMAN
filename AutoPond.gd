@@ -30,13 +30,16 @@ func snap_size():
 	size = Vector2(floor(size.x / Chunk.TILE_SIZE) * Chunk.TILE_SIZE,
 					floor(size.y / Chunk.TILE_SIZE) * Chunk.TILE_SIZE)
 
-func place():
-	chunk_id = Chunk.id(self)
-	set_cell_size()
-	snap_size()
-	
-	var zone: Rect2 = ProcZoneRepo.assign_zone(size, chunk_id)
-	position = zone.position
+
+var _manifest = {}
+func manifest():
+	return _manifest
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
+
+func place(zone: Rect2):
+	self.position = zone.position
+	self.size = zone.size
 	
 	var tx = zone.size.x - int(ceil(zone.size.x)) % Chunk.TILE_SIZE
 	var ty = zone.size.y - int(ceil(zone.size.y)) % Chunk.TILE_SIZE
@@ -76,4 +79,17 @@ func place():
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func _ready():
-	place()
+	chunk_id = Chunk.id(self)
+	set_cell_size()
+	snap_size()
+
+	var zone = StorageManifest.find_zone(self, _manifest)
+	if zone == StorageManifest.NO_ZONE:
+		zone = ProcZoneRepo.assign_zone(size, chunk_id)
+		place(zone)
+	else:
+		ProcZoneRepo.force_assign_zone(zone, chunk_id)
+		place(zone)
+	self.set_manifest(StorageManifest.size_position_manifest(zone))
+	if _manifest.empty():
+		print("outbuond path %s,  manifest %s, " % [ StorageManifest.trim_path(get_path()),_manifest])
