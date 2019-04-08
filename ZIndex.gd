@@ -1,6 +1,8 @@
 extends Node
 
 const _RATE = 0.125
+const _GR = 1000
+const _M = _GR * _GR
 
 func hack(s: Sprite):
 	# You can set the "actual z index", if you want!
@@ -9,7 +11,9 @@ func hack(s: Sprite):
 
 	var g = s.get_global_transform().get_origin().y + s.region_rect.size.y / 2 * s.scale.y
 	var h = g * _RATE + actual_z_index
-	if h < 0 && randi()%10 <3:
-		print("hack %f" %  h )
-	s.z_index = h
+	var i = int(h * _GR) if h >= 0 else int((_GR - abs(h)) * _GR)
+	var j: float = (i % _M) / _GR
+	if i < 0 && randi()%10 <3:
+		print("hack %f" %  i )
+	s.z_index = j
 	s.z_as_relative = false
