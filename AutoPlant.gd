@@ -14,6 +14,7 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 var size = Vector2(128,128)
 onready var chunk_id = Chunk.id(self)
+onready var stage_num = randi()%stages.size()
 
 # You need to supply the expected array of preloads,
 # or we'll fail gloriously at runtime.  See below.
@@ -43,7 +44,9 @@ func place(zone: Rect2, stage_num: int):
 			plant.position.x = zone.position.x + x * tile_size.x
 			plant.position.y = zone.position.y + y * tile_size.y
 			get_parent().add_child(plant)
-	self.set_manifest(StorageManifest.size_position_manifest(zone))
+	var mf = StorageManifest.size_position_manifest(zone)
+	mf["stage_num"] = stage_num
+	self.set_manifest(mf)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,11 +60,10 @@ func _ready():
 		var pos = Vector2(mf_entry["position_x"], mf_entry["position_y"])
 		var zone = Rect2(pos, size)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
-		var stage_num: int = mf_entry["stage_num"]
+		self.stage_num = mf_entry["stage_num"]
 		place(zone, stage_num)
 	else:
 		var zone = ProcZoneRepo.assign_zone(size, chunk_id)
-		var stage_num = randi()%stages.size()
 		place(zone, stage_num)
 		_manifest = {}
 		_manifest["position_x"] = zone.position.x
