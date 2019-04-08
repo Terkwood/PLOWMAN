@@ -75,6 +75,22 @@ onready var plants = [
 	auto_plant.new(rand_size(), CORN_SCENES, "Corn"),
 ]
 
+onready var plant_type_num = randi()%plants.size()
+
+const MANIFEST_KEY = "plant_type_num"
+
+func manifest() -> Dictionary:
+	return { MANIFEST_KEY: plant_type_num }
+
+var _manifest = {}
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
+
 func _ready():
-	var plot = plants[randi()%plants.size()]
+	if _manifest && !_manifest.empty():
+		var man_entry = StorageManifest.find_entry(self, _manifest)
+		if man_entry && !man_entry.empty() && man_entry.has(MANIFEST_KEY):
+			plant_type_num = man_entry[MANIFEST_KEY]
+
+	var plot = plants[plant_type_num]
 	add_child(plot, true)

@@ -52,7 +52,8 @@ func size_position_manifest(node: Node):
 			"position_y": node.position.y,
 		}
 
-func find_entry(node_path: NodePath, manifst: Dictionary) -> Dictionary:
+func find_entry(node: Node, manifst: Dictionary) -> Dictionary:
+	var node_path = trim_path(node.get_path())
 	var found: Dictionary = {}
 	for k in manifst.keys():
 		if k == node_path:

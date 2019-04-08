@@ -78,8 +78,7 @@ func place(zone: Rect2):
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
 func zone_from_manifest(mfst: Dictionary) -> Rect2:
-	var entry = StorageManifest.find_entry(StorageManifest.trim_path(get_path()), mfst)
-	
+	var entry = StorageManifest.find_entry(self, mfst)
 	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
 					Vector2(entry["size_x"], entry["size_y"]))
 
@@ -97,3 +96,4 @@ func _ready():
 		print("auto pond zone from manifest %s" % zone)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
 		place(zone)
+		_manifest.clear()
