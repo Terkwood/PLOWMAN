@@ -46,11 +46,22 @@ func place(zone: Rect2, stage_num: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var zone = ProcZoneRepo.assign_zone(size, chunk_id)
-	var stage_num = randi()%stages.size()
-	
-	place(zone, stage_num)
-	_manifest.clear()
-	_manifest["zone"] = zone
-	_manifest["stage_num"] = stage_num
+	if _manifest == null || _manifest.empty():
+			var zone = ProcZoneRepo.assign_zone(size, chunk_id)
+			var stage_num = randi()%stages.size()
+			place(zone, stage_num)
+			_manifest = {}
+			_manifest["position_x"] = zone.position.x
+			_manifest["position_y"] = zone.position.y
+			_manifest["size_x"] = zone.size.x
+			_manifest["size_y"] = zone.size.y
+			_manifest["stage_num"] = stage_num
+	else:
+			var mf_entry = StorageManifest.find_entry(self, _manifest)
+			var size = Vector2(mf_entry["size_x"], mf_entry["size_y"])
+			var pos = Vector2(mf_entry["position_x"], mf_entry["position_y"])
+			var zone = Rect2(pos, size)
+			ProcZoneRepo.force_assign_zone(zone, chunk_id)
+			var stage_num: int = mf_entry["stage_num"]
+			place(zone, stage_num)
 	
