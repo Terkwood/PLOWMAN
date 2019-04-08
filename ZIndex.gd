@@ -9,6 +9,9 @@ func hack(s: Sprite):
 	var az = s.get("actual_z_index")
 	var actual_z_index = az if az else 0.0
 
+	# these arithmetic gymnastics will ensure
+	# that z-index is reasonable in negatively-numbered
+	# position.y values
 	var g = s.get_global_transform().get_origin().y + s.region_rect.size.y / 2 * s.scale.y
 	var h = g * _RATE + actual_z_index
 	var i = int(h * _GR) if h >= 0 else int((_GR - abs(h)) * _GR)
