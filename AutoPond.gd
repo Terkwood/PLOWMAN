@@ -93,5 +93,7 @@ func _ready():
 		place(zone)
 	else:
 		var zone: Rect2 = zone_from_manifest(_manifest)
+		self.size = zone.size
+		print("auto pond zone from manifest %s" % zone)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
 		place(zone)
