@@ -5,13 +5,24 @@ extends Node2D
 # rect on _ready, if you wanted each chicken to have a unique
 # zone size
 export var zone_size: Vector2 = Vector2(128,128)
-export var random_position = true
 
+var _world_manifest = {}
+func set_manifest(mfst: Dictionary):
+	_world_manifest = mfst
+
+onready var collision_rect: RectangleShape2D = $Area2D/CollisionShape2D.shape
 func manifest():
-	return StorageManifest.position_manifest(self)
+	var mf = StorageManifest.position_manifest(self)
+	mf["size_x"] =collision_rect.extents.x
+	mf["size_y"] = collision_rect.extents.y
+	return mf
 
 func _ready():
-	if random_position:
+	var mfst_entry = StorageManifest.find_entry(self, _world_manifest)
+	
+	if mfst_entry.empty():
 		position = Vector2(randi()%Chunk.width(), randi()%Chunk.height())
-	var collision_rect: RectangleShape2D = $Area2D/CollisionShape2D.shape
-	collision_rect.extents = zone_size
+		collision_rect.extents = zone_size
+	else:
+		position = Vector2(mfst_entry["position_x"], mfst_entry["position_y"])
+		collision_rect.extents = Vector2(mfst_entry["size_x"], mfst_entry["size_y"])
