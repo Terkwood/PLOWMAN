@@ -61,15 +61,31 @@ func make_fence(bb):
 var _manifest = {}
 func manifest():
 	return _manifest
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
 
 func _ready():
-	randomize()
-	var fc = gen_fence_tiles()
-	var bb = pixel_bounding_box(fc["tile_offset_x"], fc["tile_offset_y"], fc["num_tiles_x"], fc["num_tiles_y"])
+	var fc = {}
+	var bb = Rect2(0,0,0,0)
+	var force_proc_zone = false
+	if _manifest && !_manifest.empty():
+		var man_entry = StorageManifest.find_entry(self, _manifest)
+		print("procfencedcow manifest entry? %s" % man_entry)
+		if !man_entry.empty():
+			fc = man_entry
+			bb = man_entry["zone"]
+			force_proc_zone = true
+	else:
+		fc = gen_fence_tiles()
+		bb = pixel_bounding_box(fc["tile_offset_x"], fc["tile_offset_y"], fc["num_tiles_x"], fc["num_tiles_y"])
+	
 	place_cow(fc["tile_offset_x"], fc["tile_offset_y"], fc["num_tiles_x"], fc["num_tiles_y"])
 	animate_cow()
 	make_fence(bb)
-	ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
+	if force_proc_zone:
+		ProcZoneRepo.force_assign_zone(bb, Chunk.id(self))
+	else:
+		ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
 
 	_manifest = fc
 	_manifest["zone"] = bb
