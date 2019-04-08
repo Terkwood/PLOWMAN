@@ -76,6 +76,24 @@ onready var PLANT_SCENES = [
 
 onready var plant_type_num = randi()%PLANT_SCENES.size()
 
+const PLANT_TYPE_MANIFEST_KEY = "plant_type_num"
+const SIZE_MANIFEST_KEY = "size"
+
+onready var size = rand_size()
+func manifest() -> Dictionary:
+	return { PLANT_TYPE_MANIFEST_KEY: plant_type_num, SIZE_MANIFEST_KEY: size }
+
+var _manifest = {}
+func set_manifest(mfst: Dictionary):
+	self._manifest = mfst
+
 func _ready():
+	if _manifest && !_manifest.empty():
+		var man_entry = StorageManifest.find_entry(self, _manifest)
+		if man_entry && !man_entry.empty() && man_entry.has(PLANT_TYPE_MANIFEST_KEY):
+			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]
+			size = man_entry[SIZE_MANIFEST_KEY]
+
 	var plot = AutoPlant.new(rand_size(),PLANT_SCENES[plant_type_num])
 	add_child(plot, true)
+	self._manifest = {}
