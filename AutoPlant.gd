@@ -14,25 +14,23 @@ onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + T
 
 var size = Vector2(128,128)
 onready var chunk_id = Chunk.id(self)
-var plant_name = ""
 
 # You need to supply the expected array of preloads,
 # or we'll fail gloriously at runtime.  See below.
-func _init(s: Vector2, preloads, plant_name: String):
+func _init(s: Vector2, preloads):
 	size = s
 	young = preloads[0]
 	growing = preloads[1]
 	growing2 = preloads[2]
 	mature = preloads[3]
 	harvested = preloads[4]
-	self.plant_name = plant_name
 
 var _manifest = {}
 func manifest():
 	return _manifest
 
 func set_manifest(mfst: Dictionary):
-	print("auto plant set manifest")
+	self._manifest = mfst
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,5 +50,4 @@ func _ready():
 	_manifest.clear()
 	_manifest["zone"] = zone
 	_manifest["stage_num"] = stage_num
-	_manifest["plant_name"] = self.plant_name
 	
