@@ -78,23 +78,16 @@ func place(zone: Rect2):
 		for y in range(max(0, num_tiles_y - 1)):
 			$TileMap.set_cellv(Vector2(x + 1,y + 1), rand_water_tile())
 
-func zone_from_manifest(mfst: Dictionary) -> Rect2:
-	var entry = StorageManifest.find_entry(self, mfst)
-	return Rect2(Vector2(entry["position_x"], entry["position_y"]),
-					Vector2(entry["size_x"], entry["size_y"]))
-
 func _ready():
 	chunk_id = Chunk.id(self)
 	set_cell_size()
 	snap_size()
 
-	var zone = Rect2(0,0,0,0)
-	var mf_entry = StorageManifest.find_entry(self, _manifest)
-	if mf_entry == null || mf_entry.empty():
+	var zone = StorageManifest.find_zone(self, _manifest)
+	if zone == StorageManifest.NO_ZONE:
 		zone = ProcZoneRepo.assign_zone(size, chunk_id)
 		place(zone)
 	else:
-		zone = zone_from_manifest(_manifest)
 		ProcZoneRepo.force_assign_zone(zone, chunk_id)
 		place(zone)
 	self.set_manifest(StorageManifest.size_position_manifest(zone))

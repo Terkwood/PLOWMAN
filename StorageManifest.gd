@@ -60,3 +60,12 @@ func find_entry(node: Node, manifst: Dictionary) -> Dictionary:
 			found = manifst[k]
 			break
 	return found
+
+const NO_ZONE = Rect2(0,0,0,0)
+func find_zone(node, mfst: Dictionary, default: Rect2 = Rect2(0,0,0,0)) -> Rect2:
+	var entry = StorageManifest.find_entry(node, mfst)
+	return Rect2(
+			Vector2(entry.get("position_x",default.position.x),
+					entry.get("position_y",default.position.y)),
+			Vector2(entry.get("size_x",default.size.x),
+				    entry.get("size_y",default.size.y)))
