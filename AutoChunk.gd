@@ -69,7 +69,7 @@ func init(chunk_id: Vector2, manifest: Dictionary = {}):
 
 	for s in PLANT_SIZES:
 		var plants = ProcPlants.instance()
-		plants.size = s
+		plants.max_size = s
 		add_child(plants)
 		plants.set_owner(self) # set owner so that resource saving works
 
