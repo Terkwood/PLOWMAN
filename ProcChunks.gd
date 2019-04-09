@@ -18,7 +18,7 @@ func create_chunk(chunk_id):
 		"chunk": c,
 		"storage_name": c.storage_name()
 	}
-	add_child(c)
+	call_deferred("add_child", c)
 	return c
 
 func _ready():
