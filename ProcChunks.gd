@@ -11,17 +11,21 @@ var chunk_manifests = {}
 onready var storage = SceneStorage.new()
 onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
 
+func create_chunk(chunk_id):
+	var c = AutoChunk.instance()
+	c.init(chunk_id)
+	active_chunks[chunk_id] = {
+		"chunk": c,
+		"storage_name": c.storage_name()
+	}
+	add_child(c)
+	return c
+
 func _ready():
 	for x in [-1, 0, 1]:
 		for y in [-1, 0, 1]:
-			var i = Vector2(x,y)
-			var c = AutoChunk.instance()
-			c.init(i)
-			active_chunks[i] = {
-				"chunk": c,
-				"storage_name": c.storage_name()
-			}
-			add_child(c)
+			var chunk_id = Vector2(x,y)
+			create_chunk(chunk_id)
 	
 	connect("chunk_restored", dzi, "_on_chunk_restored")
 
@@ -61,7 +65,7 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 					_pend_restore[cid_a] = file
 					call_deferred("restore_chunk", file, cid_a)
 			if !active_has_it && !stored_has_it:
-				print("GENERATE NEW")
+				call_deferred("create_chunk", cid_a)
 
 # dict prevents multiple calls at the same time
 var _pend_save = {}

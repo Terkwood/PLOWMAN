@@ -72,7 +72,7 @@ func _ready():
 		var man_entry = StorageManifest.find_entry(self, _manifest)
 		if !man_entry.empty():
 			fc = man_entry
-			bb = man_entry["zone"]
+			bb = Rect2(man_entry["position_x"], man_entry["position_y"], man_entry["size_x"], man_entry["size_y"])
 			force_proc_zone = true
 	else:
 		fc = gen_fence_tiles()
@@ -86,6 +86,8 @@ func _ready():
 	else:
 		ProcZoneRepo.try_add_proc_zone(bb, Chunk.id(self))
 
-	_manifest = fc
-	_manifest["zone"] = bb
+	_manifest = fc.duplicate()
+	var bbmf = StorageManifest.size_position_manifest(bb)
+	for k in bbmf:
+		_manifest[k] = bbmf[k]
 
