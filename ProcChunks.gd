@@ -65,7 +65,7 @@ func _on_player_entered_chunk(chunk_id: Vector2):
 					_pend_restore[cid_a] = file
 					call_deferred("restore_chunk", file, cid_a)
 			if !active_has_it && !stored_has_it:
-				call_deferred("create_chunk", cid_a)
+				create_chunk(cid_a)
 
 # dict prevents multiple calls at the same time
 var _pend_save = {}
@@ -74,6 +74,7 @@ func save_chunk(cr, chunk_id: Vector2):
 	var cmf = StorageManifest.generate(chunk)
 	storage.save_scene(chunk, cr["storage_name"])
 	remove_child(chunk)
+	chunk.queue_free()
 	active_chunks.erase(chunk_id)
 	stored_chunks[chunk_id] = cr["storage_name"]
 	chunk_manifests[chunk_id] = cmf
