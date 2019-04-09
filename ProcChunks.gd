@@ -9,7 +9,6 @@ var stored_chunks = {}
 var chunk_manifests = {}
 
 onready var storage = SceneStorage.new()
-onready var dzi: DeepZIndexHack = $"/root/ProcFarm".find_node("DeepZIndexHack",true)
 
 func create_chunk(chunk_id):
 	var c = AutoChunk.instance()
@@ -26,8 +25,6 @@ func _ready():
 		for y in [-1, 0, 1]:
 			var chunk_id = Vector2(x,y)
 			create_chunk(chunk_id)
-	
-	connect("chunk_restored", dzi, "_on_chunk_restored")
 
 func _on_player_entered_chunk(chunk_id: Vector2):
 	print("player entered chunk %s" % chunk_id)
@@ -99,7 +96,7 @@ func restore_chunk(file: String, chunk_id: Vector2):
 
 	add_child(chunk, _RESTORE_WITH_LEGIBLE_NAMES)
 	chunk.set_owner(get_parent()) # set owner so that resource saving works
-	dzi.call("deep_zindex_hack", chunk)
+	ZIndex.deep_hack(chunk)
 	stored_chunks.erase(file)
 	active_chunks[chunk_id] = {"chunk":chunk,"storage_name":file}
 	_pend_restore.erase(chunk_id)

@@ -20,3 +20,9 @@ func hack(s: Sprite):
 	var j: float = (i % _M) / _GR + actual_z_index
 	s.z_index = j
 	s.z_as_relative = false
+
+func deep_hack(node):
+	if node is Sprite:
+		hack(node)
+	for child in node.get_children():
+		deep_hack(child)
