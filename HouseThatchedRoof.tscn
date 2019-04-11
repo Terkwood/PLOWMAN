@@ -124,6 +124,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 256, 448, 32, 32 )
 script = ExtResource( 5 )
+actual_z_index = 60.0
 
 [node name="Sprite2" type="Sprite" parent="HouseBody"]
 position = Vector2( 32, -32 )
