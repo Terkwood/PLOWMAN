@@ -1,6 +1,6 @@
 extends Node
 
-const _RATE = 0.185
+const _RATE = 0.25
 const _GR = 2000
 const _M = _GR * _GR
 
