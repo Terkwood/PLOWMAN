@@ -57,7 +57,6 @@ position = Vector2( 0, 37 )
 shape = SubResource( 2 )
 
 [node name="HouseBody" type="StaticBody2D" parent="."]
-editor/display_folded = true
 
 [node name="Sprite7" type="Sprite" parent="HouseBody"]
 position = Vector2( 0, 32 )
@@ -110,12 +109,14 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 32, 512, 96, 32 )
 script = ExtResource( 5 )
+actual_z_index = 40.0
 
 [node name="Sprite" type="Sprite" parent="HouseBody"]
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 224, 480, 64, 96 )
 script = ExtResource( 5 )
+actual_z_index = 45.0
 
 [node name="Sprite3" type="Sprite" parent="HouseBody"]
 position = Vector2( 0, -48 )
@@ -130,6 +131,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 288, 416, 32, 128 )
 script = ExtResource( 5 )
+actual_z_index = 45.0
 
 [node name="Sprite4" type="Sprite" parent="HouseBody"]
 position = Vector2( 64, -16 )
@@ -145,6 +147,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 352, 480, 32, 96 )
 script = ExtResource( 5 )
+actual_z_index = 45.0
 
 [node name="Sprite14" type="Sprite" parent="HouseBody"]
 position = Vector2( 48, 32 )
