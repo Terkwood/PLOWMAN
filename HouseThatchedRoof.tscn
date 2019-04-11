@@ -109,7 +109,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 32, 512, 96, 32 )
 script = ExtResource( 5 )
-actual_z_index = 40.0
+actual_z_index = 35.0
 
 [node name="Sprite" type="Sprite" parent="HouseBody"]
 texture = ExtResource( 4 )
@@ -139,7 +139,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 320, 448, 32, 96 )
 script = ExtResource( 5 )
-actual_z_index = 4.0
+actual_z_index = 55.0
 
 [node name="Sprite5" type="Sprite" parent="HouseBody"]
 position = Vector2( 80, 0 )
@@ -147,7 +147,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 352, 480, 32, 96 )
 script = ExtResource( 5 )
-actual_z_index = 45.0
+actual_z_index = 60.0
 
 [node name="Sprite14" type="Sprite" parent="HouseBody"]
 position = Vector2( 48, 32 )
