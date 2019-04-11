@@ -97,6 +97,7 @@ func _ready():
 		area_2d.add_child(collision_area)
 		collision_area.set_owner(self) # set owner so that resource saving works
 	area_2d.connect("body_entered", self, "_on_Chunk_entered")
+	ZIndex.deep_hack(self)
 	live = true
 
 func _on_Chunk_entered(body: PhysicsBody2D):
