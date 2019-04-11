@@ -16,6 +16,7 @@ func _delete_all_scene_data():
 	if dir.open("user://") == OK:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		print("file %s" % file_name)
 		while (file_name != ""):
 			if !dir.current_is_dir(): # it's a file
 				file_name = dir.get_next()
