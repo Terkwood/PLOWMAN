@@ -22,7 +22,7 @@ position = Vector2( 180, 276 )
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 5 )]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="OpeningTextLabel" type="RichTextLabel" parent="."]
 margin_left = 224.0
 margin_top = 160.0
 margin_right = 608.0
