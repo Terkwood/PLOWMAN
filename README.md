@@ -41,6 +41,7 @@ Binaries for various systems are made available on the [Releases Page](https://g
 
 A running list of potentially-useful artwork, which is not yet included in this repo:
 
+- [LPC plants, trees, fungi, flowers](https://opengameart.org/node/80124) 
 - [LPC assets: multiple collections](https://opengameart.org/content/liberated-pixel-cup-0)
 - [LPC Farming game collection](https://opengameart.org/content/lpc-farming-game-collection)
 - [LPC tree recolors](https://opengameart.org/content/lpc-tree-recolors)
@@ -62,6 +63,7 @@ Thank you to all open source contributors!
 - [Oen44's Inventory Example](https://github.com/Oen44/Godot-Inventory)
 - [hiulit's day/night cycle example](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle)
 - [Wolthera van Hövell tot Westerflier for the Ancient Greek Architecture and various graphics](https://opengameart.org/content/lpc-compatible-ancient-greek-architecture)
+- [OPEN FONT LICENSE](/doc/OFL_for_IM_FELL_ENGLISH_SC.txt) for [IM FELL ENGLISH SC by Igino Marini](https://fonts.google.com/specimen/IM+Fell+English+SC?selection.family=IM+Fell+English+SC)
 
 ## References
 
