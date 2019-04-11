@@ -61,7 +61,7 @@ func _ready():
 		color = color_dusk
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	current_day_hour = current_time / (day_duration_real_seconds / 24)
 	
 	if current_time >= day_duration_real_seconds:

@@ -63,6 +63,7 @@ Thank you to all open source contributors!
 - [Oen44's Inventory Example](https://github.com/Oen44/Godot-Inventory)
 - [hiulit's day/night cycle example](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle)
 - [Wolthera van Hövell tot Westerflier for the Ancient Greek Architecture and various graphics](https://opengameart.org/content/lpc-compatible-ancient-greek-architecture)
+- [OPEN FONT LICENSE](/doc/OFL_for_IM_FELL_ENGLISH_SC.txt) for [IM FELL ENGLISH SC by Igino Marini](https://fonts.google.com/specimen/IM+Fell+English+SC?selection.family=IM+Fell+English+SC)
 
 ## References
 
