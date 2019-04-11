@@ -3,5 +3,6 @@
 [ext_resource path="res://IMFeENsc28P.ttf" type="DynamicFontData" id=1]
 
 [resource]
+size = 22
 font_data = ExtResource( 1 )
 
