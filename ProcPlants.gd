@@ -87,15 +87,6 @@ var _manifest = {}
 func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
-func _set_cell_size():
-	$TileMap.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
-
-onready var _dirt_tile_id = $TileMap.tile_set.find_tile_by_name("dirt_varied")
-func _draw_dirt(size: Vector2):
-	for x in range(size.x / Chunk.TILE_SIZE):
-		for y in range(size.y / Chunk.TILE_SIZE):
-			$TileMap.set_cellv(Vector2(x,y), _dirt_tile_id)
-
 func _ready():
 	if _manifest && !_manifest.empty():
 		var man_entry = StorageManifest.find_entry(self, _manifest)
@@ -104,12 +95,8 @@ func _ready():
 			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]
 			size = man_entry[SIZE_MANIFEST_KEY]
 
-	# Draw some dirt
-	_set_cell_size()
-	_draw_dirt(size)
-
 	# Draw a bunch of plants of the given type
-	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num])
+	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num], $TileMap)
 	plot.set_manifest(_manifest)
 	add_child(plot, true)
 	self._manifest = {}
