@@ -37,6 +37,15 @@ func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
 onready var _dirt_tile_id = tile_map.tile_set.find_tile_by_name("dirt_varied")
+onready var _corner_nw_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_nw")
+onready var _corner_ne_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_ne")
+onready var _corner_sw_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_sw")
+onready var _corner_se_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_se")
+onready var _edge_n_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_n")
+onready var _edge_e_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_e")
+onready var _edge_s_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_s")
+onready var _edge_w_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_w")
+
 func _draw_dirt(zone: Rect2):
 	# TODO this cell size should be based on the plant size,
 	# NOT THE CHUNK TILE SIZE
