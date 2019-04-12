@@ -534,3 +534,75 @@ region_rect = Rect2( 800, 992, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="grass_water_full3/StaticBody2D"]
 shape = SubResource( 9 )
 
+[node name="grass_dirt_nw" type="Sprite" parent="."]
+position = Vector2( 416, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1216, 1120, 32, 32 )
+
+[node name="grass_dirt_n" type="Sprite" parent="."]
+position = Vector2( 450, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1248, 1120, 32, 32 )
+
+[node name="grass_dirt_ne" type="Sprite" parent="."]
+position = Vector2( 484, 32 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1280, 1120, 32, 32 )
+
+[node name="grass_dirt_e" type="Sprite" parent="."]
+position = Vector2( 484, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1280, 1152, 32, 32 )
+
+[node name="grass_dirt_se" type="Sprite" parent="."]
+position = Vector2( 484, 100 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1280, 1184, 32, 32 )
+
+[node name="grass_dirt_s" type="Sprite" parent="."]
+position = Vector2( 450, 100 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1248, 1184, 32, 32 )
+
+[node name="grass_dirt_sw" type="Sprite" parent="."]
+position = Vector2( 416, 100 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1216, 1184, 32, 32 )
+
+[node name="grass_dirt_w" type="Sprite" parent="."]
+position = Vector2( 416, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1216, 1152, 32, 32 )
+
+[node name="dirt_center" type="Sprite" parent="."]
+position = Vector2( 450, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1248, 1152, 32, 32 )
+
+[node name="dirt_left" type="Sprite" parent="."]
+position = Vector2( 549, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1248, 1216, 32, 32 )
+
+[node name="dirt_right" type="Sprite" parent="."]
+position = Vector2( 583, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1280, 1216, 32, 32 )
+
+[node name="dirt_varied" type="Sprite" parent="."]
+position = Vector2( 583, 100 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1216, 1216, 32, 32 )
+
