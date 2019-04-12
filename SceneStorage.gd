@@ -17,12 +17,10 @@ func delete_all_scene_data():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while (file_name != ""):
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-			else:
-				print("Found file: " + file_name)
+			if !dir.current_is_dir():
 				if ".tscn" in file_name:
-					dir.remove(file_name)
+					if dir.remove(file_name) != OK:
+						print("An error occurred when trying to delete %s" % file_name)
 			file_name = dir.get_next()
 	else:	
-		print("An error occurred when trying to access the path.")
+		print("An error occurred when trying to access user data.")
