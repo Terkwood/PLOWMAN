@@ -36,12 +36,10 @@ func manifest():
 func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
-func _set_cell_size():
-	tile_map.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
-
 onready var _dirt_tile_id = tile_map.tile_set.find_tile_by_name("dirt_varied")
-
-func _draw_dirt(size: Vector2):
+func _draw_dirt(zone: Rect2):
+	tile_map.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
+	var size = zone.size
 	for x in range(size.x / Chunk.TILE_SIZE):
 		for y in range(size.y / Chunk.TILE_SIZE):
 			tile_map.set_cellv(Vector2(x,y), _dirt_tile_id)
@@ -83,6 +81,5 @@ func _ready():
 		_manifest["stage_num"] = stage_num
 	place(zone, stage_num)
 	# Draw some dirt
-	_set_cell_size()
-	_draw_dirt(size)
+	_draw_dirt(zone)
 
