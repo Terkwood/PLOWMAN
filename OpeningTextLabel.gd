@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-const _DISAPPEAR_AT = 3000
+const _DISAPPEAR_AT = 888
 var _counter = 0
 func _physics_process(_delta):
 	_counter += 1
