@@ -38,11 +38,15 @@ func set_manifest(mfst: Dictionary):
 
 onready var _dirt_tile_id = tile_map.tile_set.find_tile_by_name("dirt_varied")
 func _draw_dirt(zone: Rect2):
+	# TODO this cell size should be based on the plant size,
+	# NOT THE CHUNK TILE SIZE
 	tile_map.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
 	var size = zone.size
-	for x in range(size.x / Chunk.TILE_SIZE):
-		for y in range(size.y / Chunk.TILE_SIZE):
-			tile_map.set_cellv(Vector2(x,y), _dirt_tile_id)
+	var offset_x = zone.position.x / Chunk.TILE_SIZE
+	var offset_y = zone.position.y / Chunk.TILE_SIZE
+	for x in range(size.x / Chunk.TILE_SIZE - 1):
+		for y in range(size.y / Chunk.TILE_SIZE - 1):
+			tile_map.set_cellv(Vector2(offset_x + x,offset_y + y), _dirt_tile_id)
 
 
 func place(zone: Rect2, stage_num: int):
