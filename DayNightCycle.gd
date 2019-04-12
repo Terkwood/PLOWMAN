@@ -20,7 +20,7 @@ const day_start_number = 1
 var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
 var color_day = Color(1.0, 1.0, 1.0, 1.0)
 var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
-var color_night = Color(0.07, 0.09, 0.38, 1.0)
+var color_night = Color(0.27, 0.29, 0.46, 1.0)
 
 var current_time
 var current_day_hour
