@@ -61,6 +61,9 @@ func _draw_dirt(zone: Rect2):
 	tile_map.set_cellv(Vector2(offset_x - 1 + num_tiles_x, offset_y - 1 + num_tiles_y), _corner_se_tile_id)
 
 	# draw edges
+	for x in range(num_tiles_x - 1):
+		tile_map.set_cellv(Vector2(offset_x + x , offset_y - 1), _edge_n_tile_id)
+		tile_map.set_cellv(Vector2(offset_x + x , offset_y + num_tiles_y - 1), _edge_s_tile_id)
 	
 	# draw middle
 	for x in range(num_tiles_x - 1):
