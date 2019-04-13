@@ -36,7 +36,7 @@ func manifest():
 func set_manifest(mfst: Dictionary):
 	self._manifest = mfst
 
-onready var _dirt_tile_id = tile_map.tile_set.find_tile_by_name("dirt_varied")
+onready var _dirt_tile_id = tile_map.tile_set.find_tile_by_name("dirt_center")
 onready var _corner_nw_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_nw")
 onready var _corner_ne_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_ne")
 onready var _corner_sw_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_sw")
@@ -47,15 +47,25 @@ onready var _edge_s_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_s"
 onready var _edge_w_tile_id = tile_map.tile_set.find_tile_by_name("grass_dirt_w")
 
 func _draw_dirt(zone: Rect2):
-	# TODO this cell size should be based on the plant size,
-	# NOT THE CHUNK TILE SIZE
 	tile_map.set_cell_size(Vector2(Chunk.TILE_SIZE, Chunk.TILE_SIZE))
 	var size = zone.size
-	var offset_x = zone.position.x / Chunk.TILE_SIZE
-	var offset_y = zone.position.y / Chunk.TILE_SIZE
-	for x in range(size.x / Chunk.TILE_SIZE - 1):
-		for y in range(size.y / Chunk.TILE_SIZE - 1):
-			tile_map.set_cellv(Vector2(offset_x + x,offset_y + y), _dirt_tile_id)
+	var offset_x = floor(zone.position.x / Chunk.TILE_SIZE)
+	var offset_y = floor(zone.position.y / Chunk.TILE_SIZE)
+	var num_tiles_x = ceil(size.x / Chunk.TILE_SIZE)
+	var num_tiles_y = ceil(size.y / Chunk.TILE_SIZE)
+
+	# draw corners
+	tile_map.set_cellv(Vector2(offset_x - 1, offset_y - 1), _corner_nw_tile_id)
+	tile_map.set_cellv(Vector2(offset_x - 1+ num_tiles_x, offset_y - 1), _corner_ne_tile_id)
+	tile_map.set_cellv(Vector2(offset_x - 1, offset_y - 1 + num_tiles_y ), _corner_sw_tile_id)
+	tile_map.set_cellv(Vector2(offset_x - 1 + num_tiles_x, offset_y - 1 + num_tiles_y), _corner_se_tile_id)
+
+	# draw edges
+	
+	# draw middle
+	for x in range(num_tiles_x - 1):
+		for y in range(num_tiles_y - 1):
+			tile_map.set_cellv(Vector2(offset_x + x ,offset_y + y ), _dirt_tile_id)
 
 
 func place(zone: Rect2, stage_num: int):
