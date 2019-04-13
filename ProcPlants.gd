@@ -95,7 +95,8 @@ func _ready():
 			plant_type_num = man_entry[PLANT_TYPE_MANIFEST_KEY]
 			size = man_entry[SIZE_MANIFEST_KEY]
 
-	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num])
+	# Draw a bunch of plants of the given type
+	var plot = AutoPlant.new(size, PLANT_SCENES[plant_type_num], $TileMap)
 	plot.set_manifest(_manifest)
 	add_child(plot, true)
 	self._manifest = {}

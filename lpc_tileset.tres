@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=45 format=2]
+[gd_resource type="TileSet" load_steps=44 format=2]
 
 [ext_resource path="res://lpc_base_farm.png" type="Texture" id=1]
 
@@ -87,13 +87,13 @@ points = PoolVector2Array( 2, -1, 16, -1, 16, 16, -16, 16, -7, 3 )
 points = PoolVector2Array( -7, 3, -16, 16, -16, 0, -12, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
-points = PoolVector2Array( -16, 16, -16, -1, -13, 0, 1, 16 )
+points = PoolVector2Array( -16, 16, -16, -1, -13, 0, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=30]
 points = PoolVector2Array( -16, -16, 0, -16, -3, -8, -16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=31]
-points = PoolVector2Array( -16, 16, -3, -8, 0, 2, 0, 16 )
+points = PoolVector2Array( -3, -8, 0, 16, -16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=32]
 points = PoolVector2Array( -16, -16, 0, -16, -2, -9, -12, -1, -16, -2 )
@@ -108,27 +108,24 @@ points = PoolVector2Array( -16, -16, 8, -4, 0, 0, -7, -2 )
 points = PoolVector2Array( -16, -1, -16, -16, -7, -2 )
 
 [sub_resource type="ConvexPolygonShape2D" id=36]
-points = PoolVector2Array( 16, -16, 16, -1, 10, -1, -1, -16 )
+points = PoolVector2Array( 16, -16, 16, -1, 10, -1, 1, -16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
-points = PoolVector2Array( 3, -8, -1, -16, 16, -16, 16, 16 )
+points = PoolVector2Array( 16, 16, 1, 16, 3, 3, 16, -16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=38]
-points = PoolVector2Array( 1, -3, 3, -8, 16, 16, 3, 3 )
+points = PoolVector2Array( 2, -16, 16, -16, 3, 3 )
 
-[sub_resource type="ConvexPolygonShape2D" id=39]
-points = PoolVector2Array( 3, 3, 16, 16, 0, 16 )
-
-[sub_resource type="RectangleShape2D" id=40]
+[sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=41]
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 10, 11 )
 
-[sub_resource type="RectangleShape2D" id=42]
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 16, 11 )
 
-[sub_resource type="RectangleShape2D" id=43]
+[sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 10, 11 )
 
 [resource]
@@ -214,7 +211,7 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 41 ),
+"shape": SubResource( 40 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 21.6435, 14 )
 } ]
 7/z_index = 0
@@ -230,7 +227,7 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 42 ),
+"shape": SubResource( 41 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 14 )
 } ]
 8/z_index = 0
@@ -246,7 +243,7 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 43 ),
+"shape": SubResource( 42 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 9, 14 )
 } ]
 9/z_index = 0
@@ -916,12 +913,6 @@ extents = Vector2( 10, 11 )
 "one_way_margin": 1.0,
 "shape": SubResource( 38 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
-}, {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 39 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 53/z_index = 0
 54/name = "grass_water_full"
@@ -936,7 +927,7 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 40 ),
+"shape": SubResource( 39 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 54/z_index = 0
@@ -952,7 +943,7 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 40 ),
+"shape": SubResource( 39 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 55/z_index = 0
@@ -968,8 +959,128 @@ extents = Vector2( 10, 11 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 40 ),
+"shape": SubResource( 39 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 56/z_index = 0
+57/name = "grass_dirt_nw"
+57/texture = ExtResource( 1 )
+57/tex_offset = Vector2( 0, 0 )
+57/modulate = Color( 1, 1, 1, 1 )
+57/region = Rect2( 1216, 1120, 32, 32 )
+57/tile_mode = 0
+57/occluder_offset = Vector2( 16, 16 )
+57/navigation_offset = Vector2( 16, 16 )
+57/shapes = [  ]
+57/z_index = 0
+58/name = "grass_dirt_n"
+58/texture = ExtResource( 1 )
+58/tex_offset = Vector2( 0, 0 )
+58/modulate = Color( 1, 1, 1, 1 )
+58/region = Rect2( 1248, 1120, 32, 32 )
+58/tile_mode = 0
+58/occluder_offset = Vector2( 16, 16 )
+58/navigation_offset = Vector2( 16, 16 )
+58/shapes = [  ]
+58/z_index = 0
+59/name = "grass_dirt_ne"
+59/texture = ExtResource( 1 )
+59/tex_offset = Vector2( 0, 0 )
+59/modulate = Color( 1, 1, 1, 1 )
+59/region = Rect2( 1280, 1120, 32, 32 )
+59/tile_mode = 0
+59/occluder_offset = Vector2( 16, 16 )
+59/navigation_offset = Vector2( 16, 16 )
+59/shapes = [  ]
+59/z_index = 0
+60/name = "grass_dirt_e"
+60/texture = ExtResource( 1 )
+60/tex_offset = Vector2( 0, 0 )
+60/modulate = Color( 1, 1, 1, 1 )
+60/region = Rect2( 1280, 1152, 32, 32 )
+60/tile_mode = 0
+60/occluder_offset = Vector2( 16, 16 )
+60/navigation_offset = Vector2( 16, 16 )
+60/shapes = [  ]
+60/z_index = 0
+61/name = "grass_dirt_se"
+61/texture = ExtResource( 1 )
+61/tex_offset = Vector2( 0, 0 )
+61/modulate = Color( 1, 1, 1, 1 )
+61/region = Rect2( 1280, 1184, 32, 32 )
+61/tile_mode = 0
+61/occluder_offset = Vector2( 16, 16 )
+61/navigation_offset = Vector2( 16, 16 )
+61/shapes = [  ]
+61/z_index = 0
+62/name = "grass_dirt_s"
+62/texture = ExtResource( 1 )
+62/tex_offset = Vector2( 0, 0 )
+62/modulate = Color( 1, 1, 1, 1 )
+62/region = Rect2( 1248, 1184, 32, 32 )
+62/tile_mode = 0
+62/occluder_offset = Vector2( 16, 16 )
+62/navigation_offset = Vector2( 16, 16 )
+62/shapes = [  ]
+62/z_index = 0
+63/name = "grass_dirt_sw"
+63/texture = ExtResource( 1 )
+63/tex_offset = Vector2( 0, 0 )
+63/modulate = Color( 1, 1, 1, 1 )
+63/region = Rect2( 1216, 1184, 32, 32 )
+63/tile_mode = 0
+63/occluder_offset = Vector2( 16, 16 )
+63/navigation_offset = Vector2( 16, 16 )
+63/shapes = [  ]
+63/z_index = 0
+64/name = "grass_dirt_w"
+64/texture = ExtResource( 1 )
+64/tex_offset = Vector2( 0, 0 )
+64/modulate = Color( 1, 1, 1, 1 )
+64/region = Rect2( 1216, 1152, 32, 32 )
+64/tile_mode = 0
+64/occluder_offset = Vector2( 16, 16 )
+64/navigation_offset = Vector2( 16, 16 )
+64/shapes = [  ]
+64/z_index = 0
+65/name = "dirt_center"
+65/texture = ExtResource( 1 )
+65/tex_offset = Vector2( 0, 0 )
+65/modulate = Color( 1, 1, 1, 1 )
+65/region = Rect2( 1248, 1152, 32, 32 )
+65/tile_mode = 0
+65/occluder_offset = Vector2( 16, 16 )
+65/navigation_offset = Vector2( 16, 16 )
+65/shapes = [  ]
+65/z_index = 0
+66/name = "dirt_left"
+66/texture = ExtResource( 1 )
+66/tex_offset = Vector2( 0, 0 )
+66/modulate = Color( 1, 1, 1, 1 )
+66/region = Rect2( 1248, 1216, 32, 32 )
+66/tile_mode = 0
+66/occluder_offset = Vector2( 16, 16 )
+66/navigation_offset = Vector2( 16, 16 )
+66/shapes = [  ]
+66/z_index = 0
+67/name = "dirt_right"
+67/texture = ExtResource( 1 )
+67/tex_offset = Vector2( 0, 0 )
+67/modulate = Color( 1, 1, 1, 1 )
+67/region = Rect2( 1280, 1216, 32, 32 )
+67/tile_mode = 0
+67/occluder_offset = Vector2( 16, 16 )
+67/navigation_offset = Vector2( 16, 16 )
+67/shapes = [  ]
+67/z_index = 0
+68/name = "dirt_varied"
+68/texture = ExtResource( 1 )
+68/tex_offset = Vector2( 0, 0 )
+68/modulate = Color( 1, 1, 1, 1 )
+68/region = Rect2( 1216, 1216, 32, 32 )
+68/tile_mode = 0
+68/occluder_offset = Vector2( 16, 16 )
+68/navigation_offset = Vector2( 16, 16 )
+68/shapes = [  ]
+68/z_index = 0
 
