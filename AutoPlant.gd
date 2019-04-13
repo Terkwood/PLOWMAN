@@ -51,8 +51,8 @@ func _draw_dirt(zone: Rect2):
 	var size = zone.size
 	var offset_x = floor(zone.position.x / Chunk.TILE_SIZE)
 	var offset_y = floor(zone.position.y / Chunk.TILE_SIZE)
-	var num_tiles_x = ceil(size.x / Chunk.TILE_SIZE)
-	var num_tiles_y = ceil(size.y / Chunk.TILE_SIZE)
+	var num_tiles_x = floor(size.x / Chunk.TILE_SIZE)
+	var num_tiles_y = floor(size.y / Chunk.TILE_SIZE)
 
 	# draw corners
 	tile_map.set_cellv(Vector2(offset_x - 1, offset_y - 1), _corner_nw_tile_id)
