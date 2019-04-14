@@ -6,11 +6,15 @@ var growing2 = null
 var mature = null
 var harvested = null
 
-onready var stages = [young, growing, growing2, mature, harvested]
+onready var stages = [young, growing, growing2, mature]
 
-onready var sprite_size = mature.instance().get_node("Sprite").get_region_rect().size
-const TILE_BUFFER = Vector2(8,8)
-onready var tile_size = Vector2(sprite_size.x + TILE_BUFFER.x, sprite_size.y + TILE_BUFFER.y)
+func _sprite_size(stage_num):
+	return stages[stage_num].instance().get_node("Sprite").get_region_rect().size
+
+const _TILE_BUFFER = Vector2(8,8)
+func _tile_size(stage_num):
+	var sprite_sz = _sprite_size(stage_num)
+	return Vector2(sprite_sz.x + _TILE_BUFFER.x, sprite_sz.y + _TILE_BUFFER.y)
 
 var size = Vector2(128,128)
 onready var chunk_id = Chunk.id(self)
@@ -75,15 +79,16 @@ func _draw_dirt(zone: Rect2):
 
 
 func place(zone: Rect2, stage_num: int):
-	var num_plants_x = max(0,floor(zone.size.x / tile_size.x) - 1)
-	var num_plants_y = max(0,floor(zone.size.y / tile_size.y) - 1)
+	var stage_tile_size = _tile_size(stage_num)
+	var num_plants_x = max(0,floor(zone.size.x / stage_tile_size.x) - 1)
+	var num_plants_y = max(0,floor(zone.size.y / stage_tile_size.y) - 1)
 	
 	var stage = stages[stage_num]
 	for x in num_plants_x:
 		for y in num_plants_y:
 			var plant = stage.instance()
-			plant.position.x = zone.position.x + x * tile_size.x
-			plant.position.y = zone.position.y + y * tile_size.y
+			plant.position.x = zone.position.x + x * stage_tile_size.x
+			plant.position.y = zone.position.y + y * stage_tile_size.y
 			get_parent().add_child(plant)
 	var mf = StorageManifest.size_position_manifest(zone)
 	mf["stage_num"] = stage_num
